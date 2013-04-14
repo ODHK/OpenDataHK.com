@@ -1,0 +1,44 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Serie</th>
+    <th>Title</th>
+    <th>Location</th>
+    <th>Start datetime</th>
+    <th>End datetime</th>
+    <th>Announcement</th>
+    <th>Recap</th>
+    <th>Organiser</th>
+    <th>Logo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.serie_id %></td>
+    <td><%= event.title %></td>
+    <td><%= event.location_id %></td>
+    <td><%= event.start_datetime %></td>
+    <td><%= event.end_datetime %></td>
+    <td><%= event.announcement %></td>
+    <td><%= event.recap %></td>
+    <td><%= event.organiser %></td>
+    <td><%= event.logo %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<iframe src="https://docs.google.com/presentation/d/1ushepNg6Y1toLtj6AjrBLGBMnjfoHKwjvdNYN1MrLcY/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1440" height="1109" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<script async class="speakerdeck-embed" data-id="f080c130744c01306b5122000a1c8083" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<%= link_to 'New Event', new_event_path %>

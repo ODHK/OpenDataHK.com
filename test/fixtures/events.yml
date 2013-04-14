@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  serie: 1
+  title: MyString
+  location: 1
+  start_datetime: 2013-04-13 00:43:55
+  end_datetime: 2013-04-13 00:43:55
+  announcement: MyText
+  recap: MyText
+  organiser: 1
+  logo: MyString
+
+two:
+  serie: 1
+  title: MyString
+  location: 1
+  start_datetime: 2013-04-13 00:43:55
+  end_datetime: 2013-04-13 00:43:55
+  announcement: MyText
+  recap: MyText
+  organiser: 1
+  logo: MyString

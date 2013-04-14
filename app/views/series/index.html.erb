@@ -1,0 +1,25 @@
+<h1>Listing series</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @series.each do |series| %>
+  <tr>
+    <td><%= series.name %></td>
+    <td><%= series.description %></td>
+    <td><%= link_to 'Show', series %></td>
+    <td><%= link_to 'Edit', edit_series_path(series) %></td>
+    <td><%= link_to 'Destroy', series, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Serie', new_series_path %>

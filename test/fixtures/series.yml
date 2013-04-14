@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Meet
+  description: MyText
+
+two:
+  name: Make
+  description: MyText

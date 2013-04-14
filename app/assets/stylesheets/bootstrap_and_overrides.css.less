@@ -1,0 +1,179 @@
+@import "twitter/bootstrap/bootstrap";
+
+@import "twitter/bootstrap/reset.less";
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+@import "twitter/bootstrap/scaffolding.less";
+@import "twitter/bootstrap/grid.less";
+@import "twitter/bootstrap/layouts.less";
+@import "twitter/bootstrap/type.less";
+@import "twitter/bootstrap/forms.less";
+@import "twitter/bootstrap/wells.less";
+@import "twitter/bootstrap/component-animations.less";
+@import "twitter/bootstrap/buttons.less";
+@import "twitter/bootstrap/close.less";
+@import "twitter/bootstrap/navs.less";
+@import "twitter/bootstrap/navbar.less";
+@import "twitter/bootstrap/labels-badges.less";
+@import "twitter/bootstrap/hero-unit.less";
+@import "twitter/bootstrap/utilities.less";
+@import "twitter/bootstrap/responsive";
+
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+
+// Font Awesome
+@import "fontawesome";
+
+
+// Museo
+@font-face{ font-family: 'Museo Sans'; src: url('MuseoSans_500-webfont.eot'); src: url('MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'), url('MuseoSans_500-webfont.woff') format('woff'), url('MuseoSans_500-webfont.ttf') format('truetype'); }
+@font-face{ font-family: 'Museo Slab'; src: url('Museo_Slab_500_2-webfont.eot'); src: url('Museo_Slab_500_2-webfont?#iefix') format('embedded-opentype'), url('Museo_Slab_500_2-webfont.woff') format('woff'), url('Museo_Slab_500_2-webfont.ttf') format('truetype'); }
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+html { 
+  background: url('background/tri.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+	background-color: transparent;
+	font-family: 'Museo Sans', sans-serif;
+	color: rgb(233, 233, 233);
+	font-size: 16px;
+}
+
+p {
+	font-size: :2.0em;
+	line-height: 1.4em;
+}
+
+.navbar-inner{
+	border-radius: 0;
+}
+
+.navbar .nav > li > a {
+	color: rgb(0, 136, 204);
+}
+
+img.logo {
+	margin: 0 auto;
+	max-width: 400px;
+	display: none;
+}
+
+div[class*="span"] {
+	background-color: rgba(22, 22, 22, 0.7);
+	border-radius: 3px;
+	position: relative;
+	word-wrap: break-word;
+	margin-bottom: 2em;
+	& > header > h2 {
+		margin:0;
+		padding: 12px 0;
+		text-align: center;
+		font-family: 'Museo Slab', sans-serif;
+		font-weight: 300;
+	}
+	header, footer {
+		-webkit-box-shadow: rgb(255, 255, 255) 0px 0px 2px 2px inset;
+		background-image: url(https://d3levm2kxut31z.cloudfront.net/assets/paper-texture-78e81f14f426b1043da12ae2e3894487.jpg);
+		box-shadow: rgb(255, 255, 255) 0px 0px 2px 2px inset;
+		background-color: rgba(232, 232, 232, 0.9);
+		color: rgb(52, 49, 49);
+		font-size: 10px;
+		line-height: normal;
+	}
+	header{
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		border-bottom-color: rgb(232, 232, 232);
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		height: 5.6em;
+	}
+	section {
+		height: 100%;
+		h3, p {
+			padding: 0em 1.2em;
+		}
+		h3{
+			margin: 0;
+		}
+	}
+	footer {
+		background-color: rgba(0, 0, 0, 0);
+		border-top: solid 1px rgb(232, 232, 232);
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+		box-shadow: rgb(255, 255, 255) 0px 0px 2px 2px inset;
+		height: 6em;
+		width:inherit;
+		.label {
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+		#mce-EMAIL, #mc-embedded-subscribe {
+			margin-top: 14px;
+			margin-left: 14px;
+			margin-right: 14px;
+		}
+	}
+}
+
+.notice {
+		-webkit-font-smoothing: subpixel-antialiased;
+		background-color: rgba(0, 0, 0, 0.9);
+		border-bottom-right-radius: 4px;
+		border-top-right-radius: 4px;
+		color: rgb(255, 255, 255);
+		font-size: 12px;
+		margin-top: 50px;
+		> * {
+			padding: 14px	
+		}
+	}
+
+
+div.image-container {
+    display: -webkit-flex;
+    display: flex;
+    max-height: 200px;
+    overflow: hidden;
+    margin-left: 0;
+    margin-bottom: 12px;
+    border-radius: 0;
+    border-top: 1px solid rgb(66,66,66);
+    border-bottom: 1px solid rgb(66,66,66);
+ 	img {
+ 		-webkit-align-self: center;
+    	align-self: center;
+    	width: 100%;
+	}
+}
