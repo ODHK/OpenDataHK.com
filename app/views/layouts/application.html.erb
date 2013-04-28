@@ -48,12 +48,11 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "About Us", "/about"  %></li>
-              <li><%= link_to "How We Do Things", "/approach"  %></li>
               <li><%= link_to "Community", "/community"  %></li>
-              <li><%= link_to "Events", "/events"  %></li>
-              <li><%= link_to "Projects", "/projects"  %></li>
-              <li><%= link_to "Resources", "/resources"  %></li>
-              <li><%= link_to "Data.One", "http://www.gov.hk/en/theme/psi/datasets/"  %></li>
+              <li><%= link_to "Events", "/events" %></li>
+              <li><%= link_to "Projects", "/projects", "data-toggle" => "tooltip", :title => "Coming Soon", :class => "inactive" %></li>
+              <li><%= link_to "Resources", "/resources", "data-toggle" => "tooltip", :title => "Coming Soon", :class => "inactive" %></li>
+              <li><%= link_to "Data.One", "http://www.gov.hk/en/theme/psi/datasets/", :class => "external" %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -67,6 +66,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "bootstrap" %>
 
   </body>
 </html>

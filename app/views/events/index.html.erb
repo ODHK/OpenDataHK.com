@@ -1,44 +1,561 @@
-<h1>Listing events</h1>
+    <!-- <h1>Listing events</h1>
 
-<table>
-  <tr>
-    <th>Serie</th>
-    <th>Title</th>
-    <th>Location</th>
-    <th>Start datetime</th>
-    <th>End datetime</th>
-    <th>Announcement</th>
-    <th>Recap</th>
-    <th>Organiser</th>
-    <th>Logo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <table>
+      <tr>
+        <th>Serie</th>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Start datetime</th>
+        <th>End datetime</th>
+        <th>Announcement</th>
+        <th>Recap</th>
+        <th>Organiser</th>
+        <th>Logo</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
 
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.serie_id %></td>
-    <td><%= event.title %></td>
-    <td><%= event.location_id %></td>
-    <td><%= event.start_datetime %></td>
-    <td><%= event.end_datetime %></td>
-    <td><%= event.announcement %></td>
-    <td><%= event.recap %></td>
-    <td><%= event.organiser %></td>
-    <td><%= event.logo %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.serie_id %></td>
+        <td><%= event.title %></td>
+        <td><%= event.location_id %></td>
+        <td><%= event.start_datetime %></td>
+        <td><%= event.end_datetime %></td>
+        <td><%= event.announcement %></td>
+        <td><%= event.recap %></td>
+        <td><%= event.organiser %></td>
+        <td><%= event.logo %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
+    <br />
+
+    <%= link_to 'New Event', new_event_path %>
+
+    -->
+
+    <div class="container events">
+        <header>
+            <nav>
+                <ul class="nav nav-pills pull-left">
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#participate">Participate</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                </ul>
+                <%= image_tag "logo/make01.png", :class => 'banner' %>
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#people">People</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="hero-unit">
+            <div class="call-to-action">
+                <h3>Make.01 is a time and space for people to ...</h3>
+                <div class="make-list-container">
+                    <h4 class="make-list">MAKE</h4>
+                    <ul>
+                        <li>infographics,</li>
+                        <li>a tool,</li>
+                        <li>a visual language, </li>
+                        <li>a service,</li>
+                        <li>a definition,</li>
+                    </ul>
+                </div>
+                <h3>Make Open Data happen for Hong Kong</h3>
+            </div>
+            <p><span class="lead-text">Open Data</span> is in its infancy in Hong Kong. On <span class="lead-text">18 & 19 May</span> you're invited to advance it in a weekend of design, prototypes and developing ideas and solutions for Open Data. The event is open to makers of all tribes. In the run-up we'll form teams around the most popular ideas and you'll be able to contribute your wit and skills to the project of your choosing. If you have an Open Data idea that just needs a couple of people and a weekend to realise, propose it at Make.01 and with your ingenuity and verve let's make it happen!</p>
+            
+            <a class="button pull-right">find out more</a>
+            <p class="button-label pull-right">or</p>
+            <a class="button pull-right">Register</a>
+            <p class="button-label pull-right">HK$ 50</p>
+        </div>
+
+    <section id="details">
+        <div class="row">
+            <div class="span12">
+                <div class="event-panel">
+                    <h2>Event Details</h2>
+                    <h3>Dates</h3>
+                    <p>Catalyst Night - 14 May</p>
+                    <p>Make.01- 18-19 May</p>
+                    <h3>Venue</h3>
+                    <code>    
+                    Address
+                    L1, The Sparkle, 500 Tung Chau Street,
+                    West Kowloon
+                    </code> 
+
+                    <iframe width="100%" height="320px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?t=m&amp;hl=en-GB&amp;ie=UTF8&amp;ll=22.333,114.1521&amp;spn=0.032352,0.020814&amp;z=15&amp;output=embed"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="participate">
+        <div class="row">
+            <div class="span12">
+                <div class="event-panel">
+                    <h2>Participate</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="schedule">
+        <div class="row">
+            <div class="span12">
+                <div class="event-panel">
+                <h2>Schedule</h2>
+                <h3>Catalyst Night</h3>
+                <h4>Tuesday, 14 May @ The Good Lab</h4>
+                <p>The Catalyst night is a precursor to Make.01 where participants propose their projects and form teams. We poll interest for each suggested project - you can propose as many as you like - and cull the ones which have too few supporters.</p>
+                <p>We'll end with a solid set of feasible projects that have sufficient backers to be completed over the weekend. As some project may take fewer people and less time to complete, we'll also try to come up with a sensible schedule for spreading them out over the weekend. Anyone got a fancy algorythm for that?</p>
+                <p>For the uninitiated - that'd be all of us really - we'll have a primer on the scope of Open Data and delineate what sorts of issues and applications you can address at Make.01. We'll also introduce you to some of Hong Kong's OpenData datasets, tools and applications currently available.</p>
+                <p>The catalyst night is held earlier on in the week so you can take care of the more mundane preparations before Make.01 (e.g. printing templates, setting up a development environment, setting on a tool chain) and just spend the weekend making.</p>
+                <table>
+                    <tr>
+                        <td>19:00</td>   
+                        <td>Event Opening</td>   
+                    </tr>
+                    <tr>
+                        <td>19:15</td>   
+                        <td>Data.One: Datasets, Tools, and Applications</td>   
+                    </tr>
+                    <tr>
+                        <td>19:30</td>   
+                        <td>Pitching and Culling Projects.</td>   
+                    </tr>
+                    <tr>
+                        <td>20:00</td>   
+                        <td>Team formation and Project Consolidation.</td>   
+                    </tr>
+                    <tr>
+                        <td>21:00</td>   
+                        <td>Announcing the Project Teams.</td>   
+                    </tr>
+                </table>
+              
+
+                <h3>Make.01</h3>
+                <h4>Saturday, 18 May @ The Good Lab</h4>                
+                <p>The first day of Make.01 is spent laying the ground-work for your projects. Convene at the GoodLab at noon and get your creative juices flowing! Before dinner, we'll get together to hear how each project is developing. Each team delivers a short, 2 minute presentation on where they are at, and what challenges they're facing.</p>
+                <p>To make sure everyone gets to their accomodation in time, we close shop half an hour before the last MTR passes by Cheung Sha Wan.</p>
+                <table>
+                    <tr>
+                        <td>12:00</td>
+                        <td>Doors Open</td>
+                    </tr>
+                    <tr>
+                        <td>18:30</td>
+                        <td>Progress Report: 2 Min presentation on challenges and developments</td>
+                    </tr>
+                    <tr>
+                        <td>19:00</td>
+                        <td>Pizza Delivery! Coutresey of 'DemystData'</td>
+                    </tr>
+                    <tr>
+                        <td>00:00</td>
+                        <td>Doors Close</td>
+                    </tr>
+                </table>
+               
+                <h4>Sunday, 19 May @ The Good Lab</h4>
+                <p>On the second day of Make.01 we'll work against the clock and polish our prototypes/designs/apps for the final round of presentations at 17:15.</p>
+                <p>If a full weekend is too much of a commitment, short track (1 day) tickets are also available. Sunday is the recommended day for short trackers to participate as it's still possible to present the project at day's end. The established teams will also bring the short trackers up to speed on their progress so they can possibly join them.</p>
+                <table>
+                    <tr>
+                        <td>10:00</td>
+                        <td>Doors Open</td>
+                    </tr>
+                    <tr>
+                        <td>10:30</td>
+                        <td>Progress Report: 2 Min presentation on challenges and developments.</td>
+                    </tr>
+                    <tr>
+                        <td>17:15</td>
+                        <td>Final Presentations</td>
+                    </tr>
+                    <tr>
+                        <td>18:45</td>
+                        <td>Closing Words</td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faq">
+        <div class="row">
+         <div class="span12">
+                <div class="event-panel">
+                           <h2>FAQ</h2>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
+                        <h4>What is the purpose of Make.01?</h4></a>
+                    </div>
+                    <div id="collapse1" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>The immediate purpose of Make.01 is to provide makers with a time, a venue and the collaborators for them to realise their Open Data related ideas. Make.01 is thus organised for the benefit and enjoyment of its particiants as we believe that if you provide them with those bare essentials, beautiful and worthwhile things will happen.</p>
+                        <p>The broader objective is to foster a community of makers and Open Data advocates who can further advance the adoption of Open Data in Hong Kong.</p>                      
+                      </div>
+                  </div>
+              </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse14">
+                        <h4>Why focus on Open Data?</h4></a>
+                    </div>
+                    <div id="collapse14" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>It's the gateway for civic engagement, for better ideas based on better information, from data.</p>                      
+                      </div>
+                  </div>
+              </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+                        <h4>What should I bring to Make.01?</h4></a>
+                    </div>
+                    <div id="collapse2" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>Bring whichever tool, material or device you need to be productive. This can range from your home-made 3D printer to something as crafty as a pencil. Everyone will have access to a power socket and WiFi, and we'll also provide some stationary for brainstorming and outlining your ideas.</p>
+                      </div>
+                  </div>
+              </div>
 
 
-<iframe src="https://docs.google.com/presentation/d/1ushepNg6Y1toLtj6AjrBLGBMnjfoHKwjvdNYN1MrLcY/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1440" height="1109" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+                        <h4>I can't commit for the full weekend. Can I still join?</h4></a>
+                    </div>
+                    <div id="collapse3" class="accordion-body collapse">
+                      <div class="accordion-inner">
+              <p>Yes - although full weekend makers have priority. There are short track tickets available if you can only make it on one of the days - preferably Sunday so you can still present at the final round of presentation.</<p>We understand that some project you're interested in would only take a day or less to build, so it's fine if you suggest and participate in projects that don't t<<p>At the catalyst night you can also discuss with your team members how you'd divide the work, and at what part of the process your skill set is most effective.</p>
+                      </div>
+                  </div>
+              </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
+                        <h4>What's the difference between the weekend and short-track tickets?</h4></a>
+                    </div>
+                    <div id="collapse4" class="accordion-body collapse">
+                      <div class="accordion-inner">
+              <p>To accomodate those who just want to try this out, or simply aren't able to commit to a weekend of marvelous making, short track tickets are available. These tickets are equal is all ways to the full weekend tickets, apart from indicating to the organisation that you'll only attend one of the two days.</<p>Even if you sign up for a short track ticket, we urge you to participate on the catalyst night as we'll pick the projects and create the teams for the weekend.</<p>Also, if you are not otherwise constrained, Sunday would be the preffered day for short trackers as they'd still be able to be present at the final round of presenta<p>
+                      </div>
+                  </div>
+              </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
+                        <h4>What kind of projects can I suggest?</h4></a>
+                    </div>
+                    <div id="collapse5" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>We take a very broad definition of making. Any creative act where you devise and implement an idea falls within the purvue of making. Making is as much about the practice of tinkering, playing with available tools and developing your own, as it is about building the end product.</p<p>Whether the result is thus a set of definitions, a icongraphic language, a web entity, a physicial object, or a friendly robot, you've <em>made</em> it if it came about through an iterative problem solving process where often the biggest challenge was to make everything work together. In sum, Making is ascending above the limitations of what you're given.<<p>As long as you believe your project fits that description, it's feasible to deliver over a weekend, and is relevant to Open Data, then it's the perfect project for Make.01.</p>  
+                      </div>
+                  </div>
+              </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">
+                        <h4>How will the projects be judged?</h4></a>
+                    </div>
+                    <div id="collapse6" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>Make.01 isn't a contest. Other than being connected to Open Data, there aren't any criteria your project needs to abide to.</p>
+                      </div>
+                  </div>
+              </div>
 
-<script async class="speakerdeck-embed" data-id="f080c130744c01306b5122000a1c8083" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+                    <div class="accordion-group">
+            <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse7">
+                        <h4>I am not a developer, designer, journalist, or any of the other fancy professions you name-dropped in the parcipants section, is this event still for me?</</a>
+                    </div>
+                    <div id="collapse7" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>The event is set up to be maximally inclusive. If you have an interest in or ideas for what Open Data can do for government, citizens and business, check out some of the <a href="#projects">proposed projects</a> and see if there's any which you could contribute to. There's some which focus on figuring out how Open Data can be improved in Hong Kong. These could benefit from your experience, research, and analytical skills. Also don't knock Make.01 as an opportunity to pick up new skills! In the maker spirit, propose a simple data visualistion project, or join an existing one and learn from the people around you!</<p>If you are still not sure whether the event is for you, perhaps sign up for short track tickets and attend for one day only.</p>
+                      </div>
+                  </div>
+              </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse8">
+                        <h4>What will happen to the projects after Make.01? </h4></a>
+                    </div>
+                    <div id="collapse8" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                <p>OpenDataHK is still a very young community, but we intend to spearhead the development of several Open Data projects. One of them is this very web site which can serve as a repository of Open Data resources and projects relevant to Hong Kong.<<p>The Make.01 projects will first appear on this website as suggestions, when they are picked up by a team they will be featured on this page as one of the outcomes of the event. If the team is willing to develop the project beyond Make.01, or it is already finalised, they'll have the opportunity to be featured in our Open Data projects index. [Currently under development]</p>
+                      </div>
+                  </div>
+              </div>
 
-<%= link_to 'New Event', new_event_path %>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse9">
+                        <h4>What are the food arrangements for Make.01?</h4></a>
+                    </div>
+                    <div id="collapse9" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                    <p>The <em>Good Restaurant</em> is just below the venue where we are hosting Make.01. DemystData has also sponsored pizza for all attendees on Saturday. Beyond that we suggest you bring sufficient drinks and food to the venue.</p>
+                      </div>
+                  </div>
+              </div>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse10">
+                        <h4>Where can I learn more about Open Data?</h4></a>
+                    </div>
+                    <div id="collapse10" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                    <p>The <a href="http://opendatahandbook.org/en/what-is-open-data/">Open Data Handbook</a> is an excellent resource to familiarise yourself with Open Data. For developments specific to Hong Kong, you may consult our <a href="https://plus.google.com/communities/107947866980791843501">Google+ Group</a>. To find out what the Hong Kong government is currently providing, you can consult their <a href="http://www.gov.hk/en/theme/psi/datasets/">Data.One</a> initiative</p>
+                      </div>
+                  </div>
+              </div>
+
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11">
+                        <h4>Does Make.01 have any ancestors? </h4></a>
+                    </div>
+                    <div id="collapse11" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <p>You'd be surpised how Frequently this Question was Asked! Make.01 takes its inspiration from the highly enjoyable Code Code, organised by Matthew Rudy Jacobs, Steve Holmes and Eddie Lau.</p>
+                      </div>
+                  </div>
+              </div>
+
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse12">
+                        <h4>Who is organising this?</h4></a>
+                    </div>
+                    <div id="collapse12" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                    <p>Make.01 is organised as part of OpenDataHK, a community of Open Data advocates and practicioners in Hong Kong. OpenDataHK events are member-lead, meaning that anyone can organise and lead an event according to their own designs. Make.01 is organised by Mart van de Ven with sup</p>p>
+                      </div>
+                  </div>
+              </div>
+
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse13">
+                        <h4>What if my question wasn't answered in the FAQ?</h4></a>
+                    </div>
+                    <div id="collapse13" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                      
+                        <p>Shoot the organisation an <a href="mailto:make@opendatahk.com?Subject=Question"></a>e-mail!</p>
+
+                      </div>
+                  </div>
+              </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    </div>
+    <div style="clear:both"></div> 
+    <div class="container-fluid clear">
+        <div class="fluid-row">
+            <section id="projects">
+                <h2>Projects: Ideas</h2>
+                <sub class="pull-right">These are the suggested projects of people who have signed up for Make.01 <a href="#" class="btn">Add your own</a></sub>
+                        <div class="panel col">
+                            <header><h2>GeodEX</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/4.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>Shipping Inc</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/2.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>Company Register</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/1.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>Traffic</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/5.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>ReclineJS</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/6.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="fluid-row">
+            <section id="people">
+                <h2>People: Joined</h2>
+                 <div class="panel col">
+                            <header><h2>GeodEX</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/4.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>GeodEX</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/4.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>GeodEX</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/4.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>GeodEX</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/4.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                        </div><!--/span-->
+                        <div class="panel col">
+                            <header><h2>GeodEX</h2></header>
+                            <section>
+                            <div class="image-container span4">
+                              <%= image_tag "col/4.jpg" %>
+                            </div>
+                            <p>... is the idea that certain data should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other mechanisms of control.[1] The goals of the open data movement are similar to those of other "Open" movements such as open source, open hardware, open content, and open access. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term "open data" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov and Data.gov.uk.</p>
+                            </section>
+                            <footer>
+                              <div class="label pull-right">Next Event</div>
+                              <ul>
+                                <li>Venue: Delaney's</li>
+                                <li>Date: Monday, 23 June 2013</li>
+                                <li>Address: 190 Lockhart Rockhart Road</li>
+                              </ul>
+                            </footer>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
