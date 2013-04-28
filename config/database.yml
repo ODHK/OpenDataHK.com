@@ -2,6 +2,8 @@ common: &common
   adapter: postgresql
   username: odhk
   password: guidance # from psql setup, see Postgresql
+  host: localhost
+  port: 5432
 
 development:
   <<: *common
