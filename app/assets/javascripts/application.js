@@ -45,4 +45,5 @@
 		$(".span4 > section").outerHeight('100%').equalHeights();
 		$(".span4 > section").outerHeight('100%').equalHeights();
 	})
+
 })(jQuery);
