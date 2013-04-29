@@ -258,7 +258,37 @@ div.col > section > h3 {
 	color: #ECECEC;
 }
 
+.new-project, .landing, .community {
+	h2 {
+		color: @grey66;
+	}
+	h3 {
+		color: @white;
+	}
+}
 
+.new-project {
+	h2 {
+		padding-left: 20px;
+		color:@white;
+	}
+	label {
+		font-size: 20px;
+		padding-left: 20px;
+	}
+	input, textarea {
+		width: 90%;
+		margin: 0 20px;
+		margin-bottom: 12px;
+	}
+	.actions {
+		input {
+			.button;
+			height: 50px;
+	margin: 0 auto;
+	margin-top: 20px;	}
+	}
+}
 
 .banner-container {
 	// background-image: url(https://d3levm2kxut31z.cloudfront.net/assets/paper-texture-78e81f14f426b1043da12ae2e3894487.jpg);
@@ -268,7 +298,7 @@ div.col > section > h3 {
 	  // -o-background-size: cover;
 	  // background-size: cover;
 }
-.events {
+.about, .events {
 	background-color: @frame-colour;
 	// background-color: rgba(66,66,66,0.7);
 	border-radius: 6px;
@@ -302,6 +332,13 @@ div.col > section > h3 {
 			margin-top: -50px;
 			margin-left: 27px;
 		}
+	}
+	ul {
+		margin-bottom: 22px;
+	}
+	li {
+		color: @grey33;
+		padding: 2px 0;
 	}
 	div.event-panel {
 		box-shadow: 0px 0px 6px rgba(222,222,222,0.8);
@@ -345,6 +382,11 @@ div.col > section > h3 {
     text-align:center;
 }
 
+
+.about .call-to-action {
+	text-align: center;
+  }
+
 .hero-unit {
 	background-image: @blizzard;
 	box-shadow: 0px 0px 6px rgba(222,222,222,0.8);
@@ -379,6 +421,7 @@ div.col > section > h3 {
 			li {
 				line-height: 35px;
 				font-size: 25px;
+				color: @grey233;
 			}
 			&:after {
 				clear:both;
@@ -430,8 +473,12 @@ div.col > section > h3 {
 		border:none;
 	}
 	> h2 {
-		.lead-text;
+		color: @white;
 		font-size: 3em;
+		padding-top: 12px;
+	}
+	h3 {
+		color: @white;
 	}
 }
 
