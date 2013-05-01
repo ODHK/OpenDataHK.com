@@ -531,12 +531,17 @@ div > div.info-panel {
 		margin-left: 80px;
 	}
 }
-
+.nav li.inactive,
 .navbar .nav > li > a.inactive {
 	color: rgba(100,100,100,0.4);
 	pointer-events: none;
   	cursor: default;
 }
+.nav li.inactive a{
+	background-color: #999;
+}
+
+
 .navbar .nav > li > a.external{
 	color: #EE3333;
 	&:hover{
