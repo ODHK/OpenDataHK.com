@@ -118,6 +118,11 @@ p {
 
 .navbar-inner{
 	border-radius: 0;
+	background-color: @black; /* background color will be black for all browsers */
+	filter: none;
+	.nav-collapse, .container-fluid {
+		background-color: transparent;
+	}
 }
 
 .navbar .nav > li > a {
@@ -466,6 +471,34 @@ div.col > section > h3 {
 	}
 }
 
+.sponsor {
+	background-image: @fabric;
+	padding: 16px;
+	text-align: center;
+	h4 { 
+		color: @header-colour;
+		text-align: center;
+		margin-top: 0;
+	}
+	h5 {
+	}
+	p, a {
+		color: @white;
+		text-align: left;
+	}
+	i {
+		display: block;
+		font-size: 24px;
+		padding: 6px;
+	}
+	p {
+		font-size: 14px;
+		font-weight: normal;
+	}
+}
+
+
+
 #people, #projects {
 	 .image-container,
 	 .image-container {
@@ -483,18 +516,15 @@ div.col > section > h3 {
 }
 
 .navbar .nav > li > a.inactive {
-	color: #CCC;
+	color: rgba(100,100,100,0.4);
 	pointer-events: none;
   	cursor: default;
 }
 .navbar .nav > li > a.external{
 	color: #EE3333;
-	background-color: #EEE;
 	&:hover{
-		background-color: #EFEFEF;
-		color: #EF3333;
+	color: #FE4343;
 	}
-	;
 }
 .button-label {
 	line-height: 59px;
