@@ -45,14 +45,14 @@
             <nav>
                 <ul class="nav nav-pills pull-left">
                     <li><a href="#details">Details</a></li>
-                    <li><a href="#participate">Participate</a></li>
+                    <li><a href="#concept">Concept</a></li>
                     <li><a href="#schedule">Schedule</a></li>
                 </ul>
                 <%= image_tag "logo/make01.png", :class => 'banner' %>
                 <ul class="nav nav-pills pull-right">
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#people">People</a></li>
+                    <li class="inactive"><a href="#projects">Projects</a></li>
+                    <li class="inactive"><a href="#people">People</a></li>
                 </ul>
             </nav>
         </header>
@@ -71,7 +71,7 @@
                 </div>
                 <h3>Make Open Data happen for Hong Kong</h3>
             </div>
-            <p><span class="lead-text">Open Data</span> is in its infancy in Hong Kong. On <span class="lead-text">18 & 19 May</span> you're invited to advance it in a weekend of design, prototypes and developing ideas and solutions for Open Data. The event is open to makers of all tribes. In the run-up we'll form teams around the most popular ideas and you'll be able to contribute your wit and skills to the project of your choosing. If you have an Open Data idea that just needs a couple of people and a weekend to realise, propose it at Make.01 and we'll make it happen with your ingenuity and verve !</p>
+            <p><span class="lead-text">Open Data</span> is in its infancy in Hong Kong. On <span class="lead-text">18 & 19 May</span> you're invited to advance it in a weekend of design, prototypes and developing ideas and solutions for Open Data. The event is open to makers of all tribes. In the run-up we'll form teams around the most popular ideas and you'll be able to contribute your wit and skills to the project of your choosing. If you have an Open Data idea that just needs a couple of people and a weekend to realise, propose it at Make.01 and let's make it happen!</p>
             
             <a href="http://make01.eventbrite.com/" class="button pull-right">Register</a>
             <p class="button-label pull-right">HK$ 50</p>
@@ -82,9 +82,29 @@
             <div class="span12">
                 <div class="event-panel">
                     <h2>Event Details</h2>
-                    <p></p>
-                    <h3>Sponsors</h3>
-                    <div class="row-fluid">
+                    <div class="row-fluid" >
+                    <div class="span6 info-panel">
+                        <h3>Dates</h3>
+                        <h4>Catalyst Night</h4>
+                        <p>Tue, 14 May : 19:00 - 21:00</p>
+                        <h4>Make.01 Day 1</h4>
+                        <p>Sat, 18 May : 13:00 - 24:00</p>
+                        <h4>Make.01 Day 2</h4>
+                        <p>Sun, 19 May : 10:00 - 19:00</p>
+                    </div>
+                    <div class="span6 info-panel">
+                        <h3>Venue</h3>   
+                        <h4>The Good Lab</h4> 
+                        <p>L1, The Sparkle, 500 Tung Chau Street,</p> 
+                        <p>West Kowloon</p>
+                        <p>MTR: Cheung Sha Wan</p>
+                        <br>
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                    <iframe width="100%" height="320px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Tung+Chau+Street,+500,+Sham+Shui+Po,+Hong+Kong&amp;aq=0&amp;oq=500+Tung+Chau+Street&amp;sll=37.0625,-95.677068&amp;sspn=59.727033,102.480469&amp;ie=UTF8&amp;hq=&amp;hnear=500+Tung+Chau+St,+Hong+Kong&amp;ll=22.33306,114.1525&amp;spn=0.004327,0.006255&amp;t=m&amp;z=14&amp;output=embed&amp;iwloc=near"></iframe>
+
+                    <h3 id="sponsors">Sponsors</h3>
+                    <div class="row-fluid" >
                         <div class="sponsor span4">
                             <i class="icon-home"></i>
                             <h4>Venue Sponsor</h4>
@@ -106,28 +126,41 @@
                             <p>In support of the renaissance, Pindar has kindly donated a maker's fruit basket to Make.01.</p> 
                         </div>
                     </div>
-                    <h3>Dates</h3>
-                    <p>Tue, 14 May - Catalyst Night</p>
-                    <p>Sat, 18 May - Make.01</p>
-                    <p>Sun, 19 May - Make.01</p>
-                    <h3>Venue</h3>   
-                    <p>The Good Lab</p> 
-                    <p>L1, The Sparkle, 500 Tung Chau Street,</p> 
-                    <p>West Kowloon</p> 
-                    <p>MTR: Cheung Sha Wan</p>
-                    <iframe width="100%" height="320px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?t=m&amp;hl=en-GB&amp;ie=UTF8&amp;ll=22.333,114.1521&amp;spn=0.032352,0.020814&amp;z=15&amp;output=embed"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="participate">
+    <section id="concept">
         <div class="row">
             <div class="span12">
                 <div class="event-panel">
-                    <h2>Participate</h2>
-                    <p>Developers can think of it as a hackathon, service designers may know it as a 'Global Jam', Data Scientists and Statisticians can go wild like they did for Traffic Camp.Entrepeneurs know it as startups weekend. </p>
-                    <p>For many disciplines and niches, there are events where over the course of the weekend attendees learn about or develope something in their niche. Make.01 is all of that, but isn't restricted or reducable to a formula like 'Business + Design + Technology'. If you are interested in applying yourself over the weekend,</p>
+                    <h2>Concept</h2>
+                    <p>Open Data is the idea that certain data (non-personal) should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other control mechanisms. The value of this idea is that it improves transparency (What are my taxes being spent on?), it can optimize existing industries (What should hospitals specialise in?), or create new ones (How do public transport providers get me from A to B?).</p>
+                    <p>At Make.01 we'll write applications, liberate data, create visualizations and publish analyses using open data to show support for and encourage the adoption of open data policies.</p>
+                    
+                    <h3>Who is this for?</h3>
+                    <p>Developers get crafty at hackathons, service designers have their 'Global Jam', Data Scientists route cars at Traffic Camp, and entrepeneurs launch ideas over a StartUp Weekend. For many disciplines and niches, there are events where over the course of the weekend attendees learn about or develope something in their niche. Make.01 is all that, but isn't restricted or reducable to a formula like 'Business + Design + Technology'.
+                    <p>Open Data can be sourced and built on in any domain or industry, so this event is open to anyone who has an idea for using open data, wants to find an interesting project to contribute towards, learn about how to visualize or analyze data or simply want to see what's happening.</p>
+                    <p>OpenData is a truly cross-disciplanery affair so that's why we expect that Developers, Statisticians, Journalists, Designers, and Citizens alike will each contribute their skills to the projects at Make.01</p>
+</p>
+
+                  
+                    
+                    <h3>How will it work?</h3>
+                    <p>In the open data pipeline, 
+
+                        of open data is a function of its impact in people’s lives.
+
+                    As a fairly recent development, Open Data best practices are being pioneered in Canada, US, UK and the EU. 
+
+                    Government surely isn't the only provider of Open Data, but in Hong Kong HKGov's Data.One initiative is the most concentrated effort </p>
+                    <img class="col-image" src="http://assets.okfn.org/images/data-types.png">
+
+
+
+                    </p>
+                    <p>As a faily recent development, there are still a lot of outstanding issues with the open data 'pipeline'. From creation to distribution, from appropriation to consumption. While the 'appropriation' stage is the most natural for makers to step in There are many stages at which
                 </div>
             </div>
         </div>

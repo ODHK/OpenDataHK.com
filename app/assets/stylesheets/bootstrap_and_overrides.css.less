@@ -424,9 +424,10 @@ div.col > section > h3 {
 				margin-top: -30px;
 			}
 			li {
-				line-height: 35px;
+				line-height: 31px;
 				font-size: 25px;
 				color: @grey233;
+				margin-top: 1px;
 			}
 			&:after {
 				clear:both;
@@ -471,10 +472,11 @@ div.col > section > h3 {
 	}
 }
 
-.sponsor {
+div.sponsor {
 	background-image: @fabric;
 	padding: 16px;
 	text-align: center;
+	margin-bottom: 0px;
 	h4 { 
 		color: @header-colour;
 		text-align: center;
@@ -497,8 +499,6 @@ div.col > section > h3 {
 	}
 }
 
-
-
 #people, #projects {
 	 .image-container,
 	 .image-container {
@@ -515,6 +515,23 @@ div.col > section > h3 {
 	}
 }
 
+div > div.info-panel {
+	background-color: transparent;
+	h4 {
+		margin-bottom: 4px;
+		margin-top:14px;
+	}
+	p, h3 {
+		color: @grey66;
+		margin-bottom: 4px;
+	}
+	.icon-arrow-down {
+		display: block;
+		color: black;
+		margin-left: 80px;
+	}
+}
+
 .navbar .nav > li > a.inactive {
 	color: rgba(100,100,100,0.4);
 	pointer-events: none;
@@ -523,7 +540,7 @@ div.col > section > h3 {
 .navbar .nav > li > a.external{
 	color: #EE3333;
 	&:hover{
-	color: #FE4343;
+	// color: #FE4343;
 	}
 }
 .button-label {
@@ -549,6 +566,11 @@ div.col > section > h3 {
 		background-color: #39c1ab;
 		text-decoration: none;
 	};
+}
+
+.col-image {
+	margin: 0 auto;
+	display: block;
 }
 
 @media (max-width: 480px) {                          // Landscape phones and down
