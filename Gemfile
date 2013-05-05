@@ -24,6 +24,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'postmarkdown'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'activerecord-postgresql-adapter'
