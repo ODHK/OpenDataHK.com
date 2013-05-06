@@ -37,6 +37,9 @@ gem 'activerecord-postgresql-adapter'
 
 # User authentication
 gem 'devise'
+gem 'omniauth-facebook'
+gem 'omniauth-gplus'
+gem 'omniauth-github'
 
 # Use unicorn as the app server
 gem 'unicorn'
