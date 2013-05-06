@@ -35,6 +35,9 @@ gem 'activerecord-postgresql-adapter'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
+# User authentication
+gem 'devise'
+
 # Use unicorn as the app server
 gem 'unicorn'
 
