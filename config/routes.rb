@@ -1,4 +1,6 @@
 ODHK::Application.routes.draw do
+  postmarkdown :as => :blog
+
   resources :resources
 
 
