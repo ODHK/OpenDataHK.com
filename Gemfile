@@ -36,13 +36,14 @@ gem 'activerecord-postgresql-adapter'
 # gem 'jbuilder'
 
 # Keep passwords and API keys secure
-gem 'figaro'
+gem "figaro", "~> 0.6.3"
 
 # User authentication
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-gplus'
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2' 
 
 
 # Use unicorn as the app server
@@ -53,3 +54,7 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'debugger'
+
+# Misc
+gem 'awesome_print'
+gem 'crack'

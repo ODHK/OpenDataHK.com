@@ -31,6 +31,7 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     coderay (1.0.9)
@@ -42,7 +43,8 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     commonjs (0.2.6)
-    devise (2.2.3)
+    crack (0.3.2)
+    devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
@@ -57,6 +59,9 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     ffi (1.8.1)
+    figaro (0.6.4)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     formatador (0.2.4)
     gravtastic (3.2.6)
     guard (1.8.0)
@@ -71,7 +76,7 @@ GEM
       multi_json (~> 1.7)
     haml (4.0.2)
       tilt
-    hashie (2.0.4)
+    hashie (2.0.5)
     hike (1.2.2)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
@@ -93,7 +98,7 @@ GEM
       actionpack (>= 3.1)
       less (~> 2.3.1)
     libv8 (3.11.8.17)
-    listen (1.0.3)
+    listen (1.1.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
@@ -121,6 +126,9 @@ GEM
     omniauth-github (1.1.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-google-oauth2 (0.1.17)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-gplus (1.1.1)
       omniauth-oauth2 (~> 1.1)
     omniauth-oauth2 (1.1.1)
@@ -136,7 +144,7 @@ GEM
       nokogiri
       rails (~> 3.1)
       rdiscount
-    pry (0.9.12.1)
+    pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -169,11 +177,11 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
-    rdiscount (2.0.7.2)
+    rdiscount (2.0.7.3)
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.4)
-    sass (3.2.8)
+    sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -192,7 +200,7 @@ GEM
       libv8 (~> 3.11.8.12)
       ref
     thor (0.18.1)
-    tilt (1.4.0)
+    tilt (1.4.1)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -201,7 +209,7 @@ GEM
       execjs
       railties (>= 3.1)
     tzinfo (0.3.37)
-    uglifier (2.0.1)
+    uglifier (2.1.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     unicorn (4.6.2)
@@ -216,13 +224,17 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgresql-adapter
+  awesome_print
   coffee-rails (~> 3.2.1)
+  crack
   devise
+  figaro (~> 0.6.3)
   guard-livereload
   jquery-rails
   less-rails
   omniauth-facebook
   omniauth-github
+  omniauth-google-oauth2
   omniauth-gplus
   postmarkdown
   rails (= 3.2.13)
