@@ -35,11 +35,15 @@ gem 'activerecord-postgresql-adapter'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
+# Keep passwords and API keys secure
+gem 'figaro'
+
 # User authentication
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-gplus'
 gem 'omniauth-github'
+
 
 # Use unicorn as the app server
 gem 'unicorn'
