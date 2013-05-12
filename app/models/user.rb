@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   				  :facebook, :github, :googleplus, :twitter, :location, :mailinglist, 
-            :uid, :provider, :name, :avatar, :blog, :company
+            :uid, :provider, :name, :avatar, :blog, :company, :role
 
   ROLES = %w[banned guest member admin]
 
