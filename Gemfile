@@ -15,14 +15,14 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'therubyracer', :platforms => :ruby
-  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-  gem "twitter-bootstrap-rails"
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+  gem 'therubyracer', :platforms => :ruby
+  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem "twitter-bootstrap-rails"
 
 gem 'postmarkdown'
 gem 'simple_form'
@@ -36,7 +36,7 @@ gem 'activerecord-postgresql-adapter'
 # gem 'jbuilder'
 
 # Keep passwords and API keys secure
-gem "figaro", "~> 0.6.3"
+gem "figaro", "= 0.6.3"
 
 # User authentication
 gem 'devise'
@@ -58,4 +58,4 @@ gem 'unicorn'
 
 # Misc
 gem 'awesome_print'
-gem 'crack'
+gem 'thin'

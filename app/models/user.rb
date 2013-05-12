@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_github_oauth2(auth, signed_in_resource=nil)
+    ap auth
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     opts = {
       name:auth.extra.raw_info.name,
@@ -55,6 +56,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    ap auth
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     opts = {
       name:auth.extra.raw_info.name,
