@@ -1,15 +1,19 @@
 ODHK::Application.routes.draw do
 
+  get "pages/index"
+
+  resources :resources
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   postmarkdown :as => :blog
 
-  resources :resources
-
-
-  get "pages/index"
-
   resources :users
+
+
+  devise_scope :user do 
+    get '/logout', :to => 'devise/sessions#destroy'
+  end
 
   resources :locations
 

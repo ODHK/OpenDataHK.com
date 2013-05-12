@@ -1,3 +1,10 @@
 class Project < ActiveRecord::Base
-  attr_accessible :cover, :description, :lead, :title, :url
+  load_and_authorize_resource
+  attr_accessible :cover, :description, :title, :url
+
+  has_many :users, :through => :project_roles
+  has_many :project_roles
+
+  STAGES = %w[ proposal building completed ]
+
 end

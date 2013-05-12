@@ -11,6 +11,19 @@ class User < ActiveRecord::Base
   				  :facebook, :github, :googleplus, :twitter, :location, :mailinglist, 
             :uid, :provider, :name, :avatar, :blog, :company
 
+  ROLES = %w[banned guest member admin]
+
+  has_many :projects, :through => :project_roles
+  has_many :project_roles
+
+  def is_admin?
+    self.role == ROLES[3]
+  end
+  
+  def is_member?
+    self.role == ROLES[2]
+  end
+
   def self.find_for_github_oauth2(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     opts = {

@@ -44,6 +44,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-gplus'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2' 
+gem 'cancan'
 
 
 # Use unicorn as the app server

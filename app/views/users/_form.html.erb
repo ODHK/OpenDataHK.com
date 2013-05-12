@@ -35,6 +35,9 @@
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </div>
+  <% if can? :assign_roles, @user %>
+    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

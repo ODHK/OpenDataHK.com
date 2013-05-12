@@ -54,6 +54,27 @@
               <li><%= link_to "Resources", "/resources", "data-toggle" => "tooltip", :title => "Coming Soon", :class => "inactive" %></li>
               <li><%= link_to "Data.One", "http://www.gov.hk/en/theme/psi/datasets/", :class => "external" %></li>
             </ul>
+            <!-- The drop down menu -->
+            <ul class="nav pull-right">
+              <% if user_signed_in? %>
+               <li><%= link_to "Profile", edit_user_registration_path(:user) %></li>
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>  
+              </li>
+              <%else%>
+              <li class="dropdown">
+                <a id="signin" class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In<strong class="caret"></strong></a>
+              </li>
+              <%end%>
+            </ul>
+          <div class="auth-bar">
+            <ul>
+              <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => 'button auth-facebook' %></li>
+              <li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2), :class => 'button auth-google' %></li>
+              <li><%= link_to "Github", user_omniauth_authorize_path(:github), :class => 'button auth-github' %></li>
+            </ul>
+          </div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -75,6 +96,15 @@
 
     ga('create', 'UA-40620175-1', 'opendatahk.com');
     ga('send', 'pageview');
+
+  </script>
+  <script>
+  $('#signin').click(function(){
+  //   // $('.auth-bar').toggle("slide", { direction: "right"});
+  //   // $('.auth-bar').show("slide", { direction: "left" }, 1000);
+  //   // $('.auth-bar').hide("slide", { direction: "left" }, 1000);
+    $('.auth-bar').slideToggle();
+    })
 
   </script>
 
