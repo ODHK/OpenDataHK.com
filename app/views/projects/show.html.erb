@@ -1,30 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @project.title %>
-</p>
+<section class="crud">
+	<div class="panel col pull-left">
+	    <header>
+	        <h2><%= @project.title %><span class="label pull-right label-inverse"><%= @project.stage %></span></h2>
+	    </header>
+	    <section>
+	    <div class="image-container">
+	      <%= image_tag @project.cover %>
+	    </div>
+	        
+	    </section>
+	    <footer>
+	      <ul>
+	            <li>
+	                <span class="label label-inverse">By</span>
+	             <a href="/users/<%= @project.project_roles.where("role = 'owner'").first.user.id %>"><%= @project.project_roles.where("role = 'owner'").first.user.name %></a></li>
+	        <% if @project.project_roles.where("role = 'member'").present? %>
+	            <li><span class="label label-inverse">Members</span>
+	                <% @project.project_roles.where("role = 'member'").each do |member| %>
+	                    <a href="/users/<%= member.user.id %>">
+	                        <%= member.user.name %>
+	                    </a>, 
+	            </li>
+	            <%end%>
+	        <%end%>
+	        <% if @project.url.present? %>
+	            <li>
+	                <span class="label label-inverse">External</span>
+	                <a href="<%= @project.url %>"><%= @project.url %></a></li>
+	        <%end%>
+	      </ul>
+	    </footer>
+	</div><!--/span-->
+	<div class="main-panel pull-right">
+	<%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
+  	<h1>Project Description</h1>
+  	<p><%= @project.description %></p>
+  </div>
+</section>
 
-<p>
-  <b>Description:</b>
-  <%= @project.description %>
-</p>
-
-<p>
-  <b>Cover:</b>
-  <%= @project.cover %>
-</p>
-
-<p>
-  <b>Lead:</b>
-  <%= @project.lead %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @project.url %>
-</p>
-
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>

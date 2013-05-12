@@ -1,7 +1,9 @@
-<h1>Listing users</h1>
+<% if current_user.present? %>
+<% if current_user.is_admin? %>
+    <h1>Listing users</h1>
 
-<table>
-  <tr>
+    <table>
+    <tr>
     <th>Email</th>
     <th>Github</th>
     <th>Googleplus</th>
@@ -11,10 +13,10 @@
     <th></th>
     <th></th>
     <th></th>
-  </tr>
+    </tr>
 
-<% @users.each do |user| %>
-  <tr>
+    <% @users.each do |user| %>
+    <tr>
     <td><%= user.email %></td>
     <td><%= user.github %></td>
     <td><%= user.googleplus %></td>
@@ -24,10 +26,24 @@
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    </tr>
+    <% end %>
+    </table>
 
-<br />
+    <br />
 
-<%= link_to 'New User', new_user_path %>
+    <%= link_to 'New User', new_user_path %>
+<%end%>
+<%end%>
+<section class="crud">
+    <h1>Hey there,</h1>
+
+    <h2>Signing up couldn't be easier. Just select one of the following services to tell us who you are</h2>
+    <br>
+    <br>
+    <ul class="auth-list">
+    <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => 'button auth-facebook' %></li>
+    <li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2), :class => 'button auth-google' %></li>
+    <li><%= link_to "Github", user_omniauth_authorize_path(:github), :class => 'button auth-github' %></li>
+    </ul>
+</section>

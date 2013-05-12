@@ -13,22 +13,18 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :required => true %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :cover %><br />
-    <%= f.text_field :cover %>
+    <%= f.label 'Image URL' %><br />
+    <%= f.text_field :cover, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :lead %><br />
-    <%= f.text_field :lead %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br />
+    <%= f.label "External Link" %><br />
     <%= f.text_field :url %>
   </div>
   <div class="actions">

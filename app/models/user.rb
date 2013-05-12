@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   ROLES = %w[banned guest member admin]
 
   has_many :projects, :through => :project_roles
-  has_many :project_roles
+  has_many :project_roles, :foreign_key => :user_id
 
   def is_admin?
     self.role == ROLES[3]
@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
       avatar:auth.info.image,
       blog:auth.info.urls.Blog,
       company:auth.extra.raw_info.company,
-      location:auth.extra.raw_info.location
+      location:auth.extra.raw_info.location,
+      role:'member'
     }
     if user
       return user
@@ -60,7 +61,8 @@ class User < ActiveRecord::Base
       email:auth.info.email,
       avatar:auth.info.image,
       facebook:auth.info.nickname,
-      location:auth.location
+      location:auth.location,
+      role:'member'
     }
     if user
       return user
@@ -81,13 +83,16 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+    ap access_token
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
+    gplus = data.urls.Google if data.urls.present? else nil
     opts = {
-      name:data.name,
-      email:data.email,
-      avatar:data.image,
-      googleplus:data.urls.Google,
+      :name => data.name,
+      :email => data.email,
+      :avatar => data.image,
+      :googleplus => gplus,
+      role:'member'
     }
     if user
       return user

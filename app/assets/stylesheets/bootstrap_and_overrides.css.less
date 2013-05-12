@@ -193,6 +193,9 @@ div[class*="span"] {
 		}
 	}
 }
+.alert {
+	border-radius: 0px;
+}
 
 .notice {
 		-webkit-font-smoothing: subpixel-antialiased;
@@ -282,38 +285,6 @@ div.col > section > h3 {
 		}
 	img {
 		height: 24px;
-	}
-}
-
-.new-project, .landing, .community {
-	h2 {
-		color: @grey66;
-	}
-	h3 {
-		color: @white;
-	}
-}
-
-.new-project {
-	h2 {
-		padding-left: 20px;
-		color:@white;
-	}
-	label {
-		font-size: 20px;
-		padding-left: 20px;
-	}
-	input, textarea {
-		width: 90%;
-		margin: 0 20px;
-		margin-bottom: 12px;
-	}
-	.actions {
-		input {
-			.button;
-			height: 50px;
-	margin: 0 auto;
-	margin-top: 20px;	}
 	}
 }
 
@@ -487,8 +458,9 @@ div.col > section > h3 {
 
 .panel {
 	width: 300px;
-	margin: 10px;
-	float: left;
+	background-color: @link-colour;
+	background-color: rgb(71, 102, 117);
+	padding: 12px;
 	div.image-container img {
 		width:300px;
 	}
@@ -521,19 +493,75 @@ div.sponsor {
 	}
 }
 
-#people, #projects {
+#events{
+	.wide-container {
+		a.button {
+			margin-top: 20px;
+			margin-right: 20px;
+			position: relative;
+			background-color: @link-colour;
+			padding: 8px 16px;
+			z-index: 100;
+			float:right;
+			&:hover {
+				background-color: rgb(30, 158, 223);
+			}
+		}
+	}
+}
+.wide-container {
+		overflow: hidden;
 	 .image-container,
 	 .image-container {
 		background-color: transparent;
 		border:none;
 	}
-	> h2 {
+	> div > section {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		overflow: auto;
+	}
+	a.button {
+		margin-top: 20px;
+		margin-right: 20px;
+		position: fixed;
+		right: 0;
+		background-color: @link-colour;
+		padding: 8px 16px;
+		z-index: 100;
+		&:hover {
+			background-color: rgb(30, 158, 223);
+		}
+	}
+	h1, h2,h3,p,a{
 		color: @white;
-		font-size: 3em;
-		padding-top: 12px;
+	}
+	h1 {		
+	}
+	h2 {
+		font-size: 2em;
 	}
 	h3 {
-		color: @white;
+		font-size: 20px;
+	}
+	.label {
+		padding: 4px 8px;
+		font-size: 16px;
+		margin-bottom: 0;
+	}
+	footer .label {
+		padding-left:0;
+	}
+	ul {
+		margin-left:0;
+	}
+	li {
+		list-style: none;
+	}
+	footer {
+		border-radius: 6px;
+		background-image: @fabric;
+		padding: 12px;
 	}
 }
 
@@ -573,6 +601,81 @@ div > div.info-panel {
 
 .dropdown-menu{
 	border-radius: 0;
+}
+
+.crud{
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 12px 24px;
+	padding-left: 0;
+	ul.auth-list {
+		margin: 12px auto;
+		li {
+			width:33%;
+			list-style: none;
+			a.auth-facebook{
+				background-color: rgb(59,90,155);
+			}
+			a.auth-google{
+				background-color: rgb(202, 56, 56);
+			}
+			a.auth-github{
+				background-color: rgb(67,175,255);
+			}
+		}
+	}
+	h1,h2,h3,h4 {
+		color: @white;
+	}
+	h2 {
+		color:@white;
+	}
+	label {
+		font-size: 20px;
+	}
+	input, textarea {
+		font-size: 16px;
+		width: 100%;
+		margin: 0;
+		margin-bottom: 12px;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	.actions {
+		input {
+			.button;
+			width: auto;
+			height: 50px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+	}
+}
+
+.crud {
+	.panel{
+		width:300px;
+	}
+	.main-panel {
+		float: right;
+		max-width: 65%;
+	}
+	ul {
+		margin-left: 0;
+	}
+	li {
+		list-style: none;
+	}
+
+}
+
+
+.auth-list{
+	max-width: 720px;
+	li {
+		list-style: none;
+		float: left;
+	}
 }
 
 .auth-bar{
@@ -659,6 +762,28 @@ div > div.info-panel {
 			}
 		}
 	}
+	.panel div.image-container img {
+		width: 100%;
+	}
+	.crud {
+		padding-left: 0;
+		width:100%;
+		.panel{
+			width:auto;
+			float: none;
+			img {
+				width:100%;
+			}
+		}
+		.main-panel{
+			float: none;
+			max-width: none;
+			width:100%;
+			p {
+				width:100%;
+			}
+		}
+	}
  }                       
 @media (min-width: 768px) and (max-width: 979px) {  // Portrait tablet to landscape and desktop
 	.events nav {
@@ -667,6 +792,12 @@ div > div.info-panel {
 			width: 120px;
 			margin-top: -7px;
 			margin-left: 30px
+		}
+	}
+	.crud {
+		width:710px;
+		.main-panel{
+			width: 360px
 		}
 	}
  } 

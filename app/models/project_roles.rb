@@ -1,4 +1,4 @@
-class ProjectRoles < ActiveRecord::Base
+class ProjectRole < ActiveRecord::Base
   attr_accessible :user_id, :project_id, :role
 
   belongs_to :user

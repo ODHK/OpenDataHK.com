@@ -1,31 +1,45 @@
-<h1>Listing projects</h1>
+<div class="wide-container container-fluid clear">
+        <div class="fluid-row">
+            <a href="/projects/new/" class="button pull-right">+</a>
+            <!-- <h1>Projects: Ideas</h1> -->
+            <section id="projects" class="js-packery" data-packery-options='{ "itemSelector": ".panel", "gutter": 25 }'>
+                <% @projects.each do |project| %>
+                <div class="panel col">
+                    <header>
+                        <h2><a href="/projects/<%= project.id %>"><%= project.title %></a></h2>
+                    </header>
+                    <section>
+                    <div class="image-container">
+                      <%= image_tag project.cover %>
+                    </div>
+                        <span class="label pull-right label-inverse"><%= project.stage %></span>
+                    <p><%= raw(truncate(project.description, :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)')) %></p>
+                    </section>
+                    <footer>
+                      <ul>
+                            <li>
+                                <span class="label label-inverse">By</span>
+                             <a href="/users/<%= project.project_roles.where("role = 'owner'").first.user.id %>"><%= project.project_roles.where("role = 'owner'").first.user.name %></a></li>
+                        <% if project.project_roles.where("role = 'member'").present? %>
+                            <li><span class="label label-inverse">Members</span>
+                                <% project.project_roles.where("role = 'member'").each do |member| %>
+                                    <a href="/users/<%= member.user.id %>">
+                                        <%= member.user.name %>
+                                    </a>, 
+                            </li>
+                            <%end%>
+                        <%end%>
+                        <% if project.url.present? %>
+                            <li>
+                                <span class="label label-inverse">External</span>
+                                <a href="<%= project.url %>"><%= project.url %></a></li>
+                        <%end%>
+                      </ul>
+                    </footer>
+                </div><!--/span-->
+                <% end %>
+            </section>
+        </div>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Cover</th>
-    <th>Lead</th>
-    <th>Url</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.title %></td>
-    <td><%= project.description %></td>
-    <td><%= project.cover %></td>
-    <td><%= project.lead %></td>
-    <td><%= project.url %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Project', new_project_path %>
+<%= javascript_include_tag "packery" %>

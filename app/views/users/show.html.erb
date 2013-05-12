@@ -1,35 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="container new-project">
+  <section class="crud">
+  <h2><% @user.name%></h2>
+  
+  <%= link_to 'Edit Profile', edit_user_path(@user), :class => 'button' %>
+  </section>
+</div>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Github:</b>
-  <%= @user.github %>
-</p>
-
-<p>
-  <b>Googleplus:</b>
-  <%= @user.googleplus %>
-</p>
-
-<p>
-  <b>Facebook:</b>
-  <%= @user.facebook %>
-</p>
-
-<p>
-  <b>Mailinglist:</b>
-  <%= @user.mailinglist %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @user.location %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

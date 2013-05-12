@@ -50,14 +50,14 @@
               <li><%= link_to "About Us", "/about"  %></li>
               <li><%= link_to "Community", "/community"  %></li>
               <li><%= link_to "Events", "/events" %></li>
-              <li><%= link_to "Projects", "/projects", "data-toggle" => "tooltip", :title => "Coming Soon", :class => "inactive" %></li>
+              <li><%= link_to "Projects", "/projects", "data-toggle" => "tooltip", :title => "Coming Soon" %></li>
               <li><%= link_to "Resources", "/resources", "data-toggle" => "tooltip", :title => "Coming Soon", :class => "inactive" %></li>
               <li><%= link_to "Data.One", "http://www.gov.hk/en/theme/psi/datasets/", :class => "external" %></li>
             </ul>
             <!-- The drop down menu -->
             <ul class="nav pull-right">
               <% if user_signed_in? %>
-               <li><%= link_to "Profile", edit_user_registration_path(:user) %></li>
+               <li><%= link_to "Profile", edit_user_path(current_user) %></li>
               <li class="divider-vertical"></li>
               <li class="dropdown">
                 <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>  
@@ -87,7 +87,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "bootstrap" %>
+    <%= javascript_include_tag "bootstrap" %> 
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -99,13 +99,9 @@
 
   </script>
   <script>
-  $('#signin').click(function(){
-  //   // $('.auth-bar').toggle("slide", { direction: "right"});
-  //   // $('.auth-bar').show("slide", { direction: "left" }, 1000);
-  //   // $('.auth-bar').hide("slide", { direction: "left" }, 1000);
-    $('.auth-bar').slideToggle();
+    $('#signin').click(function(){
+      $('.auth-bar').slideToggle();
     })
-
   </script>
 
   </body>

@@ -16,24 +16,32 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :github %><br />
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label 'Github Username' %><br />
     <%= f.text_field :github %>
   </div>
   <div class="field">
-    <%= f.label :googleplus %><br />
+    <%= f.label 'Google+ Profile URL' %><br />
     <%= f.text_field :googleplus %>
   </div>
   <div class="field">
-    <%= f.label :facebook %><br />
+    <%= f.label 'Twitter Username' %><br />
+    <%= f.text_field :twitter %>
+  </div>
+  <div class="field">
+    <%= f.label 'Profile Picture URL' %><br />
+    <%= f.text_field :avatar %>
+  </div>
+  <div class="field">
+    <%= f.label 'Blog' %><br />
+    <%= f.text_field :blog %>
+  </div>
+  <div class="field">
+    <%= f.label 'Facebook ID' %><br />
     <%= f.text_field :facebook %>
-  </div>
-  <div class="field">
-    <%= f.label :mailinglist %><br />
-    <%= f.text_field :mailinglist %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
   </div>
   <% if can? :assign_roles, @user %>
     <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>

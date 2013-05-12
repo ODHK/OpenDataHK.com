@@ -3,6 +3,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @projects = Project.all
+    ap @projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +12,10 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
+  # GET /events/series/1
+  # GET /events/series/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:serie, :id])
 
     respond_to do |format|
       format.html # show.html.erb

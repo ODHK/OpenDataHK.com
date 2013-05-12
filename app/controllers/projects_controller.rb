@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
   # GET /projects
   # GET /projects.json
   def index
@@ -24,7 +25,10 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
+    authorize! :create, Project
+  
     @project = Project.new
+    puts @project
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +44,18 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(params[:project])
+    authorize! :create, Project
 
+    @project = Project.new(params[:project])
+    @role = ProjectRole.new()
+    @role.user = current_user
+    @role.project = @project
+    @role.role = "owner"
+    @role.save
+    ap @role
+
+    puts @project
+    
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
