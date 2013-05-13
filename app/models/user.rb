@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
       :email => data.email,
       :avatar => data.image,
       :googleplus => gplus,
-      role:'member'
+      :role => 'member'
     }
     if user
       return user
