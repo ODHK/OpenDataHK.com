@@ -1,7 +1,13 @@
 class EventsController < ApplicationController
   
   def render_markdown(markup)
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
+      :tables => true,
+      :no_intra_emphasis => true,
+      :fenced_code_blocks => true,
+      :lax_spacing => true,
+      :space_after_headers => true,
+      })
     markdown.render(markup)
   end
 
