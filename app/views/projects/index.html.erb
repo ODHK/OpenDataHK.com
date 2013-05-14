@@ -2,7 +2,7 @@
         <div class="fluid-row">
             <a href="/projects/new/" class="button pull-right">+</a>
             <!-- <h1>Projects: Ideas</h1> -->
-            <section id="projects" class="js-packery" data-packery-options='{ "itemSelector": ".panel", "gutter": 25 }'>
+            <section id="projects">
                 <% @projects.each do |project| %>
                 <div class="panel col">
                     <header>
@@ -12,8 +12,8 @@
                     <div class="image-container">
                       <%= image_tag project.cover %>
                     </div>
-                        <span class="label pull-right label-inverse"><%= project.stage %></span>
-                    <p><%= truncate(raw(project.description), :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)') %></p>
+                      <span class="label pull-left label-inverse"><%= project.stage %></span>
+                    <%= raw(truncate(project.description, :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)')) %>
                     </section>
                     <footer>
                       <ul>
@@ -42,4 +42,22 @@
         </div>
 </div>
 
+<%= javascript_include_tag "imagesloaded" %>
 <%= javascript_include_tag "packery" %>
+
+<script>
+
+var container = document.querySelector('#projects');
+    // initialize
+var pckry = new Packery( container, {
+    // options
+    itemSelector: '.panel',
+    gutter: 25
+});
+
+// layout Packery after all images have loaded
+imagesLoaded( container, function() {
+  pckry.layout();
+});
+
+</script>

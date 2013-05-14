@@ -44,13 +44,13 @@
         <header>
             <nav>
                 <ul class="nav nav-pills pull-left">
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#details">Details</a></li>
                     <li><a href="#concept">Concept</a></li>
-                    <li><a href="#schedule">Schedule</a></li>
                 </ul>
                 <ul class="nav nav-pills pull-right">
+                    <li><a href="#schedule">Schedule</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#projects">Projects</a></li>
                     <li class="inactive"><a href="#people">People</a></li>
                 </ul>
                 <%= image_tag "logo/make01.png", :class => 'banner pull-left' %>
@@ -80,6 +80,74 @@
             <a href="http://make01.eventbrite.com/" class="button pull-right">Register</a>
             <p class="button-label pull-right">HK$ 50</p>
         </div>
+    </div>
+
+     <div style="clear:both"></div> 
+
+<div class="wide-container container-fluid clear">
+        <div class="fluid-row">
+            <a href="/projects/new/" class="button pull-right">+</a>
+            <!-- <h1>Projects: Ideas</h1> -->
+            <section id="projects">
+                <% @projects.each do |project| %>
+                <div class="panel col">
+                    <header>
+                        <h2><a href="/projects/<%= project.id %>"><%= project.title %></a></h2>
+                    </header>
+                    <section>
+                    <div class="image-container">
+                      <%= image_tag project.cover %>
+                    </div>
+                      <span class="label pull-left label-inverse"><%= project.stage %></span>
+                    <%= raw(truncate(project.description, :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)')) %>
+                    </section>
+                    <footer>
+                      <ul>
+                            <li>
+                                <span class="label label-inverse">By</span>
+                             <a href="/users/<%= project.project_roles.where("role = 'owner'").first.user.id %>"><%= project.project_roles.where("role = 'owner'").first.user.name %></a></li>
+                        <% if project.project_roles.where("role = 'member'").present? %>
+                            <li><span class="label label-inverse">Members</span>
+                                <% project.project_roles.where("role = 'member'").each do |member| %>
+                                    <a href="/users/<%= member.user.id %>">
+                                        <%= member.user.name %>
+                                    </a>, 
+                            </li>
+                            <%end%>
+                        <%end%>
+                        <% if project.url.present? %>
+                            <li>
+                                <span class="label label-inverse">External</span>
+                                <a href="<%= project.url %>">Link</a></li>
+                        <%end%>
+                      </ul>
+                    </footer>
+                </div><!--/span-->
+                <% end %>
+            </section>
+        </div>
+</div>
+
+<%= javascript_include_tag "imagesloaded" %>
+<%= javascript_include_tag "packery" %>
+
+<script>
+
+var container = document.querySelector('#projects');
+    // initialize
+var pckry = new Packery( container, {
+    // options
+    itemSelector: '.panel',
+    gutter: 25
+});
+
+// layout Packery after all images have loaded
+imagesLoaded( container, function() {
+  pckry.layout();
+});
+
+</script>
+    <div class="container events">
 
     <section id="details">
         <div class="row">
@@ -431,50 +499,5 @@
         </div>
     </section>
     </div>
-     <div style="clear:both"></div> 
-
-<div class="wide-container container-fluid clear">
-        <div class="fluid-row">
-            <a href="/projects/new/" class="button pull-right">+</a>
-            <!-- <h1>Projects: Ideas</h1> -->
-            <section id="projects" class="js-packery" data-packery-options='{ "itemSelector": ".panel", "gutter": 25 }'>
-                <% @projects.each do |project| %>
-                <div class="panel col">
-                    <header>
-                        <h2><a href="/projects/<%= project.id %>"><%= project.title %></a></h2>
-                    </header>
-                    <section>
-                    <div class="image-container">
-                      <%= image_tag project.cover %>
-                    </div>
-                        <span class="label pull-right label-inverse"><%= project.stage %></span>
-                    <p><%= truncate(raw(project.description), :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)') %></p>
-                    </section>
-                    <footer>
-                      <ul>
-                            <li>
-                                <span class="label label-inverse">By</span>
-                             <a href="/users/<%= project.project_roles.where("role = 'owner'").first.user.id %>"><%= project.project_roles.where("role = 'owner'").first.user.name %></a></li>
-                        <% if project.project_roles.where("role = 'member'").present? %>
-                            <li><span class="label label-inverse">Members</span>
-                                <% project.project_roles.where("role = 'member'").each do |member| %>
-                                    <a href="/users/<%= member.user.id %>">
-                                        <%= member.user.name %>
-                                    </a>, 
-                            </li>
-                            <%end%>
-                        <%end%>
-                        <% if project.url.present? %>
-                            <li>
-                                <span class="label label-inverse">External</span>
-                                <a href="<%= project.url %>"><%= project.url %></a></li>
-                        <%end%>
-                      </ul>
-                    </footer>
-                </div><!--/span-->
-                <% end %>
-            </section>
-        </div>
-</div>
 
 <%= javascript_include_tag "packery" %>
