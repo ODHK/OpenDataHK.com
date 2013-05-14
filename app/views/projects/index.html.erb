@@ -13,7 +13,7 @@
                       <%= image_tag project.cover %>
                     </div>
                         <span class="label pull-right label-inverse"><%= project.stage %></span>
-                    <p><%= raw(truncate(project.description, :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)')) %></p>
+                    <p><%= truncate(raw(project.description), :length => 500, :separator => ' ', :omission => '... (<a href="projects/'+project.id.to_s+'">more</a>)') %></p>
                     </section>
                     <footer>
                       <ul>

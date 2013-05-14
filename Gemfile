@@ -61,3 +61,4 @@ gem 'unicorn'
 # Misc
 gem 'awesome_print'
 gem 'thin'
+gem 'redcarpet'

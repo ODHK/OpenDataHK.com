@@ -13,19 +13,19 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title, :required => true %>
+    <%= f.text_field :title, :required => true, :placeholder => 'What\'s in a name?'  %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description, :required => true %>
+    <%= f.text_area :description, :required => true, :placeholder => 'Supports Markdown Formatting' %>
   </div>
   <div class="field">
     <%= f.label 'Image URL' %><br />
-    <%= f.text_field :cover, :required => true %>
+    <%= f.text_field :cover, :required => true, :placeholder => 'Required'  %>
   </div>
   <div class="field">
     <%= f.label "External Link" %><br />
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :placeholder => 'Optional'  %>
   </div>
   <div class="actions">
     <%= f.submit %>

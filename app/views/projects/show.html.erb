@@ -36,7 +36,7 @@
 	<div class="main-panel pull-right">
 	<%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
   	<h1>Project Description</h1>
-  	<p><%= @project.description %></p>
+  	<%= raw(@project.description) %>
   </div>
 </section>
 

@@ -1,9 +1,18 @@
 class ProjectsController < ApplicationController
 
+  def render_markdown(markup)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
+    markdown.render(markup)
+  end
+
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
+    @projects = @projects.map!{|p| 
+      p.description = render_markdown(p.description)
+      p
+    }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +24,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    @project.description = render_markdown(@project.description)
 
     respond_to do |format|
       format.html # show.html.erb

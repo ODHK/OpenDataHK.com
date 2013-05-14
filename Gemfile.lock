@@ -187,6 +187,7 @@ GEM
     rdiscount (2.0.7.3)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (2.2.2)
     ref (1.0.4)
     sass (3.2.9)
     sass-rails (3.2.6)
@@ -251,6 +252,7 @@ DEPENDENCIES
   omniauth-gplus
   postmarkdown
   rails (= 3.2.13)
+  redcarpet
   sass-rails (~> 3.2.3)
   simple_form
   sqlite3

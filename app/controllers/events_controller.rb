@@ -1,10 +1,18 @@
 class EventsController < ApplicationController
+  
+  def render_markdown(markup)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true)
+    markdown.render(markup)
+  end
+
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
-    @projects = Project.all
-    ap @projects
+    @projects = Project.all.map!{|p| 
+      p.description = render_markdown(p.description)
+      p
+    }
 
     respond_to do |format|
       format.html # index.html.erb
