@@ -24,6 +24,14 @@
     <%= f.text_field :cover, :required => true, :placeholder => 'Required'  %>
   </div>
   <div class="field">
+    <%= f.label "Github User" %><br />
+    <%= f.text_field :github_user, :placeholder => 'Optional - Defaults to "ODHK"' %>
+  </div>
+   <div class="field">
+    <%= f.label "Github Repo" %><br />
+    <%= f.text_field :github_repo, :placeholder => 'Optional' %>
+  </div>
+  <div class="field">
     <%= f.label "External Link" %><br />
     <%= f.text_field :url, :placeholder => 'Optional'  %>
   </div>

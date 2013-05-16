@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514010048) do
+ActiveRecord::Schema.define(:version => 20130516160829) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20130514010048) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.string   "stage",       :default => "proposal"
+    t.string   "github_user", :default => "ODHK"
+    t.string   "github_repo"
   end
 
   create_table "resources", :force => true do |t|
