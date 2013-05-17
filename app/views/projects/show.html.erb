@@ -57,19 +57,19 @@
       <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
     <% end -%>
   <% end -%>
-  <% if @project.members.include? current_user %>
-    <h1>Project Description</h1>
-    <%= raw(@project.description) %>
-    <% if current_user %>
+  <h1>Project Description</h1>
+  <%= raw(@project.description) %>
+  <%# if @project.members.include? current_user %>
+  <h3>Project Microbes</h3>
+  <% if current_user %>
     <div>
-        <%= form_for @microbe do |f| %>
-        <%= f.hidden_field :project_id, :value => @project.id %>
-        <%= f.text_area :content, :placeholder => 'Message' %>
-        <%= f.submit "post" %>
-        </div>
-        <div class="clearfix"></div>
-      <% end %>
-    <% end %>
+      <%= form_for @microbe do |f| %>
+      <%= f.hidden_field :project_id, :value => @project.id %>
+      <%= f.text_area :content, :placeholder => 'Message' %>
+      <%= f.submit "post" %>
+    </div>
+      <div class="clearfix"></div>
+  <% end %>
   <% end %>
   <% @project.microbes.each do |microbe| %>
           <div class="microbeWrapper">
