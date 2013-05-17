@@ -15,10 +15,15 @@
 	      <ul>
 	            <li>
 	                <span class="label label-inverse">By</span>
-	             <a href="/users/<%= @project.project_roles.where("role = 'owner'").first.user.id %>"><%= @project.project_roles.where("role = 'owner'").first.user.name %></a></li>
-	        <% if @project.project_roles.where("role = 'member'").present? %>
+	             <a href="/users/<%= @project.owner.id %>"><%= @project.owner.name %></a></li>
+	        	<% if @project.owner == current_user %>
+				<a href="#" class="button pull-right">Add Members</a>
+				<input id="users-autocomplete" type="text" autocomplete="off">
+	        	<%end%>
+	             
+	        <% if @project.members.present? %>
 	            <li><span class="label label-inverse">Members</span>
-	                <% @project.project_roles.where("role = 'member'").each do |member| %>
+	                <% @project.members.each do |member| %>
 	                    <a href="/users/<%= member.user.id %>">
 	                        <%= member.user.name %>
 	                    </a>, 
@@ -46,3 +51,6 @@
   </div>
 </section>
 
+<script>
+	var typeaheaddata = <% @users %>
+</script>
