@@ -229,19 +229,24 @@ div.image-container {
 }
 div.avatar-panel{
 	width: 140px;
+	height: 200px;
 	float: left;
     margin-right: 6px;
     margin-left: 6px;
-    margin-bottom: 12px;
     border-radius: 0;
+    background-image: @fabric;
+    padding: 6px;
+	a {
+		color: white;
+		text-align: center;
+	}
 }
 div.avatar-wrapper {
 	height: 140px;
 	width: 140px;
     margin-bottom: 12px;
     overflow: hidden;
-    border-top: 1px solid rgb(233,233,233);
-    border-bottom: 1px solid rgb(233,233,233);
+    border: 1px solid rgb(33,33,33);
 	-webkit-background-size: cover !important;
 	-moz-background-size: cover;
 	-o-background-size: cover;
