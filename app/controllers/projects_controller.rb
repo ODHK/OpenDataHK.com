@@ -32,7 +32,14 @@ def render_markdown(markup)
     @project = Project.find(params[:id])
     @project.description = render_markdown(@project.description)
     @project["owner"] = @project.project_roles.detect{|p| p.role == "owner"}.user
-    @project["members"] = @project.project_roles.select{|p| p.role == "member"}
+    # @project["members"] = @project.project_roles.select{|p| p.role == "member"}
+    @members = @project.project_roles.select{|p| p.role == "member"}
+    @project["members"] = @members.map{|m| User.find(m.user_id)}
+    @project_role = @project.project_roles.select{|p| p.id if p.user_id == current_user.id && p.role == 'member' }
+    unless @project_role.empty? 
+      @project_role = @project_role.first[:id]
+    end
+    
     @users = User.all.map{|user| {'id' => user.id, 'name' => user.name}}
 
     ap @users

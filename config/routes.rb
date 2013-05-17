@@ -1,5 +1,15 @@
 ODHK::Application.routes.draw do
 
+  get "project_roles/index"
+
+  get "project_roles/create"
+
+  get "project_roles/new"
+
+  get "project_roles/destroy"
+
+  get "project_roles/show"
+
   get "pages/index"
 
   resources :resources
@@ -19,6 +29,9 @@ ODHK::Application.routes.draw do
 
 
   resources :projects
+
+  
+  resources :project_roles
 
 
   resources :series

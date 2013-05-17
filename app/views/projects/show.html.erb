@@ -17,18 +17,13 @@
             <span class="label label-inverse">By</span>
             <a href="/users/<%= @project.owner.id %>"><%= @project.owner.name %></a>
           </li>
-          
-          <% if @project.owner == current_user %>
-            <a href="#" class="button pull-right">Add Members</a>
-             <input id="users-autocomplete" type="text" data-provide="typeahead" data-source='["Mart Van de Ven", "Mart Van de Ven", "Sherin Zhen Siew"]'>
-          <%end%>
                  
           <% if @project.members.present? %>
             <li>
               <span class="label label-inverse">Members</span>
               <% @project.members.each do |member| %>
-                <a href="/users/<%= member.user.id %>">
-                  <%= member.user.name %>
+                <a href="/users/<%= member.id %>">
+                  <%= member.name %>
                 </a>, 
               <%end%>
             </li>
@@ -52,6 +47,11 @@
       </footer>
   </div><!--/span-->
   <div class="main-panel pull-right">
+  <% unless @project.members.include? current_user %>
+    <a id="join-project" href="#" class="button pull-right">Join</a>
+  <% else %>
+    <a id="leave-project" href="#" class="button pull-right">Leave</a>
+  <%end%>
   <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
     <h1>Project Description</h1>
     <%= raw(@project.description) %>
@@ -59,5 +59,9 @@
 </section>
 
 <script>
-  var typeaheaddata = <%= @users.to_json.html_safe %>
+// Argh - how to set these directly in projects.js.erb?!  
+  // var typeaheaddata = <%= @users.to_json.html_safe %>
+  var role_user = <%= current_user.id %>
+  var role_project = <%= @project.id %>
+  var role_id = <%= @project_role %>
 </script>
