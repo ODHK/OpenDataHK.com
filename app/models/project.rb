@@ -4,7 +4,8 @@ class Project < ActiveRecord::Base
 
   has_many :users, :through => :project_roles
   has_many :project_roles, :foreign_key => :project_id
-
+  has_many :microbes
+  
   STAGES = %w[ proposal shelved development inactive released ]
 
   def owner

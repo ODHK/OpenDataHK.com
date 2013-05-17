@@ -15,11 +15,24 @@ class User < ActiveRecord::Base
 
   has_many :projects, :through => :project_roles
   has_many :project_roles, :foreign_key => :user_id
+  has_many :microbes
 
   def is_admin?
     self.role == ROLES[3]
   end
   
+  def get_facebook_image (user)
+    if user.avatar.nil?
+      return "http://www.mixcloud.com/media/images/graphics/33_Profile/default_user_300x300-v4.png?v=107"
+    end
+    if user.avatar.include? "square"
+      user.avatar["square"] = "large"
+      return user.avatar
+    else
+      return user.avatar
+    end
+  end
+
   def is_member?
     self.role == ROLES[2]
   end

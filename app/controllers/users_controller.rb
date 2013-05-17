@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
+    @users = @users.map!{|u| 
+      u.avatar = u.get_facebook_image u
+      u
+    }
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

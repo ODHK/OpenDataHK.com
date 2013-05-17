@@ -35,7 +35,16 @@
     <%= link_to 'New User', new_user_path %>
 <%end%>
 <%end%>
+
 <section class="crud">
+    <% if current_user %>
+        <% @users.each do |user| %>
+        <div class="avatar-panel">
+            <a href="/users/<%= user.id %>"><div class="avatar-wrapper" style="background: url(<%= user.avatar %>) no-repeat center center; "></div>
+            <p><%= user.name %></p></a>
+        </div>
+        <% end -%>
+    <% else %>
     <h1>Hey there,</h1>
 
     <h2>Signing up couldn't be easier. Just select one of the following services to tell us who you are</h2>
@@ -46,4 +55,5 @@
     <li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2), :class => 'button auth-google' %></li>
     <li><%= link_to "Github", user_omniauth_authorize_path(:github), :class => 'button auth-github' %></li>
     </ul>
+    <% end %>
 </section>

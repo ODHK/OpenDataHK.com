@@ -1,7 +1,39 @@
 <div class="container new-project">
   <section class="crud">
   <h2><% @user.name%></h2>
-  
+  <% if current_user %>
+	<div id="createMicrobe" class="panel right">
+	    <h1>Create a Microbe</h1>
+	    <p>
+	    <%= form_for @microbe do |f| %>
+	        <%= f.textarea :content, class: 'microbeText' %>
+	        <%= f.submit "Microbe!" %>
+	    <% end %>
+	    </p>
+	</div>
+	<% end %>
+	<div id="microbes" class="panel left">
+	    <h1>Your Microbe Profile</h1>
+	    <div class="microbeWrapper">
+	        <img class="avatar" src="<%= @user.avatar %>">
+	        <span class="name"><%= @user.name %></span>
+	        <p>
+	        <%= @user.microbes.size %> Microbes
+	        </p>
+	    </div>
+	</div>
+	<div class="panel left">
+	    <h1>Your Microbes</h1>
+	    <% @user.microbes.each do |microbe| %>
+	        <div class="microbeWrapper">
+	            <img class="avatar" src="<%= @user.avatar %>">
+	            <span class="name"><%= @user.name %></span>  
+	            <span class="time"><%= time_ago_in_words(microbe.created_at) %></span>
+	            <p> <%= microbe.content %> </p>
+	        </div>
+	    <% end %>
+	</div>
+
   <%= link_to 'Edit Profile', edit_user_path(@user), :class => 'button' %>
   </section>
 </div>
