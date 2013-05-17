@@ -23,16 +23,12 @@
 		var stage = $this.data('stager')
 		var $nav = $('nav.action-buttons');
     	
-    	$nav.find('.active').removeClass('active')
-    	
+    	$nav.find('.active').removeClass('active')    	
     	$this.addClass('active')
     	
-    	// console.log($("[data-stage='"+ stage+"']"))
-    	// console.log( $projects.filter("[data-stage='"+ stage+"']"))
     	var panels = $projects.filter("[data-stage='"+ stage+"']")
 		var fragment = document.createDocumentFragment();
     	panels.each(function(i, panel){
-    		console.log(panel)
     		fragment.appendChild( panel );
     	})
     	pckry.remove( $('#projects .panel') );

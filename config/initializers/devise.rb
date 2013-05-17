@@ -255,5 +255,10 @@ Devise.setup do |config|
 
   config.omniauth :facebook, FB_APP_ID, FB_APP_SECRET 
   config.omniauth :google_oauth2, G_APP_ID, G_APP_SECRET, { access_type: "offline", approval_prompt: "" }
-  OmniAuth.config.full_host = 'http://opendatahk.com'
+  
+  if Rails.env == "development"
+    OmniAuth.config.full_host = 'http://localhost:3000'
+  else
+    OmniAuth.config.full_host = 'http://opendatahk.com'
+  end
 end

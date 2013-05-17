@@ -53,7 +53,9 @@
     <% else %>
       <a id="leave-project" href="#" class="button pull-right">Leave</a>
     <%end%>
-    <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
+    <% if can? :update, @project %>
+      <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
+    <% end -%>
   <% end -%>
   <h1>Project Description</h1>
   <%= raw(@project.description) %>
