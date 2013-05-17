@@ -1,15 +1,17 @@
  $(function(){
- 	$projects = $('#projects .panel').clone()
-	container = document.querySelector('#projects');
-	pckry = new Packery( container, {
-	    itemSelector: '.panel',
-	    gutter: 25
-	});
+  if ($('#projects').length){
+   	$projects = $('#projects .panel').clone()
+  	container = document.querySelector('#projects');
+  	pckry = new Packery( container, {
+  	    itemSelector: '.panel',
+  	    gutter: 25
+  	});
 
-	// layout Packery after all images have loaded
-	imagesLoaded( container, function() {
-	  pckry.layout();
-	});
+  	// layout Packery after all images have loaded
+  	imagesLoaded( container, function() {
+  	  pckry.layout();
+  	});    
+  }
 
  	$('nav.action-buttons').on('click', 'a', filter_projects)
 
