@@ -4,7 +4,7 @@
             <!-- <h1>Projects: Ideas</h1> -->
             <section id="projects">
                 <% @projects.each do |project| %>
-                <div class="panel col">
+                <div class="panel col" data-stage="<%= project.stage %>">
                     <header>
                         <h2><a href="/projects/<%= project.id %>"><%= project.title %></a></h2>
                     </header>
