@@ -35,15 +35,14 @@ def render_markdown(markup)
     # @project["members"] = @project.project_roles.select{|p| p.role == "member"}
     @members = @project.project_roles.select{|p| p.role == "member"}
     @project["members"] = @members.map{|m| User.find(m.user_id)}
-    @project_role = @project.project_roles.select{|p| p.id if p.user_id == current_user.id && p.role == 'member' }
-    unless @project_role.empty? 
-      @project_role = @project_role.first[:id]
-    end
-    
+    if current_user
+      @project_role = @project.project_roles.select{|p| p.id if p.user_id == current_user.id && p.role == 'member' }
+      unless @project_role.empty? 
+        @project_role = @project_role.first[:id]
+      end
     @users = User.all.map{|user| {'id' => user.id, 'name' => user.name}}
+    end
 
-    ap @users
-    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

@@ -47,21 +47,25 @@
       </footer>
   </div><!--/span-->
   <div class="main-panel pull-right">
-  <% unless @project.members.include? current_user %>
-    <a id="join-project" href="#" class="button pull-right">Join</a>
-  <% else %>
-    <a id="leave-project" href="#" class="button pull-right">Leave</a>
-  <%end%>
-  <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
-    <h1>Project Description</h1>
-    <%= raw(@project.description) %>
+  <%if current_user %>
+    <% unless @project.members.include? current_user %>
+      <a id="join-project" href="#" class="button pull-right">Join</a>
+    <% else %>
+      <a id="leave-project" href="#" class="button pull-right">Leave</a>
+    <%end%>
+    <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
+  <% end -%>
+  <h1>Project Description</h1>
+  <%= raw(@project.description) %>
   </div>
 </section>
 
 <script>
 // Argh - how to set these directly in projects.js.erb?!  
   // var typeaheaddata = <%= @users.to_json.html_safe %>
-  var role_user = <%= current_user.id %>
-  var role_project = <%= @project.id %>
-  var role_id = <%= @project_role %>
+  <%if current_user %>
+    var role_user = <%= current_user.id %>
+    var role_project = <%= @project.id %>
+    var role_id = <%= @project_role %>
+  <% end %>
 </script>
