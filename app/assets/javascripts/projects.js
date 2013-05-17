@@ -13,17 +13,34 @@
 
  	$('nav.action-buttons').on('click', 'a', filter_projects)
 
+ 	inverted_staged = {
+		'proposal' : 'shelved',
+		'development' : 'inactive',
+		'shelved' : 'proposal',
+		'inactive' : 'development',
+		'released' : null
+ 	}
 	function filter_projects(){
 		var $this = $(this);
+		var stale = false;
 		if ($this.hasClass('active')){
+			var stage = inverted_staged[$this.data('stager')]
+			stale = true;
+		} else {
+			var stage = $this.data('stager')
+		}
+		if (stage == null) {
 			return
 		}
-		var stage = $this.data('stager')
+
 		var $nav = $('nav.action-buttons');
     	
-    	$nav.find('.active').removeClass('active')
-    	
-    	$this.addClass('active')
+    	$nav.find('.active').removeClass('active stale')
+    	if (stale){
+    		$this.addClass('active stale')
+    	} else {
+    		$this.addClass('active')
+    	}
     	
     	// console.log($("[data-stage='"+ stage+"']"))
     	// console.log( $projects.filter("[data-stage='"+ stage+"']"))
