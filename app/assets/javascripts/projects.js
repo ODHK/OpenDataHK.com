@@ -1,4 +1,46 @@
  $(function(){
+ 	$projects = $('#projects .panel').clone()
+	container = document.querySelector('#projects');
+	pckry = new Packery( container, {
+	    itemSelector: '.panel',
+	    gutter: 25
+	});
+
+	// layout Packery after all images have loaded
+	imagesLoaded( container, function() {
+	  pckry.layout();
+	});
+
+ 	$('nav.action-buttons').on('click', 'a', filter_projects)
+
+	function filter_projects(){
+		var $this = $(this);
+		if ($this.hasClass('active')){
+			return
+		}
+		var stage = $this.data('stager')
+		var $nav = $('nav.action-buttons');
+    	
+    	$nav.find('.active').removeClass('active')
+    	
+    	$this.addClass('active')
+    	
+    	// console.log($("[data-stage='"+ stage+"']"))
+    	// console.log( $projects.filter("[data-stage='"+ stage+"']"))
+    	var panels = $projects.filter("[data-stage='"+ stage+"']")
+		var fragment = document.createDocumentFragment();
+    	panels.each(function(i, panel){
+    		console.log(panel)
+    		fragment.appendChild( panel );
+    	})
+    	pckry.remove( $('#projects .panel') );
+    	container.appendChild( fragment )
+    	pckry.appended( panels );
+    	pckry.layout();
+	}
+
+	$('nav.action-buttons [data-stager="development"]').click()
+
     $('#join-project').click(function(event){
       event.preventDefault();
       var $this = $(this);

@@ -1,6 +1,11 @@
 <div class="wide-container container-fluid clear">
         <div class="fluid-row">
-            <a href="/projects/new/" class="button pull-right">+</a>
+            <nav class="action-buttons">
+                <a href="#" data-stager="released" class="button pull-right"><i class="icon-beer"></i></a>
+                <a href="#" data-stager="development" class="button pull-right"><i class="icon-comments-alt"></i></a>
+                <a href="#" data-stager="proposal" class="button pull-right"><i class="icon-lightbulb"></i></a>
+                <a href="/projects/new/" class="button pull-right">+</a>
+            </nav>
             <!-- <h1>Projects: Ideas</h1> -->
             <section id="projects">
                 <% @projects.each do |project| %>
@@ -46,18 +51,4 @@
 <%= javascript_include_tag "packery" %>
 
 <script>
-
-var container = document.querySelector('#projects');
-    // initialize
-var pckry = new Packery( container, {
-    // options
-    itemSelector: '.panel',
-    gutter: 25
-});
-
-// layout Packery after all images have loaded
-imagesLoaded( container, function() {
-  pckry.layout();
-});
-
 </script>

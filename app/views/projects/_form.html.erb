@@ -35,6 +35,9 @@
     <%= f.label "External Link" %><br />
     <%= f.text_field :url, :placeholder => 'Optional'  %>
   </div>
+  <% if can? :assign_stage, @user %>
+    <%= f.collection_select :stage, Project::STAGES, :to_s, :humanize %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

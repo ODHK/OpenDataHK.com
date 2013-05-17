@@ -527,11 +527,22 @@ div.sponsor {
 		padding-bottom: 20px;
 		overflow: visible;
 	}
+	nav.action-buttons {
+		position: fixed;
+		width: 124px;
+		right: 0;
+		a {
+			width: 32px;
+			height: 40px;
+			line-height: 42px;
+			&.active {
+				background-color: rgb(58, 64, 209);
+			}
+		}
+	}
 	a.button {
 		margin-top: 20px;
 		margin-right: 20px;
-		position: fixed;
-		right: 0;
 		background-color: @link-colour;
 		padding: 8px 16px;
 		z-index: 100;

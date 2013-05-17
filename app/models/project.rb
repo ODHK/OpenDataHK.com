@@ -5,6 +5,6 @@ class Project < ActiveRecord::Base
   has_many :users, :through => :project_roles
   has_many :project_roles, :foreign_key => :project_id
 
-  STAGES = %w[ proposal building completed ]
+  STAGES = %w[ proposal shelved development inactive released ]
 
 end
