@@ -1,40 +1,38 @@
 <div class="container new-project">
   <section class="crud">
+  <h1>Profile</h1>
   <h2><% @user.name%></h2>
   <% if current_user %>
-	<div id="createMicrobe" class="panel right">
-	    <h1>Create a Microbe</h1>
-	    <p>
-	    <%= form_for @microbe do |f| %>
-	        <%= f.textarea :content, class: 'microbeText' %>
-	        <%= f.submit "Microbe!" %>
-	    <% end %>
-	    </p>
-	</div>
+  		<%= form_for @microbe do |f| %>
+		  <%= f.text_field :content, :placeholder => 'message' %>
+		  <%= f.submit "post" %>
+		<% end %>
 	<% end %>
-	<div id="microbes" class="panel left">
-	    <h1>Your Microbe Profile</h1>
+	<div id="microbes">
+	    <h2 class="name"><%= @user.name %></h2>
 	    <div class="microbeWrapper">
 	        <img class="avatar" src="<%= @user.avatar %>">
-	        <span class="name"><%= @user.name %></span>
 	        <p>
 	        <%= @user.microbes.size %> Microbes
 	        </p>
 	    </div>
 	</div>
-	<div class="panel left">
-	    <h1>Your Microbes</h1>
+	<div>
+	    <h3>Microbes</h3>
 	    <% @user.microbes.each do |microbe| %>
 	        <div class="microbeWrapper">
+	        	<% if microbe.project.present? %>
+	            	<a href="/projects/<%= microbe.project.id %>"><img class="project" src="<%= microbe.project.cover %>"></a>
+	        	<% else %>
+	            	<img class="project" src="https://secure.gravatar.com/avatar/4f540aa28cecd1443c0935b725933b75?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png">
+	        	<% end %>
 	            <img class="avatar" src="<%= @user.avatar %>">
-	            <span class="name"><%= @user.name %></span>  
-	            <span class="time"><%= time_ago_in_words(microbe.created_at) %></span>
 	            <p> <%= microbe.content %> </p>
 	        </div>
 	    <% end %>
 	</div>
-
   <%= link_to 'Edit Profile', edit_user_path(@user), :class => 'button' %>
+
   </section>
 </div>
 

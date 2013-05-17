@@ -43,6 +43,9 @@ def render_markdown(markup)
     @users = User.all.map{|user| {'id' => user.id, 'name' => user.name}}
     end
 
+    @microbes = Microbe.all include: :user 
+    @microbe = Microbe.new
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
