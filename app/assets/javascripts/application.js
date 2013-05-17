@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require angular-ui
 //= require_tree .
 
 (function($) {
@@ -46,4 +47,6 @@
 		$(".span4 > section").outerHeight('100%').equalHeights();
 	})
 
-})(jQuery);
+})(jQuery);//= require angular.min
+//= require angle-up
+//= require_tree ./angular

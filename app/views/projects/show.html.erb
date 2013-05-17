@@ -1,56 +1,63 @@
 <p id="notice"><%= notice %></p>
 
 <section class="crud">
-	<div class="panel col pull-left">
-	    <header>
-	        <h2><%= @project.title %><span class="label pull-right label-inverse"><%= @project.stage %></span></h2>
-	    </header>
-	    <section>
-	    <div class="image-container">
-	      <%= image_tag @project.cover %>
-	    </div>
-	        
-	    </section>
-	    <footer>
-	      <ul>
-	            <li>
-	                <span class="label label-inverse">By</span>
-	             <a href="/users/<%= @project.owner.id %>"><%= @project.owner.name %></a></li>
-	        	<% if @project.owner == current_user %>
-				<a href="#" class="button pull-right">Add Members</a>
-				<input id="users-autocomplete" type="text" autocomplete="off">
-	        	<%end%>
-	             
-	        <% if @project.members.present? %>
-	            <li><span class="label label-inverse">Members</span>
-	                <% @project.members.each do |member| %>
-	                    <a href="/users/<%= member.user.id %>">
-	                        <%= member.user.name %>
-	                    </a>, 
-	            </li>
-	            <%end%>
-	        <%end%>
-	        <% if @project.url.present? %>
-	            <li>
-	                <span class="label label-inverse">External</span>
-	                <a href="<%= @project.url %>"><%= @project.url %></a></li>
-	        <%end%>
-	        <% if @project.github_repo.present? %>
-		        <iframe src="http://ghbtns.com/github-btn.html?user=<%= @project.github_user %>&repo=<%= @project.github_repo %>&type=watch&count=true" 
-		        	allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-		        <iframe src="http://ghbtns.com/github-btn.html?user=<%= @project.github_user %>&repo=<%= @project.github_repo %>&type=fork&count=true" 
-		        	allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-	        <%end%>
-	      </ul>
-	    </footer>
-	</div><!--/span-->
-	<div class="main-panel pull-right">
-	<%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
-  	<h1>Project Description</h1>
-  	<%= raw(@project.description) %>
+  <div class="panel col pull-left">
+      <header>
+          <h2><%= @project.title %><span class="label pull-right label-inverse"><%= @project.stage %></span></h2>
+      </header>
+      <section>
+      <div class="image-container">
+        <%= image_tag @project.cover %>
+      </div>
+          
+      </section>
+      <footer>
+        <ul>
+          <li>
+            <span class="label label-inverse">By</span>
+            <a href="/users/<%= @project.owner.id %>"><%= @project.owner.name %></a>
+          </li>
+          
+          <% if @project.owner == current_user %>
+            <a href="#" class="button pull-right">Add Members</a>
+             <input id="users-autocomplete" type="text" data-provide="typeahead" data-source='["Mart Van de Ven", "Mart Van de Ven", "Sherin Zhen Siew"]'>
+          <%end%>
+                 
+          <% if @project.members.present? %>
+            <li>
+              <span class="label label-inverse">Members</span>
+              <% @project.members.each do |member| %>
+                <a href="/users/<%= member.user.id %>">
+                  <%= member.user.name %>
+                </a>, 
+              <%end%>
+            </li>
+          <%end%>
+
+          <% if @project.url.present? %>
+            <li>
+              <span class="label label-inverse">External</span>
+              <a href="<%= @project.url %>"><%= @project.url %></a></li>
+            </li>
+          <%end%>
+
+          <% if @project.github_repo.present? %>
+            <iframe src="http://ghbtns.com/github-btn.html?user=<%= @project.github_user %>&repo=<%= @project.github_repo %>&type=watch&count=true" 
+              allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=<%= @project.github_user %>&repo=<%= @project.github_repo %>&type=fork&count=true" 
+              allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+          <%end%>
+
+        </ul>
+      </footer>
+  </div><!--/span-->
+  <div class="main-panel pull-right">
+  <%= link_to 'Edit', edit_project_path(@project) , :class => 'pull-right button' %>
+    <h1>Project Description</h1>
+    <%= raw(@project.description) %>
   </div>
 </section>
 
 <script>
-	var typeaheaddata = <% @users %>
+  var typeaheaddata = <%= @users.to_json.html_safe %>
 </script>

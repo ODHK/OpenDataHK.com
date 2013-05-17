@@ -33,12 +33,14 @@ def render_markdown(markup)
     @project.description = render_markdown(@project.description)
     @project["owner"] = @project.project_roles.detect{|p| p.role == "owner"}.user
     @project["members"] = @project.project_roles.select{|p| p.role == "member"}
-    @users = User.all.map{|user| user.name}.to_json
+    @users = User.all.map{|user| {'id' => user.id, 'name' => user.name}}
+
     ap @users
     
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
+      format.js
     end
   end
 
