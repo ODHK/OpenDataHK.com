@@ -15,11 +15,12 @@ class Ability
       can [:read, :create], :all
       # manage projects they own
       can [:manage], Project do |project|
-        project.try(:owner) == user || user.role?(:member)
+        project.try(:owner) == user
+        user.is_project_member? project
       end
       # change projects stage
       can :assign_stages, Project do |project|
-        project.try?(:owner) == user
+        project.try(:owner) == user
       end
       # manage their own user
       can [:manage], Users do |user|

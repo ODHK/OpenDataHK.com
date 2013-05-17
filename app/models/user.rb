@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     self.role == ROLES[2]
   end
 
+  def is_project_member?(project)
+    project.members.include?(self)
+  end
+
   def self.find_for_github_oauth2(auth, signed_in_resource=nil)
     ap auth
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

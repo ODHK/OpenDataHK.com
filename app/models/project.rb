@@ -7,4 +7,14 @@ class Project < ActiveRecord::Base
 
   STAGES = %w[ proposal shelved development inactive released ]
 
+  def owner
+  	owner_ids = self.project_roles.map{|role| role.user_id if role.role == "owner"}.compact
+  	owner_ids.map{|id| User.find(id)}[0] # One Owner only.
+  end
+
+  def members
+  	owner_ids = self.project_roles.map{|role| role.user_id if role.role == "member"}.compact
+  	owner_ids.map{|id| User.find(id)} # Multiple members only.
+  end
+
 end
