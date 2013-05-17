@@ -1,0 +1,24 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$('#users-autocomplete').focus().typeahead
+  source: (query, process) ->
+    names = []
+    map = {}
+
+    data = typeaheaddata
+
+    $.each(data, (i, user) ->
+      map[user.name] = user
+      names.push(user.name)
+    )
+    console.log names
+    process(names)
+
+  updater: (item) ->
+    console.log(item)
+    member = window.map[item].id
+    console.log(member)
+    item
+
+
