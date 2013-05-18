@@ -43,7 +43,8 @@ def render_markdown(markup)
     @users = User.all.map{|user| {'id' => user.id, 'name' => user.name}}
     end
 
-    @microbes = Microbe.all include: :user 
+    @microbes = Microbe.all include: :user, include: :project
+    @microbes = @microbes.map{|m| m if m[:project_id].to_s == params[:id]}.compact
     @microbe = Microbe.new
 
     respond_to do |format|
