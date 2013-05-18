@@ -71,12 +71,14 @@
       <div class="clearfix"></div>
   <% end %>
   <% end %>
-  <% @project.microbes.each do |microbe| %>
-          <div class="microbeWrapper">
-              <p><%= microbe.content %> </p>
-              <a href="/users/<%= microbe.user.id%>"><img class="avatar" src="<%= microbe.user.avatar %>"></a>
-              <!-- <span class="name"><%= microbe.user.name %></span>   -->
-              <!-- <span class="time"><%= time_ago_in_words(microbe.created_at) %></span> -->
+        <% @microbes.each do |microbe| %>
+          <div class="microbeWrapper no-project">
+            <div class="avatar">
+              <a href="/users/<%= microbe.user.id %>"><img class="avatar" src="<%= microbe.user.avatar %>"></a>
+            </div>
+            <div class="content">
+              <p> <%= microbe.content %> </p>
+            </div>
           </div>
       <% end %>
   </div>

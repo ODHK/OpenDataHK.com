@@ -10,8 +10,8 @@
 	<% end %>
 	<div id="microbes">
 	    <h2 class="name"><%= @user.name %></h2>
-	    <div class="microbeWrapper">
-	        <img class="avatar" src="<%= @user.avatar %>">
+	    <div class="microbeWrappers">
+	        <img class="avatarimg" src="<%= @user.avatar %>">
 	        <p>
 	        <%= @user.microbes.size %> Microbes
 	        </p>
@@ -19,17 +19,23 @@
 	</div>
 	<div>
 	    <h3>Microbes</h3>
-	    <% @user.microbes.each do |microbe| %>
-	        <div class="microbeWrapper">
-	        	<% if microbe.project.present? %>
-	            	<a href="/projects/<%= microbe.project.id %>"><img class="project" src="<%= microbe.project.cover %>"></a>
-	        	<% else %>
-	            	<img class="project" src="https://secure.gravatar.com/avatar/4f540aa28cecd1443c0935b725933b75?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png">
-	        	<% end %>
-	            <img class="avatar" src="<%= @user.avatar %>">
-	            <p> <%= microbe.content %> </p>
-	        </div>
-	    <% end %>
+	    <% @microbes.each do |microbe| %>
+          <div class="microbeWrapper">
+            <div class="avatar">
+              <a href="/users/<%= microbe.user.id %>"><img class="avatar" src="<%= microbe.user.avatar %>"></a>
+            </div>
+            <div class="project">
+              <% if microbe.project.present? %>
+                <a href="/projects/<%= microbe.project.id %>"><img class="project" src="<%= microbe.project.cover %>"></a>
+            <% else %>
+                <img class="project" src="https://secure.gravatar.com/avatar/4f540aa28cecd1443c0935b725933b75?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png">
+            <% end %>
+            </div>
+            <div class="content">
+              <p> <%= microbe.content %> </p>
+            </div>
+          </div>
+      <% end %>
 	</div>
   <%= link_to 'Edit Profile', edit_user_path(@user), :class => 'button' %>
 

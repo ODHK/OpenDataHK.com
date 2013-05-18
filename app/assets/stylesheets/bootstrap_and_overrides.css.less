@@ -716,20 +716,37 @@ div > div.info-panel {
 	color: @grey66;
 	color: @white;
 	margin-bottom: 12px;
-	img{
-		width: 13%;
+	.clearfix;
+	div.avatar{
+		width:118px;
 		border-top-left-radius: 6px;
 		border-bottom-left-radius: 6px;
+		overflow: hidden;
+		float: left;
 	}
-	img.project {
-		border-top-right-radius: 6px;
+	div.content{
+		width: auto%;
+		float: none;
+		margin-left:120px;
+		margin-right:120px;
+		word-wrap:break;
+	}
+	&.no-project {
+		margin-right:0px;
+	}
+	div.project{
+		width:118px;
 		border-bottom-right-radius: 6px;
-		float:right;
-		height: 118px;
+		border-top-right-radius: 6px;
+		overflow: hidden;
+		float: right;
+	}
+	img {
+		width: 100%;
 	}
 	p {
-		width: 70%;
-		float: right;
+		// width: 70%;
+		// float: right;
 		text-align: left;
 		padding: 12px;
 	}
@@ -737,6 +754,8 @@ div > div.info-panel {
 		float:right;
 	}
 }
+
+
 
 .crud {
 	.panel{

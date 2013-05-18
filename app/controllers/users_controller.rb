@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microbes = Microbe.all include: :user, include: :project
+    @microbes = @microbes.map{|m| m if m[:user_id].to_s == params[:id]}.compact
     @microbe = Microbe.new
 
     respond_to do |format|
