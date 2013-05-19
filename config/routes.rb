@@ -2,7 +2,6 @@ ODHK::Application.routes.draw do
 
   resources :microbes
 
-
   get "project_roles/index"
 
   get "project_roles/create"
