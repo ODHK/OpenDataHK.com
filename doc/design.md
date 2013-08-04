@@ -18,3 +18,13 @@
 * About Us
 * Contact
   * Mailing list
+
+## MarkDown Usage
+
+* Blog
+  * MD
+* Events
+  * Meet
+    * HTML Header + MD Summary
+  * Make
+    * HTML
