@@ -1,16 +1,20 @@
 = content_tag_for :article, post do
   %header
-    %h1= link_to post.title, post
-    = image_tag post.gravatar_url(:size => 32, :default => 'identicon'), :height => 32, :width => 32
+    %div.banner_container
+      = image_tag post_img_html(post)
+      %h2.category= link_to post.category, post
+      %h1= link_to post.title, post
     .meta
-      Posted on
+      = image_tag post.gravatar_url(:size => 32, :default => 'identicon'), :height => 32, :width => 32
+      %span.author
+        = post.author
       %time{:pubdate => 'true', :datetime => post.timestamp.iso8601}
         = post.date.strftime '%e %B %Y'
-      %span
-        by
-        = post.author
+      %span.date Posted on 
   - if summary
-    = post_summary_html post
-    %p.more= link_to 'Read more&hellip;'.html_safe, post
+    .row
+      .span12#summary
+        %span.more= link_to 'Read More&hellip;'.html_safe, post
+        = post_summary_html post
   - else
     ~ post_content_html post

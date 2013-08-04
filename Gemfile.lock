@@ -87,11 +87,17 @@ GEM
       multi_json (~> 1.7)
     haml (4.0.2)
       tilt
+    has_scope (0.6.0.rc)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hashie (2.0.5)
     hike (1.2.2)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.1)
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -193,6 +199,8 @@ GEM
       json (~> 1.4)
     redcarpet (2.2.2)
     ref (1.0.4)
+    responders (1.0.0.rc)
+      railties (>= 3.2, < 5)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -250,6 +258,7 @@ DEPENDENCIES
   devise
   figaro (= 0.6.3)
   guard-livereload
+  inherited_resources
   jquery-rails
   less-rails
   omniauth-facebook

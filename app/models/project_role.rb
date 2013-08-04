@@ -1,8 +1,6 @@
 class ProjectRole < ActiveRecord::Base
   attr_accessible :user_id, :project_id, :role
 
-  ap "hello"
-  
   belongs_to :user
   belongs_to :project
 

@@ -30,6 +30,7 @@ gem 'therubyracer', :platforms => :ruby
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "twitter-bootstrap-rails"
+gem 'inherited_resources'
 
 gem 'postmarkdown'
 gem 'simple_form'
