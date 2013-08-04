@@ -1,0 +1,12 @@
+@media (max-width: 480px){
+	/* about page */
+	.div.container.about{
+		margin-top: 0;
+	}
+	h2{
+		font-size: 1.5em;
+	}
+	.hero-unit, .event-panel{
+		padding: 40px;
+	}
+}
