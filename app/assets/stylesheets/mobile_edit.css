@@ -1,5 +1,11 @@
+/*tested with ipod touch 5th gen on portrait 05-08-2013*/
+
 @media (max-width: 480px){
 	/* 01 About page */
+
+	/* Issues
+		01.01. need to fix width on email address for mailchimp
+	*/
 	.about{
 		margin-top: 0;
 	}
@@ -15,13 +21,44 @@
 
 	/* 02 Community */
 
+	/* Full image is having varied issues:
+	
+		02.01. on laptop zoom, image is not centered
+		02.02. on mobile, section has too much whitespace
+
+		discoveries:
+
+		02.02. section is overflowing, it's covering content and image
+		gonna check with ipad, iphone and touch to check for consistencies
+	*/
+
+
 	/* 03 Events */
+
+	/* Issues
+		03.01. needs the most work on mobile, save till last
+		03.02. mobile: when clicking on events, takes to map app;
+	*/
 
 	/* 04 Projects */
 
+	/* Issues
+		04.01. Also needs a lot of work, no padding on mobile, odd
+		04.02. tool overlay is pushed to back on mobile
+	*/
+
 	/* 05 People */
 
+	/* Issues
+		05.01. weird!
+		05.02. broken controller on facebook link
+	*/
+
 	/* 06 Microbes */
+
+	/* Issues
+		06.01. word is overflowing onto image on each "microbe"
+	*/
 
 	/* 07 Sign-in */
 	/* Sign in also needs editing on desktop version */
