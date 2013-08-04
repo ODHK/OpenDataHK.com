@@ -56,6 +56,10 @@ class Post
     metadata[:summary]
   end
 
+  def img
+    metadata[:img]
+  end
+
   def author
     metadata[:author]
   end
@@ -84,8 +88,16 @@ class Post
   end
 
   def tags
-    tags = metadata[:tags] || ""
+    tags = metadata[:tags] || ''
     tags.delete(' ').split(',')
+  end
+
+  def category
+    metadata[:category] || 'Misc'
+  end
+
+  def banner
+    metadata[:banner] || ''
   end
 
   class << self
