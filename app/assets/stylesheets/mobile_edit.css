@@ -1,6 +1,6 @@
 @media (max-width: 480px){
-	/* about page */
-	.div.container.about{
+	/* 01 About page */
+	.about{
 		margin-top: 0;
 	}
 	h2{
@@ -8,5 +8,35 @@
 	}
 	.hero-unit, .event-panel{
 		padding: 40px;
+	}
+	li{
+		line-height: 25px;
+	}
+
+	/* 02 Community */
+
+	/* 03 Events */
+
+	/* 04 Projects */
+
+	/* 05 People */
+
+	/* 06 Microbes */
+
+	/* 07 Sign-in */
+	/* Sign in also needs editing on desktop version */
+	
+	/*	
+	Following changes the social buttons to fill the sign-in area
+	*/
+	.auth-bar .li{
+		width: 33%;
+	}
+	.auth-bar ul{
+		margin: 0;
+	}
+	/* Changed the height to make it mobile friendly;*/
+	.auth-bar .button{
+		height: 44px;
 	}
 }
