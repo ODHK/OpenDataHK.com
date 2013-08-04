@@ -1,4 +1,6 @@
 ODHK::Application.routes.draw do
+  postmarkdown :as => :posts
+
 
   resources :microbes
 
@@ -43,6 +45,8 @@ ODHK::Application.routes.draw do
 
 
   root :to => 'pages#index'
+
+  match '/media' => 'pages#media'
   
   match '/about' => 'pages#about'
   match '/approach' => 'pages#approach'
