@@ -6,8 +6,12 @@ common: &common
   port: 5432
 
 development:
-  <<: *common
-  database: odhk_development
+  # <<: *common
+  # database: odhk_development
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
 test:
   <<: *common
