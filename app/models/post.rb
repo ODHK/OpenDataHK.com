@@ -97,7 +97,7 @@ class Post
   end
 
   def banner
-    metadata[:banner] || ''
+    metadata[:banner] || nil
   end
 
   class << self
