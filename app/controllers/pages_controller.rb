@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+  
   def index
+    @posts = PostsController.new.main_content
   end
   def about
   end
@@ -9,4 +11,5 @@ class PagesController < ApplicationController
   end
   def community
   end
+
 end

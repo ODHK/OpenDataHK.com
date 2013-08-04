@@ -1,5 +1,13 @@
 <div class="container landing">
   <div class="row">
+    <div>
+      <% @posts.each do |post| %>
+        <%= post.title %>
+        <%= post_content_html(post) %>
+        <%= post_summary_html(post) %>
+      <% end %>
+    </div><!--/span-->
+
     <div class="span4 col">
       	<header><h2>OPEN DATA</h2></header>
       	<section>
