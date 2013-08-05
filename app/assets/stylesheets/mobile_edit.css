@@ -94,6 +94,12 @@
 		05.03. need to resize icons for social buttons
 	*/
 
+	.button{
+		font-size: 18px;
+		margin: 12px 6px;
+		padding: 8px 9px;
+	}
+
 	/* 06 Microbes */
 
 	/* Issues
@@ -189,6 +195,13 @@
 		03.02. mobile: when clicking on events, takes to map app;
 	*/
 
+	/* header */
+
+	/* nav bar
+
+		03.03. nav bar is strange, the banner is out of flow... odd 
+		may look at this later - 05-08-2013
+	*/
 	/* 04 Projects */
 
 	/* Issues
@@ -204,6 +217,11 @@
 		05.03. need to resize icons for social buttons
 	*/
 
+	.button{
+		font-size: 22px;
+		margin: 12px 6px;
+		padding: 8px 9px;
+	}
 	/* 06 Microbes */
 
 	/* Issues
