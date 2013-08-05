@@ -44,6 +44,23 @@
 		gonna check with ipad, iphone and touch to check for consistencies
 	*/
 
+	section{
+		height: 100%;
+	}
+
+	#mce-EMAIL{
+		width: 100px;
+	}
+	div[class*="span"] footer #mce-EMAIL, div[class*="span"] footer #mc-embedded-subscribe {
+		margin: 14px 14px 0;
+	}
+
+	/* line height */
+	h1, h2, h3{
+		line-height: 25px;
+		padding: 0 0.7em;
+	}
+
 
 	/* 03 Events */
 
