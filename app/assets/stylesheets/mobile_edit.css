@@ -7,12 +7,16 @@
 	*/
 	.about{
 		margin-top: 0;
+		padding-bottom: 0;
 	}
 	h2{
 		font-size: 1.5em;
 	}
 	.hero-unit, .event-panel{
 		padding: 40px;
+	}
+	.event-panel{
+		margin-bottom: 0;
 	}
 	li{
 		line-height: 25px;
