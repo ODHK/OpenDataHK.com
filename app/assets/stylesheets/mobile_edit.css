@@ -26,14 +26,14 @@
 	}
 	/* Mail Chimp email bar */
 	#mce-EMAIL{
-		width: 84px;
+		width: 88px;
 	}
 	#mc-embedded-subscribe{
 		width: 75px;
 		font-size: 1.1em;
 	}
 	div[class*="span"] footer #mce-EMAIL, div[class*="span"] footer #mc-embedded-subscribe {
-		margin: 14px 10px 0;
+		margin: 14px 9px 0;
 	}
 
 	/* line height */
@@ -59,7 +59,7 @@
 	}
 
 	#mce-EMAIL{
-		width: 100px;
+		width: 180px;
 	}
 	div[class*="span"] footer #mce-EMAIL, div[class*="span"] footer #mc-embedded-subscribe {
 		margin: 14px 14px 0;
@@ -117,7 +117,7 @@
 		height: 44px;
 	}
 }
-@media (min-width: 480px)and(max-width: 768){
+@media (min-width: 480px)and(max-width: 767){
 	/* 01 About page */
 
 	/* Issues
@@ -178,6 +178,9 @@
 		padding: 0 0.7em;
 	}
 
+	.image-container{
+		max-height: 280px;
+	}
 
 	/* 03 Events */
 
