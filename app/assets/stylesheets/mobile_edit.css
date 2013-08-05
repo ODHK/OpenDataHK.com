@@ -19,6 +19,18 @@
 		line-height: 25px;
 	}
 
+	/* Mail Chimp email bar */
+	#mce-EMAIL{
+		width: 100px;
+	}
+	div[class*="span"] footer #mce-EMAIL, div[class*="span"] footer #mc-embedded-subscribe {
+		margin: 14px 10px 0;
+	}
+
+	/* line height */
+	h1, h2, h3{
+		line-height: 25px;
+	}
 	/* 02 Community */
 
 	/* Full image is having varied issues:
