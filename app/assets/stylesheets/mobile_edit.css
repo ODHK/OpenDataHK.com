@@ -17,10 +17,16 @@
 	li{
 		line-height: 25px;
 	}
-
+	ul {
+		margin-left: 0;
+	}
 	/* Mail Chimp email bar */
 	#mce-EMAIL{
-		width: 100px;
+		width: 84px;
+	}
+	#mc-embedded-subscribe{
+		width: 75px;
+		font-size: 1.1em;
 	}
 	div[class*="span"] footer #mce-EMAIL, div[class*="span"] footer #mc-embedded-subscribe {
 		margin: 14px 10px 0;
