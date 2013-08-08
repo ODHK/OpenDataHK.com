@@ -1,0 +1,8 @@
+Launching this Application in Rails
+====
+
+1. Clone this repo  
+2. <code> bundle install </code>  
+3. change database.yml to adapter: sqlite3 from adapter: postgresql  
+4. <code> rake db:setup  </code>
+5. <code> thin start  </code>
