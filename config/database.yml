@@ -1,5 +1,5 @@
 common: &common
-  adapter: postgresql
+  adapter: sqlite
   username: odhk
   password: guidance # from psql setup, see Postgresql
   host: localhost

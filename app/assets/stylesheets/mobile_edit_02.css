@@ -1,0 +1,32 @@
+/*tested with ipod touch 5th gen on portrait 05-08-2013*/
+@media(min-width: 320px) and(max-width: 480px){
+	/* 01 Index page */
+
+	/* 02 Blog */
+
+	/* 03 Community */
+
+	/* 04 Events */
+
+	/* 05 About Us */
+
+	/* 06 Microbes */
+
+	/* 07 Sign-in */
+}
+@media (min-width: 480px)and(max-width: 767){
+	/* 01 About page */
+
+	/* 02 Blog */
+
+	/* 03 Community */
+
+	/* 04 Events */
+
+	/* 05 About Us */
+
+	/* 06 Microbes */
+
+	/* 07 Sign-in */
+
+}
