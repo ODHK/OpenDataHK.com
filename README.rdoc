@@ -1,6 +1,6 @@
 == Welcome to Rails
 
-###Update  09-AUG-2013  
+== Update  09-AUG-2013  
 
 - Added README-Launch Procedure.mdown, please read to launch app  
 
