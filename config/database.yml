@@ -1,12 +1,12 @@
 common: &common
-  adapter: sqlite3
+  adapter: postgresql
   username: odhk
   password: guidance # from psql setup, see Postgresql
   host: localhost
   port: 5432
 
 development:
-  <<: *common
+  adapter: sqlite3
   database: odhk_development
 
 test:
@@ -16,3 +16,5 @@ test:
 production:
   <<: *common
   database: odhk_production
+
+
