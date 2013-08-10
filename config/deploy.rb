@@ -1,4 +1,11 @@
 require 'capistrano/ext/multistage'
+require "rvm/capistrano"
+
+set :rvm_ruby_string, :local
+
+before 'deploy:setup', 'rvm:install_rvm'  # install RVM
+before 'deploy:setup', 'rvm:install_ruby' # install Ruby and create gemset, OR:
+# before 'deploy:setup', 'rvm:create_gemset' # only create gemsetw
 
 set :stages, ["staging","production"]
 set :default_stage, "production"
@@ -10,6 +17,8 @@ set :scm, :git
 set :scm_passphrase, ""
 
 set :user, "odhk"
+
+set :deploy_via, :remote_cache
 
 # role :web, "your web-server here"                          # Your HTTP server, Apache/etc
 # role :app, "your app-server here"                          # This may be the same as your `Web` server

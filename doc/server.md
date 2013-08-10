@@ -1,16 +1,19 @@
 # Command Log for Digital Ocean
 
 ## SSH Administration
+
 On your local machine
-	sudo vim /etc/hosts # Change 
+	sudo vim /etc/hosts # add odhk.com for easy reference
 
 ## User Administration
+
 	passwd # Change root password
 	useradd -G wheel odhk # Add user odhk and add them to wheel group
 	visudo # allow wheel users to sudo without password
 	passwd odhk # Set odhk user password
 
 ## System Administration
+
 	# !! Don't bother updating until they allow loading custom kernels from your Virtual Machine's bootloader
 	fedup-cli --network 19 --debuglog /root/fedup.debug.log # Upgrade to latest fedora release	
 
@@ -24,14 +27,15 @@ On your local machine
 	wget https://hub.github.com/standalone
 	sudo mv standalone /usr/bin/hub
 	chmod 777 /usr/bin/hub
-	git clone https://github.com/rupa/z.git
- ~/Tools/z/
+	git clone https://github.com/rupa/z.git ~/Tools/z/
 
 ## Authentication
 
-	ssh-keygen -t rsa -C "info@opendatahk.com"
+	ssh-keygen -t rsa -C "info@opendatahk.com" # Generate SSH key
 	cat .ssh/id_rsa.pub # Distribute it to relevant services
-	visudo # comment out: #Default requiretty
+	#! ssh-copy-id -i ~/.ssh/id_rsa.pub odhk@odhk # Passwordless login
+
+	# visudo # comment out: #Default requiretty
 
 ## DB
 
@@ -39,9 +43,11 @@ On your local machine
 
 
 ## Python Environment
+
 	yg python-pip python-virtualenv python-virtualenvwrapper
 
 ## Ruby Environment
+
 	# curl -L get.rvm.io | bash -s stable # install latest stable version of rvm
 	# usermod -G rvm -a odhk
 	curl -L get.rvm.io | bash -s stable # install for user
@@ -49,6 +55,14 @@ On your local machine
 
 	rvm install 2.0.0 # install ruby versions
 	rvm install 1.9.3
+
+
+## Deployment 
+
+	cd /srv/www/OpenDataHK.com/current
+
+	#! Setup Capistrano to manage deployments	
+
 	rvm use 1.9.3 --default
-	gem install rails --no-ri --no-rdoc
+	rvm gemset create odhk
 
