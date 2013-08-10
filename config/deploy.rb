@@ -1,11 +1,18 @@
 require 'capistrano/ext/multistage'
-require "rvm/capistrano"
+require 'bundler/capistrano'
+
+default_run_options[:shell] = '/bin/zsh'
 
 set :rvm_ruby_string, :local
 
 before 'deploy:setup', 'rvm:install_rvm'  # install RVM
 before 'deploy:setup', 'rvm:install_ruby' # install Ruby and create gemset, OR:
-# before 'deploy:setup', 'rvm:create_gemset' # only create gemsetw
+# before 'deploy:setup', 'rvm:create_gemset' # only create gemset
+
+set :bundle_cmd, '/home/odhk/.rvm/gems/ruby-1.9.3-p448/bin/bundle'
+
+before "deploy:cold", 
+    "install_bundler"
 
 set :stages, ["staging","production"]
 set :default_stage, "production"
@@ -17,6 +24,7 @@ set :scm, :git
 set :scm_passphrase, ""
 
 set :user, "odhk"
+# set :default_shell, "/bin/bash -l"
 
 set :deploy_via, :remote_cache
 

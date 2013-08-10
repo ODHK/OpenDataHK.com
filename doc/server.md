@@ -48,8 +48,6 @@ On your local machine
 
 ## Ruby Environment
 
-	# curl -L get.rvm.io | bash -s stable # install latest stable version of rvm
-	# usermod -G rvm -a odhk
 	curl -L get.rvm.io | bash -s stable # install for user
 	rvm reqruiements # install rvm dependencies
 
@@ -59,10 +57,7 @@ On your local machine
 
 ## Deployment 
 
+	#! Setup Capistrano to manage deployments	
 	cd /srv/www/OpenDataHK.com/current
 
-	#! Setup Capistrano to manage deployments	
-
-	rvm use 1.9.3 --default
-	rvm gemset create odhk
 
