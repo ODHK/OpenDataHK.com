@@ -58,7 +58,8 @@ gem 'cancan'
 gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
+gem 'capistrano-ext'
 
 # To use debugger
 # gem 'debugger'
