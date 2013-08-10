@@ -39,7 +39,10 @@ On your local machine
 
 ## DB
 
+
+	## Follow the [guide](http://www.if-not-true-then-false.com/2012/install-postgresql-on-fedora-centos-red-hat-rhel/)
 	sudo yum install -y postgresql postgresql-devel
+	sudo useradd postgres
 
 
 ## Python Environment
@@ -54,6 +57,7 @@ On your local machine
 	rvm install 2.0.0 # install ruby versions
 	rvm install 1.9.3
 
+ 	RAILS_ENV=production, in `/etc/environment`
 
 ## Deployment 
 
