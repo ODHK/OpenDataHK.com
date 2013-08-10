@@ -39,10 +39,10 @@ On your local machine
 
 ## DB
 
-
-	## Follow the [guide](http://www.if-not-true-then-false.com/2012/install-postgresql-on-fedora-centos-red-hat-rhel/)
-	sudo yum install -y postgresql postgresql-devel
 	sudo useradd postgres
+	## Follow the [guide](http://www.if-not-true-then-false.com/2012/install-postgresql-on-fedora-centos-red-hat-rhel/)
+	yum install postgresql-devel
+	bundle config build.pg --with-pg-config=/usr/pgsql-9.2/bin/pg_config
 
 
 ## Python Environment
