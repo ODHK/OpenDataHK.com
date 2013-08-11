@@ -1,4 +1,4 @@
-rails_root = ENV["RAILS_ROOT"]
+rails_root = '/srv/www/OpenDataHK.com/current'
 
 worker_processes 4
 
@@ -6,8 +6,6 @@ working_directory rails_root # available in 0.94.0+
 
 listen 8080, :tcp_nopush => true
 listen "/tmp/unicorn.odhk.sock"
-listen "/tmp/.unicorn.sock.0", :backlog => 64
-listen "/tmp/.unicorn.sock.1", :backlog => 64
 
 timeout 30
 
