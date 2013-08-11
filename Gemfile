@@ -2,14 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development, :test do
+  gem 'guard-livereload'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'sqlite3', '1.3.5'
+end
 
-group :development do
-	gem 'sqlite3'
-	gem 'guard-livereload'
-	gem 'better_errors'
-	gem 'binding_of_caller'
+group :production do
+  gem 'activerecord-postgresql-adapter'
 end
 
 # Gems used only for assets and not required
@@ -22,13 +23,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :production do
-  gem 'activerecord-postgresql-adapter'
-end
-
 gem 'therubyracer', :platforms => :ruby
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'less'
+gem 'less-rails'
+gem 'less-rails-fontawesome'
 gem "twitter-bootstrap-rails"
 gem 'inherited_resources'
 

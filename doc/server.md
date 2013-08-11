@@ -44,6 +44,9 @@ On your local machine
 	yum install postgresql-devel
 	bundle config build.pg --with-pg-config=/usr/pgsql-9.2/bin/pg_config
 
+## Nginx
+
+	## Follow the [guide](http://www.if-not-true-then-false.com/2011/install-nginx-php-fpm-on-fedora-centos-red-hat-rhel/)
 
 ## Python Environment
 

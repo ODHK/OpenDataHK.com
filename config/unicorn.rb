@@ -5,6 +5,7 @@ worker_processes 4
 working_directory rails_root # available in 0.94.0+
 
 listen 8080, :tcp_nopush => true
+listen "/tmp/unicorn.odhk.sock"
 listen "/tmp/.unicorn.sock.0", :backlog => 64
 listen "/tmp/.unicorn.sock.1", :backlog => 64
 
@@ -29,3 +30,8 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
 end
 
+# Force the bundler gemfile environment variable to
+# reference the capistrano "current" symlink
+before_exec do |_|
+  ENV["BUNDLE_GEMFILE"] = File.join(root, 'Gemfile')
+end
