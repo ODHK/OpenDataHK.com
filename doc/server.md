@@ -1,5 +1,7 @@
 # Command Log for Digital Ocean
 
+Setup in the spirit of this [guide](http://ariejan.net/2011/09/14/lighting-fast-zero-downtime-deployments-with-git-capistrano-nginx-and-unicorn/) 
+
 ## SSH Administration
 
 On your local machine
