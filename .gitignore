@@ -22,3 +22,6 @@ auth
 
 # Ignore database configuration
 config/database.yml
+
+.sass-cache/
+
