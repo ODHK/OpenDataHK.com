@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   # GET /events/series/1
   # GET /events/series/1.json
   def show
-    @event = Event.find(params[:serie, :id])
+    @event = Event.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
