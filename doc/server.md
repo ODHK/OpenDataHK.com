@@ -2,6 +2,10 @@
 
 Setup in the spirit of this [guide](http://ariejan.net/2011/09/14/lighting-fast-zero-downtime-deployments-with-git-capistrano-nginx-and-unicorn/) 
 
+## Do Different Next Time
+
+	If you setup another server, consider using [Capistrano for Nginx and Unicorn](https://github.com/kalys/capistrano-nginx-unicorn) instead of setting those up manually. 
+
 ## SSH Administration
 
 On your local machine
@@ -68,5 +72,7 @@ On your local machine
 
 	#! Setup Capistrano to manage deployments	
 	cd /srv/www/OpenDataHK.com/current
+
+
 
 
