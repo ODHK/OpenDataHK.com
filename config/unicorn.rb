@@ -5,7 +5,7 @@ worker_processes 4
 working_directory rails_root # available in 0.94.0+
 
 listen 8080, :tcp_nopush => true
-listen "/tmp/unicorn.odhk.sock"
+listen "/srv/www/OpenDataHK.com/current/tmp/sockets/unicorn.sock"
 
 timeout 30
 
