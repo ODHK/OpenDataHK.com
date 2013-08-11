@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   
   def index
     @posts = PostsController.new.main_content
+    @events = Event.all
   end
   def about
   end

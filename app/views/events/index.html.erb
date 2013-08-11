@@ -10,7 +10,8 @@
         <th>Announcement</th>
         <th>Recap</th>
         <th>Organiser</th>
-        <th>Logo</th>
+        <th>Google Plus</th>
+        <th>Facebook</th>
         <th></th>
         <th></th>
         <th></th>
@@ -26,7 +27,8 @@
         <td><%= event.announcement %></td>
         <td><%= event.recap %></td>
         <td><%= event.organiser %></td>
-        <td><%= event.logo %></td>
+        <td><%= event.facebook %></td>
+        <td><%= event.google_plus %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
