@@ -15,7 +15,9 @@
       <% @posts.each do |p| %>
         <section style="background-image: url(<%= post_img_html(p) %>)">
           <div>
-          <h3><%= p.title %></h3>
+          <%= link_to(p) do %> 
+            <h3> <%= p.title %> </h3>
+          <% end %>
           <%= post_summary_html(p) %>
           </div>
         </section>
@@ -23,7 +25,8 @@
     </div><!--/span-->
     <div class="event span4">
       <h2>Upcoming Events</h2>
-      <% @events.each do |e| %>
+      <%= link_to(image_tag("events/meet7.jpg", :alt => "Meet.07"), "https://plus.google.com/events/ck13qcb81omnb5vn2249f0h0vps?authkey=CMX92rLxqp3sIQ") %>
+      <!-- <% @events.each do |e| %>
         <section style="background-image: url(<%= event_image_url(e) %>)">
           <div>
           <a href="<%= event_path e %>"><h3><%= e.title %></h3></a>
@@ -33,7 +36,7 @@
           </p>
           </div>
         </section>
-      <% end %>
+      <% end %> -->
     </div>
   </div>
   <!-- <div class="row">
