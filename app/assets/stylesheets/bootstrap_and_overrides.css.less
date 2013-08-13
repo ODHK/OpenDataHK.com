@@ -403,9 +403,8 @@ div.col > section > h3 {
 	  // -o-background-size: cover;
 	  // background-size: cover;
 }
-.about, .events {
+#posts, .about, .events {
 	background-color: @frame-colour;
-	// background-color: rgba(66,66,66,0.7);
 	border-radius: 6px;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
@@ -933,6 +932,7 @@ div > div.info-panel {
 		max-height: 420px;
 		overflow: hidden;
 		position: relative;
+
 		img {
 			width: 100%;
 			line-height: 48px;
@@ -954,6 +954,7 @@ div > div.info-panel {
 	.meta {
 		height: 48px;
 		background: rgba(33,33,33,0.9);
+		color: @white;
 		img {
 			padding: 8px;
 		}
@@ -971,7 +972,8 @@ div > div.info-panel {
 		box-sizing: border-box;
 		padding: 8px 12px;
 		// background-color: @off-white;
-		// color: @grey33;
+		color: @white;
+		margin-bottom: 1em;
 		.more {
 			float:right;
 			margin: 6px 0;
