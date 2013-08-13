@@ -7,14 +7,14 @@ tags: main
 banner: http://www.traveltohongkong.info/wp-content/uploads/hong-kong-2.jpg
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Open Data is the idea that certain data (non-personal) should be freely available to everyone to use and republish as they wish, without restrictions from copyright, patents or other control mechanisms. The value of this idea is that it improves transparency (What are my taxes being spent on?), it can optimize existing industries (What should hospitals specialize in?), or create new ones (How do public transport providers get me from A to B?)
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 ![Found Art](http://art.newcity.com/wp-content/uploads/2009/02/stardust-1024x784.jpg)
 
 ## This is why we can't have nice things
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ![art](http://lilasartclasses.files.wordpress.com/2013/04/michelle-stitzlein-found-object-art-2.jpg)
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ![art](http://lilasartclasses.files.wordpress.com/2013/0P4/michelle-stitzlein-found-object-art-2.jpg)
 
 ## The man in the middle
 
