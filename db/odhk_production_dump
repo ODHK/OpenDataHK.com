@@ -1,0 +1,923 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: event_series; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE event_series (
+    id integer NOT NULL,
+    name character varying(255),
+    description character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.event_series OWNER TO odhk;
+
+--
+-- Name: event_series_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE event_series_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.event_series_id_seq OWNER TO odhk;
+
+--
+-- Name: event_series_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE event_series_id_seq OWNED BY event_series.id;
+
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE events (
+    id integer NOT NULL,
+    title character varying(255),
+    start_datetime timestamp without time zone,
+    end_datetime timestamp without time zone,
+    announcement text,
+    recap text,
+    organiser character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    serie_id integer,
+    location_id integer,
+    facebook character varying(255),
+    google_plus character varying(255)
+);
+
+
+ALTER TABLE public.events OWNER TO odhk;
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.events_id_seq OWNER TO odhk;
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE events_id_seq OWNED BY events.id;
+
+
+--
+-- Name: locations; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE locations (
+    id integer NOT NULL,
+    name character varying(255),
+    address text,
+    details text,
+    email character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.locations OWNER TO odhk;
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.locations_id_seq OWNER TO odhk;
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
+
+
+--
+-- Name: microbes; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE microbes (
+    id integer NOT NULL,
+    content text,
+    user_id integer,
+    project_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.microbes OWNER TO odhk;
+
+--
+-- Name: microbes_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE microbes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.microbes_id_seq OWNER TO odhk;
+
+--
+-- Name: microbes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE microbes_id_seq OWNED BY microbes.id;
+
+
+--
+-- Name: project_roles; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE project_roles (
+    id integer NOT NULL,
+    user_id integer,
+    project_id integer,
+    role character varying(255) DEFAULT 'member'::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.project_roles OWNER TO odhk;
+
+--
+-- Name: project_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE project_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.project_roles_id_seq OWNER TO odhk;
+
+--
+-- Name: project_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE project_roles_id_seq OWNED BY project_roles.id;
+
+
+--
+-- Name: projects; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE projects (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    cover text,
+    url character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    stage character varying(255) DEFAULT 'proposal'::character varying,
+    github_user character varying(255) DEFAULT 'ODHK'::character varying,
+    github_repo character varying(255)
+);
+
+
+ALTER TABLE public.projects OWNER TO odhk;
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.projects_id_seq OWNER TO odhk;
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE projects_id_seq OWNED BY projects.id;
+
+
+--
+-- Name: resources; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE resources (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    tags character varying(255),
+    url character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.resources OWNER TO odhk;
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.resources_id_seq OWNER TO odhk;
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE resources_id_seq OWNED BY resources.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO odhk;
+
+--
+-- Name: series; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE series (
+    id integer NOT NULL,
+    name character varying(255),
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.series OWNER TO odhk;
+
+--
+-- Name: series_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE series_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.series_id_seq OWNER TO odhk;
+
+--
+-- Name: series_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE series_id_seq OWNED BY series.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255),
+    github character varying(255),
+    googleplus character varying(255),
+    facebook character varying(255),
+    mailinglist boolean,
+    location character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    provider character varying(255),
+    uid character varying(255),
+    name character varying(255),
+    twitter character varying(255),
+    avatar character varying(255),
+    company character varying(255),
+    blog character varying(255),
+    role character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO odhk;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: odhk
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO odhk;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: odhk
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY event_series ALTER COLUMN id SET DEFAULT nextval('event_series_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY microbes ALTER COLUMN id SET DEFAULT nextval('microbes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY project_roles ALTER COLUMN id SET DEFAULT nextval('project_roles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY series ALTER COLUMN id SET DEFAULT nextval('series_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: odhk
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: event_series; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY event_series (id, name, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: event_series_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('event_series_id_seq', 1, false);
+
+
+--
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY events (id, title, start_datetime, end_datetime, announcement, recap, organiser, created_at, updated_at, serie_id, location_id, facebook, google_plus) FROM stdin;
+1	\N	\N	\N	\N	\N	\N	2013-05-16 10:47:50.616289	2013-05-16 10:47:50.616289	\N	\N	\N	\N
+2	\N	\N	\N	\N	\N	\N	2013-05-16 12:09:34.375031	2013-05-16 12:09:34.375031	\N	\N	\N	\N
+\.
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('events_id_seq', 2, true);
+
+
+--
+-- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY locations (id, name, address, details, email, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('locations_id_seq', 1, false);
+
+
+--
+-- Data for Name: microbes; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY microbes (id, content, user_id, project_id, created_at, updated_at) FROM stdin;
+1	Microbes away!	1	25	2013-05-17 21:03:55.350392	2013-05-17 21:03:55.350392
+2	Welcome everyone to Make.01!	1	\N	2013-05-17 21:05:09.059247	2013-05-17 21:05:09.059247
+3	Microbes is the event feed that just keeps spreading!	1	\N	2013-05-17 21:05:17.151519	2013-05-17 21:05:17.151519
+4	Michael will set up a Google form driven web page for crowd-sourcing of open data.  Thinks make it running on a SaaS platform (will try OpenShift) 	2	5	2013-05-18 00:44:09.136091	2013-05-18 00:44:09.136091
+5	Bill P. read and commented on the draft document.  You need to open and click on 'Comments'.  https://docs.google.com/file/d/0B-bx-NcO9dXXQ2QyMWoyenI2OVE/edit?usp=sharing	2	16	2013-05-18 02:18:11.545165	2013-05-18 02:18:11.545165
+6	Project Plan & Progress Document here \r\nhttps://docs.google.com/document/d/1WGH8JAnzNWvWEu4nPGZ6se7vEQnwkOw24Xyr2hubEVQ/edit	2	4	2013-05-18 02:50:01.628313	2013-05-18 02:50:01.628313
+7	Joined GeoDex!   Getting started...	43	25	2013-05-18 05:45:10.589267	2013-05-18 05:45:10.589267
+8	Startup guy.  	43	\N	2013-05-18 05:45:37.602348	2013-05-18 05:45:37.602348
+9	Google Drive document for Bill's analysis of other countries datasets https://docs.google.com/document/d/1Sot8qfSrr2ylgzC-JhQhy8qke0ZgvhTqgPa2Kp_XlFg/edit	2	4	2013-05-18 06:32:53.311793	2013-05-18 06:32:53.311793
+10	Question: We are looking for a online form to replace Google Form. We would integrate the form with Google Account login capability. Any good suggestion? We are sitting by the windows.	18	5	2013-05-18 07:24:14.807171	2013-05-18 07:24:14.807171
+11		18	\N	2013-05-18 07:24:42.344747	2013-05-18 07:24:42.344747
+12	Get ready to be soundproofed, ODHK.	56	19	2013-05-18 08:05:22.394751	2013-05-18 08:05:22.394751
+13	GeoJSON in MongoDB: http://blog.codecentric.de/en/2013/03/mongodb-geospatial-indexing-search-geojson-point-linestring-polygon/	1	25	2013-05-18 10:07:16.757919	2013-05-18 10:07:16.757919
+14	Great Event! Let's continue!	65	\N	2013-05-19 14:38:02.979532	2013-05-19 14:38:02.979532
+15	Can't wait to see this one go up! What an excellent effort! 	1	9	2013-05-19 17:44:59.670233	2013-05-19 17:44:59.670233
+16	Hi Robert - keep in touch Bill 	2	\N	2013-05-20 09:05:44.553017	2013-05-20 09:05:44.553017
+17		73	\N	2013-07-15 04:06:17.643643	2013-07-15 04:06:17.643643
+18		73	\N	2013-07-15 04:06:24.117236	2013-07-15 04:06:24.117236
+\.
+
+
+--
+-- Name: microbes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('microbes_id_seq', 18, true);
+
+
+--
+-- Data for Name: project_roles; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY project_roles (id, user_id, project_id, role, created_at, updated_at) FROM stdin;
+2	2	3	owner	2013-05-12 19:19:23.193322	2013-05-13 01:22:18.389449
+3	2	4	owner	2013-05-12 19:22:00.294736	2013-05-13 01:22:27.545937
+4	2	5	owner	2013-05-12 19:24:30.702539	2013-05-13 01:22:35.379736
+1	1	2	owner	2013-05-12 19:10:33.877917	2013-05-13 01:28:14.058475
+5	4	6	owner	2013-05-13 01:46:19.718875	2013-05-13 01:46:19.718875
+6	4	7	owner	2013-05-13 01:51:25.676762	2013-05-13 01:51:25.676762
+7	4	8	owner	2013-05-13 02:03:53.107317	2013-05-13 02:03:53.107317
+8	6	9	owner	2013-05-13 03:50:39.5925	2013-05-13 03:50:39.5925
+9	20	10	owner	2013-05-13 09:48:38.859034	2013-05-13 09:48:38.859034
+10	21	11	owner	2013-05-13 11:19:54.386798	2013-05-13 11:19:54.386798
+11	25	12	owner	2013-05-13 13:40:04.306751	2013-05-13 13:40:04.306751
+12	13	13	owner	2013-05-13 14:22:54.938629	2013-05-13 14:22:54.938629
+13	30	14	owner	2013-05-14 02:24:25.014225	2013-05-14 02:24:25.014225
+14	30	15	owner	2013-05-14 02:46:23.721578	2013-05-14 02:46:23.721578
+15	22	16	owner	2013-05-14 03:32:42.170003	2013-05-14 03:32:42.170003
+16	29	17	owner	2013-05-14 04:07:34.43774	2013-05-14 04:07:34.43774
+17	32	18	owner	2013-05-14 04:15:21.104928	2013-05-14 04:15:21.104928
+18	26	19	owner	2013-05-14 05:49:03.941073	2013-05-14 05:49:03.941073
+19	11	20	owner	2013-05-14 07:18:18.734608	2013-05-14 07:18:18.734608
+20	27	21	owner	2013-05-14 07:42:08.568164	2013-05-14 07:42:08.568164
+21	33	22	owner	2013-05-14 07:55:54.969977	2013-05-14 07:55:54.969977
+22	28	23	owner	2013-05-15 05:24:55.239303	2013-05-15 05:24:55.239303
+23	47	24	owner	2013-05-15 10:07:12.347782	2013-05-15 10:07:12.347782
+24	1	25	owner	2013-05-16 03:16:43.311403	2013-05-16 03:16:43.311403
+25	1	26	owner	2013-05-16 03:33:21.827682	2013-05-16 03:33:21.827682
+26	1	25	member	2013-05-17 10:05:18.072676	2013-05-17 10:05:18.072676
+27	1	27	owner	2013-05-17 12:11:38.658568	2013-05-17 12:11:38.658568
+28	5	28	owner	2013-05-17 15:14:52.65676	2013-05-17 15:14:52.65676
+29	1	27	member	2013-05-17 15:45:17.085513	2013-05-17 15:45:17.085513
+31	49	25	member	2013-05-17 17:49:42.833088	2013-05-17 17:49:42.833088
+32	2	3	member	2013-05-18 00:09:17.43526	2013-05-18 00:09:17.43526
+34	2	5	member	2013-05-18 00:10:38.179039	2013-05-18 00:10:38.179039
+35	2	4	member	2013-05-18 02:25:55.200769	2013-05-18 02:25:55.200769
+36	43	25	member	2013-05-18 05:41:00.614739	2013-05-18 05:41:00.614739
+37	38	17	member	2013-05-18 06:09:56.77142	2013-05-18 06:09:56.77142
+38	28	17	member	2013-05-18 06:11:55.166599	2013-05-18 06:11:55.166599
+39	55	17	member	2013-05-18 06:39:21.991415	2013-05-18 06:39:21.991415
+40	18	5	member	2013-05-18 07:10:47.113901	2013-05-18 07:10:47.113901
+41	41	28	member	2013-05-18 07:12:19.440748	2013-05-18 07:12:19.440748
+42	52	19	member	2013-05-18 07:51:04.844018	2013-05-18 07:51:04.844018
+44	61	28	member	2013-05-19 07:03:47.512798	2013-05-19 07:03:47.512798
+45	65	25	member	2013-05-19 14:36:48.506359	2013-05-19 14:36:48.506359
+46	25	12	member	2013-05-19 15:44:35.154102	2013-05-19 15:44:35.154102
+47	70	17	member	2013-05-20 22:29:16.14323	2013-05-20 22:29:16.14323
+48	18	4	member	2013-05-23 09:00:43.615456	2013-05-23 09:00:43.615456
+49	40	4	member	2013-05-23 09:22:13.365277	2013-05-23 09:22:13.365277
+\.
+
+
+--
+-- Name: project_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('project_roles_id_seq', 49, true);
+
+
+--
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY projects (id, title, description, cover, url, created_at, updated_at, stage, github_user, github_repo) FROM stdin;
+7	Arrivals and Departures in the Pearl River Delta	Creating an application that allows the creation of alerts for  the arrival of special ships in the Hong Kong harbour, such as large cruise ships, aircraft carriers or oil rig carriers.	http://liongrass.files.wordpress.com/2012/02/img_1515.jpg	http://www.mardep.gov.hk/en/pub_services/arridepa.html	2013-05-13 01:51:25.67521	2013-05-13 01:51:25.67521	proposal	ODHK	\N
+15	Nico Nico Video for Legco	Legislative council provides full audio and video archive and realtime streaming. Can we convert the stream of video into a crowdsource annotation tool for legco meeting video? \r\n\r\nThe result would look like nico nico video but with legco video content.\r\n\r\n  * parse video meta data (list video, each of their URL, name, related meeting details, length of video ... etc)\r\n  * create tool to attach text on video\r\n  * display the video with attached text\r\n  * support both realtime and archive streams\r\n	http://cl.ly/image/0P282F1s0O2P/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-05-14%20%E4%B8%8A%E5%8D%8810.41.07.png	https://speakerdeck.com/siuying/legco-opendata	2013-05-14 02:46:23.720122	2013-05-20 09:01:05.615011	proposal	ODHK	
+6	MTR Delays	Analyzing the MTR twitter feed to find out when trains are delayed for what reason.	https://pbs.twimg.com/media/BIh_wIeCMAANaq1.jpg	https://twitter.com/MTRUpdate	2013-05-13 01:46:19.717782	2013-05-17 12:06:56.546795	shelved	ODHK	
+8	Hong Kong is Fucking Insane	Creating a bot that looks for the instagram picture with the most likes+comments+tweets of the past hour tagged with #HongKong and retweeting them hourly with the caption "Hong Kong is Fucking Insane".	http://liongrass.files.wordpress.com/2012/02/img_4428.jpg	http://statigr.am/tag/hongkong	2013-05-13 02:03:53.105722	2013-05-17 12:07:12.998463	development	ODHK	
+9	Reporting tool for Requests for Access to Information	Hong Kong does not have a Freedom of Information Act (FOIA). It instead has a Code on Access to Information that stipulates that all Government Departments have Access to Information Officers and provides contact information, so they can provide data when it is requested. They have a form (not web-based) and no general streamlined process for accessing information.\r\nAs part of an attempt to further inform the public about important information that people want to know, we could build a simple form to record requests, automatically email the request to the appropriate access officer and display information about the request for public viewing. We could also provide a way for updating the request, explaining whether it was properly fulfilled. Nothing like transparency to help know whether our Code works or not.	http://www.access.gov.hk/images/index.jpg	http://www.access.gov.hk/	2013-05-13 03:50:39.591497	2013-05-17 12:07:23.809126	development	ODHK	
+11	Hong Kong food security and mainland's two standard on food quality	According to a report from USDA Foreign Agricultural Service, Hong Kong local\r\nproduction accounted for 2.5 percent of fresh vegetables, 56.2 percent of live poultry\r\nand 6.4 percent of live pigs that Hong Kongers daily consumed. Mainland China is its\r\none of its important food suppliers.\r\n\r\n\r\nHong Kong food security is a significant issue. With a low self-sufficiency, for one\r\nthing, once farming in mainland gets something wrong, such as pests or epidemic,\r\nHong Kongers would be influenced immediately and directly. For another, the\r\nsafety level of mainland food is in decline under the media’s intense coverage. So, is\r\nmainland food sold in Hong Kong safe?\r\n\r\n\r\nIf there is something wrong with the supply chain, that’s a big scandal for Hong\r\nKong government. If there is nothing wrong with the food imported from mainland,\r\ncitizens in mainland may feel unfair about the “gap” between domestic production\r\nand exported ones.\r\n\r\n\r\nThe government and public have raised their expectation on food quality in mainland\r\nwith the country’s rapid development; however, many horrible food scandals make\r\nmainland people scared about food safety. It seems that mainland health authorities\r\nattach great importance to food for export, but looses the control on domestic ones.\r\n\r\n\r\nThe food safety control system of Hong Kong is quite different from mainland one,\r\ncreating China’s double standards for exported food to Hong Kong and domestic\r\nconsumed ones. That’s also an interesting point to find out what's the detailed\r\ndifference within the double standards.\r\n\r\n\r\nThe Centre for Food Safety Department of Hong Kong government had specific\r\nregulations on different food imported from mainland, including chilled chickens,\r\nfrozen confections, milk and milk beverages, marine products. I will compare each\r\nspecific standard on food quality with mainland’s corresponding one.\r\n\r\n\r\nData can be used:\r\n\r\n1. Mainland food condition in Hong Kong.\r\n\r\n2. The standard of import control and food safety guideline in Hong Kong.\r\n\r\n3. Standard of food quality on domestic market production in mainland.\r\n\r\n4. Hong Kong food imports rate, and where are different types of food mainly\r\nfrom.\r\n\r\n5. Money involved in food trade between Mainland China and Hong\r\nKong (trade and industry department)\r\n\r\n6. Hong Kong food self-sufficiency rate.\r\n\r\nThe format will be the print version with infographics.\r\n\r\n\r\nClips summary\r\n\r\nI cannot find much credible media covering on this issue, and most relevant stories\r\npublished come from anti-community website, like EPOCH Times.\r\n\r\nhttp://www.5food.cn/news/show-9191.html\r\n\r\nThis clip is talking about China hold different food safety standards for domestic\r\nproductions and exported ones.\r\n\r\nhttp://genascihk.com/2011/03/12/many-hong-kong-vegetables-contaminated-with-\r\nheavy-metals/\r\nThis clip is talking about Hong Kong vegetables, mostly imported from the mainland,\r\ncontain high levels of lead and traces of other metals, including cadmium, which may\r\nrelate to a scandal in mainland about 12 million tons of Chinese rice are contaminated\r\nwith heavy metals. A published story on year of 2011.	http://image.wenweipo.com/2012/09/26/a34b.jpg		2013-05-13 11:19:54.381869	2013-05-17 12:08:40.12204	development	ODHK	
+19	SoundProof	“Renovation is recreational activity in this city” – Xu Xi, from Evanescent Isles\r\n\r\nExposure to noise from construction is a daily experience for most Hong Kong people. From new buildings to renovations to road widening and resurfacing, it is difficult to walk one city block without passing at least one of these kinds of construction. Many people complain about construction noise and scientific research has established that noise exposure has negative effects on human health. It has been linked to depression, sleep problems, blood pressure and cardiovascular disease. \r\nConstruction Noise in Hong Kong is controlled by the 1989 (CAP400) Noise Control Ordinance. The Ordinance requires builders to apply for permits and restricts construction noise to the hours of 07:00 to 19:00 Monday to Saturday. There are extra restrictions for percussive piling. Most Hong People know that these restrictions are regularly and sometimes routinely flouted.\r\nThere is data available on the Environmental Protection Department’s website on all construction noise permits currently in force (searchable by district). It may be possible to request information for future permits too.  The Department of Justice would record numbers of convictions for breaches of the ordinance and details of when and where they occurred.\r\nA Hong Kong construction noise website could present a live map of current construction sites, as well as informing about upcoming construction. The site could include information about the related health issues and personal measures one could take to minimise negative effects. There could be information about how to make a noise complaint, and a ‘name and shame’ list of those caught in breach of the legislation. \r\n\r\nClip Summary\r\nWhile there are several academic papers on the issue, there is surprisingly little coverage of the issue in the media, considering how often Hong Kong people talk about it.\r\n\r\nWhat? Noise Levels Pile On – Wall Street Journal, 23/1/2011\r\nhttp://blogs.wsj.com/hong-kong/2011/01/23/what-noise-levels-pile-on/\r\n-\tA general overview, focussing on construction noise\r\n-\tQuotes a Prof from Chinese U who says noise exposure can cause cardiovascular diseases, such as hypertension, and sleep disturbances.\r\n-\tSome stats about number of construction sites 2005-2009\r\n-\tTalks about piling\r\n-\tOne main problem: while there might be restrictions on construction schedules, there isn’t a limit to the number of continuing projects in a given area—or the compounded noise\r\n\r\nCivic Exchange has written a report: A Comprehensive Review of Noise Policy in Hong Kong by Tam Pui-ying - December 2000\r\nhttp://www.civic-exchange.org/wp/wp-content/uploads/2010/12/200012_NoisePolicy.pdf\r\n-\tOf 22,761 complaints received by the EPD in 1999, 36% were noise related\r\n-\tHong Kong Institute of Acoustics did a 100-response noise survey:  most serious source of noise pollution was seen by public to be construction noise, followed by traffic noise.\r\n-\tIssues the following recommendations for Construction Noise:\r\nReintroduce the Noise Control Amendment Bill to LegCo.\r\nIntroduce legislation to control the use of percussive powered mechanical equipment in domestic renovation works.\r\n Establish controls on daytime noise from construction work.\r\n Collaborate with tertiary institutes to research quieter construction techniques.\r\n Prohibit noisy equipment where quieter models exist.\r\n Make mini-milling machines and infra-red machines mandatory at all times.\r\n Ban percussive piling.\r\n\r\n Thirty-two EPD convictions in March 2013\r\nhttp://7thspace.com/headlines/436111/thirty_two_epd_convictions_in_march.html\r\n-\tShort news piece sourcing HK Govt reporting 32 convictions in March for breaches of legislation enforced by EPD. Ten convictions were under the Noise Control Ordinance.\r\n-\tHeaviest fine $50,000: a company used powered mechanical equipment without a valid construction noise permit and carried out prescribed construction work in a designated area without a valid construction noise permit\r\n	http://oliveinbigchina.files.wordpress.com/2012/04/img_00531.jpg		2013-05-14 05:49:03.930287	2013-05-17 14:35:24.907427	development	ODHK	
+14	Legco Meeting Log Parser	Legislative Council already open their data in form of PDF. The data is pretty structured, but they are not quite machine readable and informative in current form (PDF). \r\n\r\nThis project aim to create a parser that convert PDF into a structured JSON format.\r\n	http://www.legco.gov.hk/council_meeting/11/s_11_9.jpg	https://speakerdeck.com/siuying/legco-opendata	2013-05-14 02:24:25.010983	2013-05-17 14:35:31.699761	development	ODHK	
+22	Local government transparency in mainland China	China government introduced The Regulations on Open Government Information in 2007. Did local governments, especially those in poor Guangdong counties, really follow the instruction and how well do they work on the plan? We hope to get a brief idea of local government transparency in China by \r\n\r\n1. Investigating the websites of all Guangdong poverty-stricken counties;\r\n\r\n2. Setting up benchmarks to evaluate local government transparency;\r\n\r\n3. Covering more local governments in mainland China if Guangdong project works well.\r\n\r\n\r\n\r\n	https://lawinquebec.files.wordpress.com/2012/06/open-data.jpg?w=828&h=451		2013-05-14 07:55:54.968341	2013-05-17 14:35:38.939988	development	ODHK	
+12	HK Light pollution Map	There are many kinds of pollution in Hong Kong without sufficient regulation.\r\nTagging light pollution, food waste, plastic pellets etc will help citizen and media to monitor, give pressure and call for help.\r\n--possibly a "crowdsourcing dataset".\r\n\r\nThe web prototype is there (couchDB) and this weekend we can focus on building a javascript multi-platform mobile geotagger which is useful for all sorts of geo-app\r\n\r\n	https://blackheart.cloudbees.cloudant.com/lightpollution/_design/light-app/_rewrite/static/style/img/bg.jpg	https://blackheart.cloudbees.cloudant.com/lightpollution/_design/light-app/_rewrite	2013-05-13 13:40:04.305176	2013-05-17 14:35:50.759305	development	ODHK	
+10	Common Open Data Index Comparison (CODIC)	Different cites and countries have different level of openness. What is open, how fast, how extensive, how accessible, how updates are seminated, change logs on documents, on all, how to find new methods.\r\n\r\nCodic is an index those open program code and website defines this integer index. The index must be weighted and can havesub indices which are combined mathematically weighted to form the final index. A higher index is better. Two cities of different size with different population should yield similar index value for "same openness".\r\n\r\nEach city compared should be programmatically evaluated by a web and api crawl usage spec yielding automatic recomputation of the index.\r\n\r\nThe index should be an ongoing project with improving metrics and possibly increasing values as new components are added to the evaluation.	http://webservices.ahc.ufl.edu/files/2011/07/analytics.jpg		2013-05-13 09:48:38.856972	2013-05-17 14:36:48.587155	shelved	ODHK	
+13	What's For Lunch	Using Opendata from FEHD, finding restaurants more responsively which is not proprietary information. \r\n\r\n*cough* OpenRice *cough* \r\n\r\nExample: \r\n- What restaurants are near you within a 5 block radius?\r\n- What restaurants are the BUSIEST during lunch?... which restaurants have the best service? (based on OBJECTIVE data).\r\n\r\n\r\n\r\n	http://www.bubblews.com/assets/images/news/767209611_1363401946.jpg		2013-05-13 14:22:54.937274	2013-05-17 14:36:51.141042	shelved	ODHK	
+3	Combined into the Data.One Analysis Project	Combined into the Data.One Analysis Project	http://thejeshgn.com/blog/wp-content/uploads/2010/02/data_gov_open.png	https://docs.google.com/spreadsheet/ccc?key=0Aubx-NcO9dXXdGZiNU5EdjBfYnpWekFmaE9DWmQxMWc#gid=0	2013-05-12 19:19:23.191759	2013-05-18 02:20:48.888508	shelved	ODHK	
+21	Construction: Hong Kong's most dangerous job?	The sound of construction is inescapable in Hong Kong. The construction industry accounts for more than 3% of Hong Kong’s GDP and in the next few years, public infrastructure expenditure is estimated to exceed HK$70 billion annually.\r\n\r\nBut construction continues to be the most dangerous industry in Hong Kong. In 2012, 24 construction workers died, the same number as in 2002. In 2011, the number of accidents for every 100,000 workers was 54 – more than five times the rate in Singapore, Japan and South Korea.\r\n\r\nStatistics provided by the Labour Department can be used to show how construction accidents and fatalities have changed over time, and how the construction industry compares to other industries. \r\n\r\nHong Kong’s media also reports on construction accidents. The details of these articles could be used in conjunction with the Labour Department’s statistics to map the location and nature of construction accidents in recent years. \r\n\r\nThis is the ideal time to report about construction accidents as Construction Safety Week is scheduled for 27 – 31 May, 2013. Hong Kong Occupational Safety and Health Assocciation’s Annual Safety Conference will take place on 28 May.	http://www4.pictures.zimbio.com/gi/Bamboo+Scaffolding+Used+Construction+Hong+Yw5AX1ncUoBl.jpg		2013-05-14 07:42:08.566721	2013-05-14 07:42:08.566721	proposal	ODHK	\N
+23	The Toll of Cross Harbour Tunnels in Hong Kong	The congestion of cross harbour tunnels is always a big problem for the costal metropolis Hong Kong. The Hong Kong government has tried different ways to solve this problem, and increasing the toll fees is one of the solutions. In 2013 Hong Kong Policy Address, the government suggests increasing the toll fees for the Cross Harbour Tunnel and reducing those for the Eastern Harbour Crossing through government subsidy, in order to ease the congestion of Cross Harbour Tunnel. In February and April, the panels of transport have been held to discuss this issue. \r\n\r\nThis investigation aims to discuss whether increasing the toll fees can ease the congestion of traffic. We will try to find the relationship between toll fee and frequency of usage through some previous increases of toll fees of tunnels. For example, the tolls fees of Western Harbour Crossing have increased since January 1st, 2013. \r\n\r\nMany data materials can be used in this investigation. \r\n1. Journey time indicators (from HK Datasets)\r\n•\thttp://www.gov.hk/en/theme/psi/datasets/journeytime.htm\r\n•\tSource: XML\r\n•\tDescription: Average journey time for major roads in Hong Kong (including cross-harbour)\r\nThis data can show the traffic situation of each tunnel. \r\n2. Data from Western Harbour Crossing\r\nWe can request to get the statistics of frequency before and after the increase of tolls. It can be a reference of whether the tolls will affect divers’ choice of route. \r\n3. Data from HK Transport Department\r\nWe can request to know how many times the tolls of cross habour tunnel have been increased and related statistics, such as increase rates and frequency of usage. \r\n\r\nClip research:\r\n1. Tunnel tolls cut to `make jams worse'\r\nhttp://www.thestandard.com.hk/news_detail.asp?pp_cat=11&art_id=133113&sid=39549600&con_type=1&d_str=20130423\r\n2. Debate on tunnel tolls long overdue\r\nhttp://www.scmp.com/comment/insight-opinion/article/1152710/debate-tunnel-tolls-long-overdue\r\n3. Panel on Transport Meeting on 22 February 2013 \r\nhttp://www.legco.gov.hk/yr12-13/english/panels/tp/papers/tp0222cb1-544-6-e.pdf\r\n\r\nRestrictions:\r\nThe “journey time indicators” data is in XML format, and I don’t know how to use this data. Anyone who is familiar with xml is needed in this investigation project. \r\n	http://cdn.geolocation.ws/geolocation_media/flickr2/0254/l-002543576195.jpg		2013-05-15 05:24:55.238147	2013-05-15 05:24:55.238147	proposal	ODHK	\N
+16	Is Hong Kong ready for Open Data? 	The Worldbank has developed an Open Data readiness assessment tool, which we want to test for Hong Kong.PSI development. The whole exercise will take longer then the Make01 weekend, so we will only start exploring the tool.\r\n\r\nThe Data.One Analysis project will look at the World Bank toolkit within these cautions. \r\nTake a look at the World Bank discussion on this site, the presentation and the document describing the tool. \r\nRecorded presentation (~ 2 hours)\r\nmms://wbmswebcast1.worldbank.org/DEC/2013-03-01/OD_RA_Briefing.wmv\r\nPresentation slides\r\nhttps://docs.google.com/file/d/0B-bx-NcO9dXXQ2QyMWoyenI2OVE/edit?usp=sharing\r\nToolkit document ~ 36 pages \r\nhttps://docs.google.com/file/d/0B-bx-NcO9dXXQ2QyMWoyenI2OVE/edit	http://data.worldbank.org/sites/default/files/pie-open-gov.png	http://data.worldbank.org/about/open-government-data-toolkit/readiness-assessment-tool	2013-05-14 03:32:42.169018	2013-05-15 08:18:47.471457	proposal	ODHK	\N
+4	Data.One Analysis Project	<br>Bill Proudfit \r\n<br>Haggen So\r\n<br>Michael Chan \r\n<br>Yolanda Ma Jinxin\r\n\r\n<a href="https://docs.google.com/drawings/d/1nYHxIbMsTY7-zwWx7j3gMWe-A1hbW2wfadpJnJ-6w9I/edit" title=Click_on_Data.One_Analysis_Summary_and_Report target="_blank">See here for the Data.One Analysis and Report</a>\r\n \r\n<a href="http://baoman.wordpress.com/2013/05/26/data-one-analysis-summary-report/" title=Baoman's_Blog_Data.One_Analysis_Summary_and_Report target="_blank">Bill's blogged about the summary and report here</a>\r\n \r\nData.One Analysis Project ~ combines 2 projects ~ \r\n<br>~ Part 1: Scope, Measurements, Success \r\n<br>~ Part 2: What are other Cities up to? \r\nBill, Yolanda, Haggen, Michael worked on Sunday as a group \r\n\r\n<br>1. Looked at 19 PSI Open Data sites from around the world \r\n<br>2. Evaluated the Data.One site from UI, UX, dataset perspective \r\n<br>3. Made specific recommendations \r\n<br>4. Took a look at the World Bank discussion on this site, the presentation and the document describing the tool.  There were  some parts which were helpful.  However, we could not actually use the full World Bank assessment tool.  The World Banks estimates it would take 8 weeks, US$50k and a fairly large team of internal and external people.  Recorded presentation ~ 2 hours but very interesting \r\n<a href="http://data.worldbank.org/about/open-government-data-toolkit/readiness-assessment-tool" title=World_Bank_Data_Toolkit_Discussion_Video target="_blank">find the link to video here</a>  Toolkit document with comments by Bill Proudfit~  \r\n<a href="https://docs.google.com/file/d/0B-bx-NcO9dXXQ2QyMWoyenI2OVE/edit?usp=sharing" title=Wold_Bank_Toolkit_Document target="_blank">here.  </a>  There is also a version for commenting posted by the World Bank on the above website. \r\n\r\nTwo parts for this project. \r\n \r\nPart 1: Datasets on Data.One ~ Scope, Measurements, Success \r\nCreated a list to evaluate the usefulness and completeness of datasets on the HKGov Data.One site and then did an evaluation and report. <br>\r\nFor example. \r\n<br>How does Data.One define dataset? \r\n<br> How datasets are being made available? \r\n<br> How many datasets are available? \r\n<br> Are the formats useful? \r\n<br> What is update frequency adequate? \r\n<br> Do the downloads work?\r\n<br> Are there adequate instructions on how to use the datasets for application development?\r\n<br> Are there adequate instruction for the general non-technical person to understand the datasets and open data concepts? \r\n\r\nGoal: Evaluate and make recommendations.  Expand, update and improve the spreadsheet that lists all the Data.One 01-40 datasets in 12 categories,  \r\n\r\n<a href="https://docs.google.com/spreadsheet/ccc?key=0Aubx-NcO9dXXdHdWb01rY19yazEtRTlfSHkxOEMwRnc#gid=0" title=Spreadsheet_based_on_Data.One target=_blank">here.  </a>\r\n\r\nPart 2: What are other Cities Up To?\r\nLook at other cities open data (PSI) websites and compare contrast to HKGov Data.One site.\r\n\r\nLook at this spreadsheet of PSI sites from around the world \r\n<a href="https://docs.google.com/spreadsheet/ccc?key=0Aubx-NcO9dXXdGZiNU5EdjBfYnpWekFmaE9DWmQxMWc#gid=0" title=PSI_Sites_Around_the_World target=_blank">here. </a>\r\n\r\nThe team reviewed 15 PSI sites from around the world, looking for good practice and bad practice.  Then looked at the Data.One site and made recommendations on what it has done well and what can be improved.    \r\n\r\n<br>Evaluated UI ~ (user interface) ~ UX (user experience)\r\n<br>Evaluated Content ~ completeness and clarity \r\n<br>Evaluated Instructions ~ how to use the datasets \r\n<br>Evaluated the format of the datasets ~ how useful for developers and / or the general public \r\n\r\nGoal: Made recommendations on how to improve the Data.One website.  These recommendations will be sent to the HK OGCIO PSI (Office of the Chief Information Officer, Public Sector Information) Team and Charles Mok, IT Sector, Legislative Councillor. \r\n	http://cdn.theatlantic.com/static/mt/assets/business/Screen%20Shot%202012-02-29%20at%203.08.23%20PM.png		2013-05-12 19:22:00.293756	2013-05-27 05:15:14.54105	development	ODHK	
+17	How much is Hong Kong throwing away?	Domestic waste has always been of public concern and with the government looking to expand the its environmental levy scheme on plastic shopping bags, this story looks at how effective the scheme has been since it was introduced four years ago and how much Hong Kong people are still throwing away. Have Hong Kong people created less waste since then, and how is that reflected in the city’s almost-full landfills? Since the levy has been in force, reusable shopping bags made with thicker plastic and non-woven bags have become more common. How are they impacting the environment as they take longer time to degenerate? What can we do to minimise waste?\r\n\r\nThe Environmental Protection Department offers clear statistics of Hong Kong domestic plastic waste from 1997 to 2011, which also give a breakdown on how much of that plastic bags account for. The Legislative Council brief submitted by the department for this expansion also gives statistics related to plastic bag usage and waste. This story will reveal how effective the plastic bag levy scheme has been, as the government pushes the expansion plan to the Legislative Council this week. \r\n	http://www.hkcleanup.org/sites/default/files/styles/article_full/public/2006818_f520.jpg		2013-05-14 04:07:34.436363	2013-05-17 14:35:35.881221	development	ODHK	
+20	Find Car Park in Hong Kong	Real Time Data show the number of available car parking space in Hong Kong. \r\nCar drivers can find car park with minimal time and less route by mobile apps.	http://static.panoramio.com/photos/large/27659581.jpg		2013-05-14 07:18:18.731505	2013-05-17 14:36:56.019067	shelved	ODHK	
+18	What will happen to pollution in HK if the US economy recovers?	According to the Hong Kong government's Environmental Protection Department great strides have been made in fighting pollution in the Pearl River Delta. But this has coincided with a manufacturing slowdown in China because of the weak US economy. With the US now showing signs of recovery, what will happen to pollution here?	http://www.epd.gov.hk/epd/english/images/cur_iss/prd_aqms.gif		2013-05-14 04:15:21.10325	2013-05-20 09:01:41.688737	development	ODHK	
+24	Travel Agent in Mainland China	1.\tStory idea: In 2012, China became the largest tourists exporting country in the world over US, with spending nearly 102 billion on travelling abroad, according to World Tourism Organization (WTO). This booming travel market urged the development of travel agents. The numbers of China’s travel agents increased from 7,326 to 21,649 in 2002-2012 with 10.35% annual growth rate. However, more than 95% of China’s travel agents are small, scattered and weak, waging price wars with each other in a low profit rate. In 2012, the total revenue of 5,000 Chinese domestic travel agents approximately equaled to the revenue of American Express. \r\n2.\tData Source: China Tourism Statistical Bulletin; China Star Hotel Statistical Bulletin; Industry Analysis Report by consultant company; Financial statements of listed travel agents; Academic journals by researchers.\r\n3.\tClip search: the previous research tend to attribute the fragmented market to the historical closed-door policy of China’s government. It’s only the partial truth. Actually it is the current outdated government supervision policy that resulted in this deformed market. It required each travel agent to build up its entire function departments including flight and hotel booking, ticket booking, tours design, travel guide training, product sales and so on, instead of encouraging subdivision of industry chain, which is widely used in U.S. and European travel agent industry.\r\n4.\tThe medium of the story – print, info graphic. This is an analytical article mainly basic on data and policy comparison. So infographic is most helpful.	http://www.sdtravel.cn/luxingshe/P1010022.JPG		2013-05-15 10:07:12.346055	2013-05-15 10:07:12.346055	proposal	ODHK	\N
+26	GeoComm	Most projects are focussing on how we can use open data to create. This project is about how we can _create_ open data. \r\n\r\nIt's a mobile app that plugs into the phones various sensors and is able to push a measurement - to report - to a geodata set provider.  A lot of Make.01 projects  [Light Pollution](http://opendatahk.com/projects/12), [Construction Noise](http://opendatahk.com/projects/19), [Construction Fatalities](http://opendatahk.com/projects/21), rely on crowd-sourced geospatial data, and all could benefit from a crowd sourced reporting app.\r\n\r\nDevelopers of this app can work in collaboration with the [GeoDex](http://opendatahk.com/projects/25) team to decide on an interoperable format so the GeoComm can submit its data to the maps that the GeoDex displays! \r\n\r\nPossible tech stack :\r\n\r\n* Android SDK	http://images3.wikia.nocookie.net/__cb20110927143412/memoryalpha/en/images/c/cd/Communications_pack.jpg		2013-05-16 03:33:21.826088	2013-05-16 03:36:22.975726	proposal	ODHK	\N
+2	Taxi Driver Ratings	The internet lets you rate a lot of things: restaurants, apps, movies, asses. And now there’s one more service that you can evaluate – thanks to the new TaxiCrab app – but that’s for Shanghai taxi drivers. In Hong Kong there are plenty of maniacal taxi drivers I wish I could warn others about. 	http://www.techinasia.com/techinasia/wp-content/uploads/2012/11/rate-your-taxi-driver.jpg		2013-05-12 19:10:33.875957	2013-05-17 12:06:04.748155	shelved	ODHK	
+5	Opening Data	Bill & Michael will work on this on Saturday | Haggen worked on Sunday  \r\n\r\nIdentify open data sets in HK not listed on the HKGov Data.One site. \r\nSome of these may be available but with restrictions. \r\nHow to identify? \r\nHow to evaluate?\r\n\r\nGoal: Made a form so people can suggest datasets on HK government websites they have discovered that they believe should be part of Data.One or scraped.  Included the 16 areas identified by the World Bank's Open Data Readiness Assessment (ODRA) tool as guides, see page 20 here <a href="https://docs.google.com/file/d/0B-bx-NcO9dXXQ2QyMWoyenI2OVE/edit" title=World_Bank_Data_Tool_Document target="_blank">here</a>  \r\n\r\nWork done exclusively by Michael and Haggen: \r\n<br>Created a Google form to collect possible datasets ~ this is a crowdsourcing.  \r\n<br>Linked it to Facebook. \r\n<br>Where to host this site? Will see about putting it up on opendatahk.com   \r\n<br>How to promote? \r\n\r\nThis page lists datasets which are not in Data.One Website\r\nhttp://openingdata2-michaelchan.rhcloud.com/DatasetReported.php\r\n\r\nThe form for submitting Datasets found\r\nhttps://docs.google.com/forms/d/1YBy6Smz2EJ4zL3ncrE0I5grP0eqemgsHZK6UIyVlagw/viewform\r\n\r\nThe spreadsheet of the datasets listed\r\nhttps://docs.google.com/spreadsheet/ccc?key=0AhnvMyekm5G8dHNmLWFxRzZJeTVtZVNRUmVLX2RDZXc#gid=0\r\n	http://upload.wikimedia.org/wikipedia/commons/4/42/Col-Johnson-Liberating-an-Unfortunate-Debtor.jpg		2013-05-12 19:24:30.701433	2013-05-25 06:34:03.153524	development	ODHK	
+25	GeoDex	GeoDex is a frontend framework to display and interact with open geodata. A lot of open data sets include geocoded assets. The Hong Kong Gov provides geo-referenced data (including names, addresses and co-ordinates, etc.) of 79 types of public facilities such as government offices, hospitals, schools, country parks, GovWiFi premises as well as recreational, cultural and sports venues. \r\n\r\nThis data already [has a map](http://www2.map.gov.hk/gih3/view/index.jsp), but its information architecture severely limits it functionality: you can't link directly to a dataset or view, you can't share a Point of Interest, you can't add your own points.\r\n\r\nAll of these shortcomings would be addressed in GeoDex. We'll use an off-the shelf mapping framework, but the UI provides additional functionality that open data sets commonly leverage.\r\n\r\n1. **Display**: present geospatial metadata in a dedicated info panel.\r\n1. **Report**:  allow users to add to the dataset, both privately and in public. \r\n1. **Share**: allow users to share points of interest and map views on popular Social Networks\r\n1. **Customise**: allow users to modify their views by mashing and filtering datasets. \r\n\r\nPossible tech stacks:\r\n\r\n* MongoDB\r\n* AngularJS\r\n* Express\r\n* NodeJS\r\n* LeafletJS\r\n\r\nor \r\n\r\n* MongoDB\r\n* Rails\r\n* AngularJS\r\n* LeafletJS	http://www.upokecenter.com/dex/rbyarea.png		2013-05-16 03:16:43.310327	2013-05-17 12:08:14.058169	development	ODHK	GeoDex
+27	OpenDataHK.com	Everyone needs a home, out projects, resources and community do too :) 	http://sphotos-a.ak.fbcdn.net/hphotos-ak-prn1/p480x480/21215_475899922480463_1548968519_n.png	http://opendatahk.com	2013-05-17 12:11:38.656067	2013-05-17 14:37:31.69259	released	ODHK	OpenDataHK.com
+28	Hong Kong Food Poisoning Map	Hong Kong has some of the most varied eating experiences available in Asia.  The food can be cheap and great...or expensive and terrible.  The worst is when the food makes you SICK.\r\n\r\nOne of the real and present dangers of eating out in Hong Kong is the reality that food poisoning is endemic.  Partially because it is hot, compressed and a highly competitive F&B environment, partially because refrigeration, hygiene and food handling safety aren't always at the top of the priority list.  \r\n\r\nIt is a fact that Hong Kong long-time residents and natives are philosophical about this and have resigned themselves to the fact that there is a 1 in X chance that eating out will make you sick.  \r\n\r\nReduce your own personal 1 in X by eating out in an informed way.  Contribute to our HK FOOD POISONING MAP project where web-sourced, government and user contributed data will be used to dynamically update a graphical map of Hong Kong, showing in near real-time which eateries you need to avoid!\r\n\r\nSimilar in spirit to projects in \r\n\r\nNew York City:\r\n\r\nhttp://donteat.at/\r\n\r\nand Toronto:\r\n\r\nhttp://www.thegridto.com/life/food-drink/toronto-food-safety/\r\n\r\nThe Hong Kong Food Poisoning Map proposes to integrate and cross-reference existing web based sources of information (ex:  open rice) with government data (when they give it to us) along with crowd-sourced (and social media validated) user-supplied data to generate the most accurate, up-to-date picture of where NOT to eat in Hong Kong!\r\n\r\n	http://www.thegridto.com/wp-content/uploads/20120125-lead-closures.jpg		2013-05-17 15:14:52.654938	2013-05-20 09:01:48.817703	development	ODHK	HKFPM
+\.
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('projects_id_seq', 28, true);
+
+
+--
+-- Data for Name: resources; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY resources (id, title, description, tags, url, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('resources_id_seq', 1, false);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY schema_migrations (version) FROM stdin;
+20130412203954
+20130412172130
+20130412170411
+20130412185459
+20130412173348
+20130412164355
+20130412171453
+20130412165557
+20130511141908
+20130511141940
+20130511160109
+20130511165103
+20130511170007
+20130512045904
+20130512054858
+20130512063835
+20130512065932
+20130512125127
+20130512130339
+20130514010048
+20130516160829
+20130517075030
+20130517173101
+20130804092351
+20130804095032
+20130811190524
+\.
+
+
+--
+-- Data for Name: series; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY series (id, name, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: series_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('series_id_seq', 1, false);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: odhk
+--
+
+COPY users (id, email, github, googleplus, facebook, mailinglist, location, created_at, updated_at, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, provider, uid, name, twitter, avatar, company, blog, role) FROM stdin;
+2	bill.proudfit@gmail.com	\N	https://plus.google.com/105462237943676964434	\N	\N	\N	2013-05-12 23:01:21.680596	2013-05-16 13:59:33.623945	$2a$10$LMORSiLuCNZ4kPYqnhcijerJTBKubQ9UpS8w2Leo.F5gz.ttVkN/u	\N	\N	\N	2	2013-05-16 13:59:33.619867	2013-05-12 23:01:21.685521	127.0.0.1	127.0.0.1	google_oauth2	105462237943676964434	Bill Proudfit	\N	https://lh4.googleusercontent.com/-o0jQk0nejxU/AAAAAAAAAAI/AAAAAAAAB98/hu6eEqZ2Q8s/photo.jpg	\N	\N	member
+14	paul.orlando@gmail.com	\N	https://plus.google.com/105168767172733387368	\N	\N	\N	2013-05-13 06:27:34.050849	2013-05-13 06:27:34.052964	$2a$10$wovY5CPV7tGFhFHUycPmJONcykjAE4eGK13WpwOQqWYVKPrmjtZJG	\N	\N	\N	1	2013-05-13 06:27:34.052646	2013-05-13 06:27:34.052646	127.0.0.1	127.0.0.1	google_oauth2	105168767172733387368	Paul Orlando	\N	https://lh3.googleusercontent.com/-q03T26d7GHg/AAAAAAAAAAI/AAAAAAAAARc/4Clt2Ea4f9w/photo.jpg	\N	\N	member
+13	denistsoi88@hotmail.com	\N	\N	denis.tsoi	\N	\N	2013-05-13 06:24:00.786241	2013-05-16 16:55:28.354035	$2a$10$Na3ylogdmkXXSKtL8y4mN.BEOM213C7Kc/7SBQKCV/2boQ7L8Jn/a	\N	\N	\N	3	2013-05-16 16:55:28.353134	2013-05-14 15:00:44.17282	127.0.0.1	127.0.0.1	facebook	273101285	Denis Tsoi	\N	http://graph.facebook.com/273101285/picture?type=square	\N	\N	member
+3	ada.tong@gmail.com	\N	https://plus.google.com/105344850875435556994	\N	\N	\N	2013-05-13 00:45:51.985295	2013-05-13 00:45:51.989857	$2a$10$rB9xIhXcs6ul3.5/vgMLhutAn983Wftt6X7P4nUu170ZMaP1TUs7u	\N	\N	\N	1	2013-05-13 00:45:51.989357	2013-05-13 00:45:51.989357	127.0.0.1	127.0.0.1	google_oauth2	105344850875435556994	Ada Tong	\N	\N	\N	\N	member
+5	graham.r.leach@gmail.com		https://plus.google.com/116165049320866585097		\N		2013-05-13 03:09:16.862226	2013-05-18 07:02:14.192968	$2a$10$bElpItHPbEhJR5XDR4Ddp.YTPET4Fdm.iNmQ.u54fv1eMDLKFHso6	\N	\N	\N	3	2013-05-18 07:02:14.192053	2013-05-17 14:59:47.151523	127.0.0.1	127.0.0.1	\N	\N	Graham Leach		https://lh4.googleusercontent.com/-6O1B4tedIZA/AAAAAAAAAAI/AAAAAAAAAAA/4BqmHLrTfao/photo.jpg	\N		member
+21	jeannino.c@gmail.com	\N	https://plus.google.com/100689034399222622061	\N	\N	\N	2013-05-13 10:04:59.134237	2013-05-17 15:03:10.911649	$2a$10$FiAwAQ0rkuY4PKy6QiKQUOs00ycYHiTMUbZJVL.RA2yCOCSfYdDmq	\N	\N	\N	2	2013-05-17 15:03:10.911137	2013-05-13 10:04:59.138936	127.0.0.1	127.0.0.1	google_oauth2	100689034399222622061	Jean Cao	\N	\N	\N	\N	member
+4	leonhard.w@gmail.com	\N	https://plus.google.com/104231479784681000891	\N	\N	\N	2013-05-13 01:40:23.552643	2013-05-13 01:40:23.557743	$2a$10$L1UzjzkFKVTOyVeyuX/0g.wbpsbrLH3WGqiu2hVpuhqhtmffZMJni	\N	\N	\N	1	2013-05-13 01:40:23.55699	2013-05-13 01:40:23.55699	127.0.0.1	127.0.0.1	google_oauth2	104231479784681000891	Leonhard Weese	\N	https://lh6.googleusercontent.com/-cxrfzMlBYA8/AAAAAAAAAAI/AAAAAAAAAIE/eXYQwF5c7J8/photo.jpg	\N	\N	member
+9	sammyfunghk@gmail.com	\N	https://plus.google.com/101579967866613503218	\N	\N	\N	2013-05-13 04:21:00.000054	2013-05-13 04:21:00.004702	$2a$10$8vvxbSmgrR4OjWMi8D6wZe3uj1OYGjJc7Y1qpHgPHjnJoxVIy2oNu	\N	\N	\N	1	2013-05-13 04:21:00.004279	2013-05-13 04:21:00.004279	127.0.0.1	127.0.0.1	google_oauth2	101579967866613503218	Sammy Fung	\N	https://lh3.googleusercontent.com/-V2-y7B4QNVM/AAAAAAAAAAI/AAAAAAAAByM/TaFf1a9Yhqg/photo.jpg	\N	\N	member
+6	1000camels@gmail.com	\N	https://plus.google.com/107325283624973745956	\N	\N	\N	2013-05-13 03:38:40.7525	2013-05-13 04:35:11.040369	$2a$10$P3AJ1ANnBPBaOLnDpRbX..i6ikHLlJnxyuHUnZD86vpUBSMimqJ4G	\N	\N	\N	2	2013-05-13 04:35:11.039744	2013-05-13 03:38:40.756478	127.0.0.1	127.0.0.1	google_oauth2	107325283624973745956	darcy christ	\N	https://lh4.googleusercontent.com/-xpl1quR83OA/AAAAAAAAAAI/AAAAAAAAAJI/lEsTSj5__Bo/photo.jpg	\N	\N	member
+10	mjpixley@gmail.com	\N	\N	mjpixley1	\N	\N	2013-05-13 04:37:06.432908	2013-05-13 04:37:06.436985	$2a$10$ed1imjUN/9BijD.1XjCh/uYkizItlk.jhi3o0grg3pjG7mQqCQFLu	\N	\N	\N	1	2013-05-13 04:37:06.436236	2013-05-13 04:37:06.436236	127.0.0.1	127.0.0.1	facebook	699933361	Mark Pixley	\N	http://graph.facebook.com/699933361/picture?type=square	\N	\N	member
+8	chrisyeung@mac.com	\N	\N	chrisyeung1121	\N	\N	2013-05-13 03:48:17.89754	2013-05-18 04:44:16.292731	$2a$10$VnPBy16LPdgjpomNFGotS.8mPggMc1Deo5WX6xAI8QrKtLtqghvQe	\N	\N	\N	2	2013-05-18 04:44:16.291828	2013-05-13 03:48:17.899689	127.0.0.1	127.0.0.1	facebook	1618920028	Christopher Yeung	\N	http://graph.facebook.com/1618920028/picture?type=square	\N	\N	member
+12	robertmlowe@gmail.com	\N	https://plus.google.com/107559702751386818378	\N	\N	\N	2013-05-13 05:03:25.598153	2013-05-13 05:03:25.603309	$2a$10$75FAnK2YONdGxIgPEqUp9.cbiNbniUFJVr6nSwGi5o7daTD1qZPYG	\N	\N	\N	1	2013-05-13 05:03:25.602554	2013-05-13 05:03:25.602554	127.0.0.1	127.0.0.1	google_oauth2	107559702751386818378	Robert Lowe	\N	https://lh6.googleusercontent.com/-z14MoFA1Zso/AAAAAAAAAAI/AAAAAAAANXc/w_7v6zYSMVM/photo.jpg	\N	\N	member
+15	rexchoi2011@gmail.com	\N	\N	rex.protege	\N	\N	2013-05-13 06:58:58.717252	2013-05-13 06:58:58.721411	$2a$10$GjIdHTVCfcn0MRvNWu3.7eCR5pwwxBJeh75P/8midu8REsiJ/9fBK	\N	\N	\N	1	2013-05-13 06:58:58.721008	2013-05-13 06:58:58.721008	127.0.0.1	127.0.0.1	facebook	528180362	Rex Protege	\N	http://graph.facebook.com/528180362/picture?type=square	\N	\N	member
+16	generic.intelligence@gmail.com	\N	https://plus.google.com/100451307644266895440	\N	\N	\N	2013-05-13 07:01:26.312432	2013-05-13 07:01:26.316681	$2a$10$MwVwAkkqzcEUiSq/NNua8eoDWgUV.G1bff/ZFBzP1meDxAPs15prG	\N	\N	\N	1	2013-05-13 07:01:26.316325	2013-05-13 07:01:26.316325	127.0.0.1	127.0.0.1	google_oauth2	100451307644266895440	King Yin Yan	\N	https://lh4.googleusercontent.com/-AoyLZOrHCZg/AAAAAAAAAAI/AAAAAAAAAPk/NyFj0BzJrxE/photo.jpg	\N	\N	member
+11	walterch87@yahoo.com.hk	\N	\N	walterch	\N	\N	2013-05-13 04:53:53.330952	2013-05-15 15:41:28.059561	$2a$10$KBWsuBU0BnVnBvLqTZw0FuXU4qKwZ39.74weXcJIB2D9AOV4r2qma	\N	\N	\N	3	2013-05-15 15:41:28.058998	2013-05-14 06:45:26.488019	127.0.0.1	127.0.0.1	facebook	726516610	Walter Chan	\N	http://graph.facebook.com/726516610/picture?type=square	\N	\N	member
+18	yeung.chan@gmail.com	\N	https://plus.google.com/100365331398536165330	\N	\N	\N	2013-05-13 07:33:38.858113	2013-05-13 07:33:38.863093	$2a$10$9ZSzRK.RJ/Imgq7v6T6ewuDhzPWKRSaVUYyFsSVRL.22jjfDKfRDS	\N	\N	\N	1	2013-05-13 07:33:38.862353	2013-05-13 07:33:38.862353	127.0.0.1	127.0.0.1	google_oauth2	100365331398536165330	Michael Yeung Chan	\N	https://lh5.googleusercontent.com/-DOQJ6kSxpok/AAAAAAAAAAI/AAAAAAAAAAA/5rvhz-Fy3BQ/photo.jpg	\N	\N	member
+19	dianatjou@gmail.com	\N	https://plus.google.com/109569323427751366626	\N	\N	\N	2013-05-13 07:45:37.073284	2013-05-13 07:45:37.078277	$2a$10$BzhqkTraeZUzuyLW59Vyo.3nPcdPVQrSb5AqtiQjYlKayfb.7ro3i	\N	\N	\N	1	2013-05-13 07:45:37.077748	2013-05-13 07:45:37.077748	127.0.0.1	127.0.0.1	google_oauth2	109569323427751366626	Diana Jou	\N	https://lh5.googleusercontent.com/-_8uQsPTwN_Q/AAAAAAAAAAI/AAAAAAAAC0I/jbFuSRvjedI/photo.jpg	\N	\N	member
+20	jonas.s.karlsson@gmail.com	\N	https://plus.google.com/106935918398308201962	\N	\N	\N	2013-05-13 09:34:02.367713	2013-05-13 09:34:02.37234	$2a$10$311/EEXboGFIcfHLJpWL1eHEBRzLhDbbEYAIlEuvavL5YOIXA/ppy	\N	\N	\N	1	2013-05-13 09:34:02.371854	2013-05-13 09:34:02.371854	127.0.0.1	127.0.0.1	google_oauth2	106935918398308201962	Jonas S Karlsson	\N	https://lh5.googleusercontent.com/-QhMNWUr8Irc/AAAAAAAAAAI/AAAAAAADWHU/B_jIn_D0iiQ/photo.jpg	\N	\N	member
+1	m@type.hk	tijptjik	https://plus.google.com/100751897841477294261	tijptjik	\N	Hong Kong	2013-05-12 18:29:12.524133	2013-05-17 21:03:10.64711	$2a$10$kMa7vkI1o6GygmjCQUMThesiL2ylYmuNz/cgtke/SePlu4Fueq2s2	\N	\N	\N	16	2013-05-17 21:03:10.646007	2013-05-17 16:11:08.680725	127.0.0.1	127.0.0.1	google_oauth2	100751897841477294261	Mart van de Ven	tijptjik	https://lh6.googleusercontent.com/-fjMGyUy_Ro8/AAAAAAAAAAI/AAAAAAAANNc/1VGwBDiw94U/photo.jpg	DemystData	www.type.hk	admin
+17	frankie.chu@gmail.com	\N	https://plus.google.com/117515548287143098358	\N	\N	\N	2013-05-13 07:11:10.36025	2013-05-15 23:32:02.668306	$2a$10$mogqbrCTkbJO1mmju7Xjg.o4Bb48fuuThk71ZsWOK6hFf0WzA7lG.	\N	\N	\N	3	2013-05-15 23:32:02.667322	2013-05-15 14:16:26.65193	127.0.0.1	127.0.0.1	google_oauth2	117515548287143098358	Frankie Chu	\N	https://lh4.googleusercontent.com/-aMbmRWNSsbA/AAAAAAAAAAI/AAAAAAAAE2A/CvMCDnA3Udc/photo.jpg	\N	\N	member
+23	wuyi01@connect.hku.hk	\N	\N	\N	\N	\N	2013-05-13 10:51:22.448484	2013-05-13 10:51:22.452926	$2a$10$ELB6VmsNw8g1NT9gGnWINOZxr7qRy1d.JS1GWGlEC2Ynd7yWXeEH6	\N	\N	\N	1	2013-05-13 10:51:22.452492	2013-05-13 10:51:22.452492	127.0.0.1	127.0.0.1	google_oauth2	114834410703144713746	Yi WU	\N	\N	\N	\N	member
+24	johnkgoahead@yahoo.com.hk	\N	\N	johnk.kwok	\N	\N	2013-05-13 11:16:41.785105	2013-05-13 11:16:41.790519	$2a$10$.BTdPhwB.5jf18PvsJyMUODy61kwJcHV.SY44psnrzs2Cjctas/vS	\N	\N	\N	1	2013-05-13 11:16:41.789863	2013-05-13 11:16:41.789863	127.0.0.1	127.0.0.1	facebook	729301218	Johnk Kwok	\N	http://graph.facebook.com/729301218/picture?type=square	\N	\N	member
+32	robertsckemp@gmail.com	\N	https://plus.google.com/118432021457935919169	\N	\N	\N	2013-05-14 03:00:10.30696	2013-05-14 04:08:56.280206	$2a$10$gBUGIsB1Dm7J3CRHGcBvSOz8J2RpHRfB6Dnym9w55fIKBfaq.BEIe	\N	\N	\N	2	2013-05-14 04:08:56.279296	2013-05-14 03:00:10.309056	127.0.0.1	127.0.0.1	google_oauth2	118432021457935919169	Robert Kemp	\N	https://lh5.googleusercontent.com/-EHe9l8SfOHw/AAAAAAAAAAI/AAAAAAAAACU/1jchIJ13IzU/photo.jpg	\N	\N	member
+25	lauchunyin@gmail.com	\N	https://plus.google.com/113087134663355082149	\N	\N	\N	2013-05-13 13:33:18.887964	2013-05-13 13:45:19.211019	$2a$10$GptIuAapksi2Ig.59XuPRO2rNKYMKjOTYg9/UA9y.cUqCGbhYCv.C	\N	\N	\N	2	2013-05-13 13:45:19.21007	2013-05-13 13:33:18.892308	127.0.0.1	127.0.0.1	google_oauth2	113087134663355082149	Chun Yin Vincent Lau	\N	https://lh3.googleusercontent.com/-cOGSOZlOSOI/AAAAAAAAAAI/AAAAAAAAAAA/QywH0RQeam4/photo.jpg	\N	\N	member
+26	oliviarosenman@gmail.com	\N	https://plus.google.com/102362395277614813405	\N	\N	\N	2013-05-13 13:48:50.605892	2013-05-13 13:48:50.609883	$2a$10$OTls0CJZ/Qo72l4fTb8qWu3ivs3.9E8QJPbAyf7HRKY.Ge0FJ6RZy	\N	\N	\N	1	2013-05-13 13:48:50.609382	2013-05-13 13:48:50.609382	127.0.0.1	127.0.0.1	google_oauth2	102362395277614813405	Olivia Rosenman	\N	https://lh3.googleusercontent.com/-P8mr5Uxab-c/AAAAAAAAAAI/AAAAAAAAGI0/bJo0m7vqXjk/photo.jpg	\N	\N	member
+36	nedlevin@gmail.com	\N	https://plus.google.com/113929904113775145469	\N	\N	\N	2013-05-14 09:57:06.350814	2013-05-16 08:47:35.349532	$2a$10$fRYCvgqrX7IwSOMGCqk9WO/SWeQ3LR4taBjaFsDv3LLdF2v6VYTEu	\N	\N	\N	2	2013-05-16 08:47:35.348836	2013-05-14 09:57:06.354384	127.0.0.1	127.0.0.1	google_oauth2	113929904113775145469	Ned Levin	\N	\N	\N	\N	member
+22	walritter@gmail.com	\N	https://plus.google.com/101226270951267113229	\N	\N	\N	2013-05-13 10:34:02.352843	2013-05-15 07:45:22.720403	$2a$10$flIDZ7BIKvqR7JABCA7O7.1L1B5io1WR2RItP48QWPRQLRW9yA6fS	\N	\N	\N	5	2013-05-15 07:45:22.719696	2013-05-15 01:02:59.506005	127.0.0.1	127.0.0.1	google_oauth2	101226270951267113229	Waltraut Ritter	\N	https://lh6.googleusercontent.com/-iiG1KAfQlnY/AAAAAAAAAAI/AAAAAAAAALM/HR0mSEmvxuI/photo.jpg	\N	\N	member
+29	erica.nmt@gmail.com	\N	https://plus.google.com/109212926830412889403	\N	\N	\N	2013-05-14 01:22:38.016934	2013-05-14 01:22:38.022172	$2a$10$tmmuG8nyjpYP50eaROvLyO/84EfA.Qx2cXN/ofATgU1L2euY7xli6	\N	\N	\N	1	2013-05-14 01:22:38.021156	2013-05-14 01:22:38.021156	127.0.0.1	127.0.0.1	google_oauth2	109212926830412889403	Erica Ng	\N	https://lh5.googleusercontent.com/-VE_Ay131tnU/AAAAAAAAAAI/AAAAAAAAAPI/WwGnLCAgtAM/photo.jpg	\N	\N	member
+37	leichiweng@gmail.com	\N	https://plus.google.com/103524101291442559282	\N	\N	\N	2013-05-14 10:26:35.091196	2013-05-15 09:40:52.662307	$2a$10$YkXqNH8J46fPc6Y3BTt/XuwXe3inRemcqavo/I2LFhqHlctIqDgU.	\N	\N	\N	2	2013-05-15 09:40:52.661473	2013-05-14 10:26:35.132286	127.0.0.1	127.0.0.1	\N	\N	Chi Weng Lei	\N	\N	\N	\N	\N
+31	vaughn.hew@gmail.com	\N	\N	vaughn.hew	\N	\N	2013-05-14 02:50:21.680708	2013-05-14 02:50:21.686951	$2a$10$652.Oy6VyJzbWrqhXqKMTulFJYimxsooS7RghBPleq3KKOxL5Rj1.	\N	\N	\N	1	2013-05-14 02:50:21.686278	2013-05-14 02:50:21.686278	127.0.0.1	127.0.0.1	facebook	513803818	Vaughn Hew	\N	http://graph.facebook.com/513803818/picture?type=square	\N	\N	member
+28	hellocindy1129@gmail.com	\N	https://plus.google.com/103691238196877706152	\N	\N	\N	2013-05-14 00:58:41.218018	2013-05-19 02:50:45.269983	$2a$10$WJFZjasFQ1nORNyknt3a2.jEW6q5mU54HAx5stympfLWcs4L45CMW	\N	\N	\N	4	2013-05-19 02:50:45.269286	2013-05-18 06:11:34.788213	127.0.0.1	127.0.0.1	google_oauth2	103691238196877706152	Chao Yang	\N	https://lh6.googleusercontent.com/-vlQYuinvPa0/AAAAAAAAAAI/AAAAAAAAAA8/nDkbwTxYDR0/photo.jpg	\N	\N	member
+34	fries.jared@gmail.com	\N	\N	fries.jared	\N	\N	2013-05-14 07:31:35.606334	2013-05-14 07:31:35.610522	$2a$10$k34vu385FrRzx6gWZzixYuBvJM0NsYBlOF29IBNkKDOkO1oy75YVS	\N	\N	\N	1	2013-05-14 07:31:35.609777	2013-05-14 07:31:35.609777	127.0.0.1	127.0.0.1	facebook	1016460159	Jared B. Fries	\N	http://graph.facebook.com/1016460159/picture?type=square	\N	\N	member
+27	brown.sophie@gmail.com	\N	https://plus.google.com/100975797493006919028	\N	\N	\N	2013-05-13 14:38:47.152281	2013-05-14 07:38:24.729497	$2a$10$ZHlwmy9FusxlDUBlMXS6yuhxTXlM9eRBFc70krbwUWFvY4.CCRUca	\N	\N	\N	2	2013-05-14 07:38:24.728884	2013-05-13 14:38:47.156571	127.0.0.1	127.0.0.1	google_oauth2	100975797493006919028	Sophie Brown	\N	https://lh6.googleusercontent.com/-tk19IPFmM_g/AAAAAAAAAAI/AAAAAAAAADk/OgKe0EKI92Q/photo.jpg	\N	\N	member
+43	davidjbeatty@gmail.com	\N	https://plus.google.com/115424575550888858208	\N	\N	\N	2013-05-15 03:46:53.39318	2013-05-18 05:40:41.751583	$2a$10$Ogg2KX.LyCZFMr1u0LCJb.pCvfNHgvXTgo.R5iLEaGaiaZEOD/IN6	\N	\N	\N	2	2013-05-18 05:40:41.750925	2013-05-15 03:46:53.397401	127.0.0.1	127.0.0.1	google_oauth2	115424575550888858208	David Beatty	\N	https://lh4.googleusercontent.com/-TzmX5MQR068/AAAAAAAAAAI/AAAAAAAAJj0/YRzgB3wipo4/photo.jpg	\N	\N	member
+40	yolandahku@gmail.com	\N	https://plus.google.com/112708199443143476620	majinxin	\N	\N	2013-05-15 03:27:22.729896	2013-05-19 09:30:06.679129	$2a$10$0SvWWHRv8xq4tFMXl27eHOXtr1/xjfnf85erUjj2X2r3qTpLaFFRy	\N	\N	\N	2	2013-05-19 09:30:06.678407	2013-05-15 03:27:22.733983	127.0.0.1	127.0.0.1	google_oauth2	112708199443143476620	Yolanda Ma Jinxin	\N	https://lh6.googleusercontent.com/-JUzqaF4-NjY/AAAAAAAAAAI/AAAAAAAAJWE/HGhFWgSdxqw/photo.jpg	\N	\N	member
+38	candelacantabile@hotmail.com	\N	\N	candelayuan	\N	\N	2013-05-14 10:31:02.972254	2013-05-18 06:10:41.32272	$2a$10$5L3/slr671rt.cWUbu1r5.VLvPsUzJOVXNVTx1qNEiAI4G4aEq.Gm	\N	\N	\N	3	2013-05-18 06:10:41.32204	2013-05-18 06:09:07.034834	127.0.0.1	127.0.0.1	facebook	1666733817	Dela Yuan	\N	http://graph.facebook.com/1666733817/picture?type=square	\N	\N	member
+30	siu.ying@gmail.com	\N	https://plus.google.com/105021551363476169318	\N	\N	\N	2013-05-14 02:15:56.762485	2013-05-14 11:44:26.960446	$2a$10$xg.PinPIhIb3UZcQrWFGCeXnwfJIk3ku011N/TjoXEJ2mYcbNTmQC	\N	\N	\N	2	2013-05-14 11:44:26.959922	2013-05-14 02:15:56.766301	127.0.0.1	127.0.0.1	google_oauth2	105021551363476169318	Francis Chong	\N	https://lh3.googleusercontent.com/-JLwVVvv7YOE/AAAAAAAAAAI/AAAAAAAAAmU/z7RBA_XJt1A/photo.jpg	\N	\N	member
+39	julien.oncelay@gmail.com	\N	https://plus.google.com/118005922405614803616	\N	\N	\N	2013-05-14 14:55:08.295174	2013-05-14 14:55:08.298515	$2a$10$9c7IqrEUATy8F1w5yF6sIuuovOjX9N1r2gTTcyJZeGj8K9zDt.bf2	\N	\N	\N	1	2013-05-14 14:55:08.297748	2013-05-14 14:55:08.297748	127.0.0.1	127.0.0.1	google_oauth2	118005922405614803616	Julien Oncelay	\N	https://lh3.googleusercontent.com/-_4AkD4WF93k/AAAAAAAAAAI/AAAAAAAAD8Y/3gD_miHcPdI/photo.jpg	\N	\N	member
+33	ivanzhai2017@gmail.com	\N	https://plus.google.com/102065584412815552366	\N	\N	\N	2013-05-14 07:12:17.851197	2013-05-14 15:42:54.408299	$2a$10$JG7o7D7M40GynZ7KkyHW2uFKdgtYiLwSqgxoR/6NOKQgXr3OyX7WG	\N	\N	\N	2	2013-05-14 15:42:54.407336	2013-05-14 07:12:17.862629	127.0.0.1	127.0.0.1	google_oauth2	102065584412815552366	Ivan Zhai	\N	https://lh4.googleusercontent.com/-K154g7l2kIs/AAAAAAAAAAI/AAAAAAAAAMs/uoGui_IXf_8/photo.jpg	\N	\N	member
+42	xiaotai.w@gmail.com	\N	https://plus.google.com/115811908666485151636	\N	\N	\N	2013-05-15 03:39:07.321806	2013-05-15 03:39:07.326928	$2a$10$ImQmCcTZSGDKEDAUepUPfuMCId2vPXhHEDgoIWA7SV7lYQ7GJaUAC	\N	\N	\N	1	2013-05-15 03:39:07.326189	2013-05-15 03:39:07.326189	127.0.0.1	127.0.0.1	google_oauth2	115811908666485151636	Wu Yi	\N	\N	\N	\N	member
+35	jmetcalf27@gmail.com	\N	https://plus.google.com/102186133915760193095	\N	\N	\N	2013-05-14 08:19:09.200243	2013-05-20 08:04:59.824567	$2a$10$K.PHk1lIhQy2u7ll8F9sMOO.uTUQurRjuR0eUwRSfd.3yoyQ5FIzy	\N	\N	\N	2	2013-05-20 08:04:59.823516	2013-05-14 08:19:09.203419	127.0.0.1	127.0.0.1	google_oauth2	102186133915760193095	John Erik Metcalf	\N	https://lh5.googleusercontent.com/-jyjqwaoSZB4/AAAAAAAAAAI/AAAAAAAAMDk/9Yr_FLvS55E/photo.jpg	\N	\N	member
+41	lwhmui@gmail.com	\N	https://plus.google.com/114929986153228834658	\N	\N	\N	2013-05-15 03:36:48.464703	2013-05-18 07:07:49.449098	$2a$10$dnRwBYodpJboAZk/GO96hOwCA5rP6GNdR9YuGEGY9QlxW.skwXLt.	\N	\N	\N	2	2013-05-18 07:07:49.448439	2013-05-15 03:36:48.469363	127.0.0.1	127.0.0.1	google_oauth2	114929986153228834658	Lance M	\N	https://lh6.googleusercontent.com/-VokMQ2mDTPI/AAAAAAAAAAI/AAAAAAAAAlM/uJHbPmoBnH8/photo.jpg	\N	\N	member
+44	sveitser@gmail.com	sveitser	\N	\N	\N	\N	2013-05-15 03:54:43.241684	2013-05-15 03:54:43.246336	$2a$10$E5KXNxu5..tefR3e7oDem.0yob.E4lFmOIAVLY.ZidVgOxI2qMV9K	\N	\N	\N	1	2013-05-15 03:54:43.245846	2013-05-15 03:54:43.245846	175.159.115.37	175.159.115.37	github	1040871	Mathis	\N	https://secure.gravatar.com/avatar/2e1a930198ddfe9155014ee8344d6cca?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png	\N	\N	member
+45	m@gfrm.in	\N	https://plus.google.com/103477159443328619349	\N	\N	\N	2013-05-15 07:37:16.959721	2013-05-15 07:37:16.96428	$2a$10$HHzMoUTxpHnwOasXQruKL.Pk2T4.gYGra4sCglGZ16MCm0u8FBjii	\N	\N	\N	1	2013-05-15 07:37:16.963786	2013-05-15 07:37:16.963786	127.0.0.1	127.0.0.1	google_oauth2	103477159443328619349	Guy Freeman	\N	\N	\N	\N	member
+46	haggenso@gmail.com	\N	https://plus.google.com/102838223277437080151	\N	\N	\N	2013-05-15 08:46:44.26342	2013-05-15 08:46:44.268464	$2a$10$xt7gY.6Uw/ELOu5W/vhbJeMC0EWvyqU.IvxFF/reV2eYAlmVVfbBe	\N	\N	\N	1	2013-05-15 08:46:44.267762	2013-05-15 08:46:44.267762	127.0.0.1	127.0.0.1	google_oauth2	102838223277437080151	Haggen So	\N	https://lh5.googleusercontent.com/-VD7tRAyBu7o/AAAAAAAAAAI/AAAAAAAAWH8/Z25zXXvyi-8/photo.jpg	\N	\N	member
+47	postgraduate.fhz@gmail.com	\N	\N	\N	\N	\N	2013-05-15 10:03:01.722447	2013-05-15 10:03:01.726523	$2a$10$FUZu56jt1F06U.nIqf65Oub9lvt17tcie4VU1dOcj23OOB7kN08uC	\N	\N	\N	1	2013-05-15 10:03:01.726031	2013-05-15 10:03:01.726031	127.0.0.1	127.0.0.1	google_oauth2	101341479646153995394	Hanzhi Fan	\N	\N	\N	\N	member
+48	jetprostore@gmail.com	\N	\N	\N	\N	\N	2013-05-15 15:44:13.584583	2013-05-15 15:44:13.587338	$2a$10$8/l15C2UGO81Wl6uqrI72eZxjGS5Z1A45rgZQ9KjLoNUR.377huOi	\N	\N	\N	1	2013-05-15 15:44:13.586763	2013-05-15 15:44:13.586763	127.0.0.1	127.0.0.1	google_oauth2	101620668716836783790	Walter Chan	\N	\N	\N	\N	member
+49	ericchiwaitsoi@hotmail.com	\N	\N	eric.c.tsoi	\N	\N	2013-05-17 13:03:26.657758	2013-05-17 13:03:26.667831	$2a$10$JRaLr8CoVIk6vrh0NmF7luLVbq5sIslyus.HltcrZxMYQa7gRiAc6	\N	\N	\N	1	2013-05-17 13:03:26.666663	2013-05-17 13:03:26.666663	127.0.0.1	127.0.0.1	facebook	514065766	Eric Chi Wai Tsoi	\N	http://graph.facebook.com/514065766/picture?type=square	\N	\N	member
+52	sherinsiew@gmail.com	\N	\N	sherins	\N	\N	2013-05-17 15:49:00.996738	2013-05-17 15:49:01.001604	$2a$10$zeByjDasqf.ltTnWQZ4uAuMpyiUOBgctkTW1zadwOc.0s1.lbkF6G	\N	\N	\N	1	2013-05-17 15:49:01.000752	2013-05-17 15:49:01.000752	127.0.0.1	127.0.0.1	facebook	502837993	Sherin Zhen Siew	\N	http://graph.facebook.com/502837993/picture?type=square	\N	\N	member
+53	westonso@gmail.com	\N	\N	\N	\N	\N	2013-05-17 18:45:14.908698	2013-05-17 18:45:14.913516	$2a$10$AjUkYo/cJQDJ8GLPjpnD..1jOC2lLPibxmqlG0eRqfByGul3I7WFu	\N	\N	\N	1	2013-05-17 18:45:14.912691	2013-05-17 18:45:14.912691	127.0.0.1	127.0.0.1	google_oauth2	102715257668177909486	weston so	\N	\N	\N	\N	member
+54	sisubs_zj@yahoo.com.cn	\N	\N	chang.shirley.14	\N	\N	2013-05-18 03:13:05.15077	2013-05-18 03:13:05.15367	$2a$10$hdoa2TLHlsp8ia5XXRQV1.KIG3xgDRChXBoqt//BZHdCu0jlfbsZe	\N	\N	\N	1	2013-05-18 03:13:05.153148	2013-05-18 03:13:05.153148	127.0.0.1	127.0.0.1	facebook	1508567691	Shirley Zhang	\N	http://graph.facebook.com/1508567691/picture?type=square	\N	\N	member
+51	denistsoi@gmail.com	\N	https://plus.google.com/113848452389698877516	\N	\N	\N	2013-05-17 15:34:46.936296	2013-05-18 05:54:59.600697	$2a$10$TwTqHruDSODG4Gx8x23ylOMJmjbGvveGKEJOVhqZ1lnE8QFXZvpqq	\N	\N	\N	2	2013-05-18 05:54:59.600085	2013-05-17 15:34:46.94054	127.0.0.1	127.0.0.1	google_oauth2	113848452389698877516	Denis Tsoi	\N	https://lh3.googleusercontent.com/-cAPUVhAnuaQ/AAAAAAAAAAI/AAAAAAAAAEs/H9_M2MHrBP4/photo.jpg	\N	\N	member
+55	anranluo@gmail.com	\N	\N	anran.luo	\N	\N	2013-05-18 06:38:11.184423	2013-05-18 06:38:11.190023	$2a$10$IT1NWq6U5lH8ck019ZOHaul1qn6jnSJSrOhwz2r4vKHNlUFMTCG9e	\N	\N	\N	1	2013-05-18 06:38:11.189154	2013-05-18 06:38:11.189154	127.0.0.1	127.0.0.1	facebook	21003338	Anran Luo	\N	http://graph.facebook.com/21003338/picture?type=square	\N	\N	member
+56	bonner.jp@gmail.com	\N	https://plus.google.com/107442682209246592103	\N	\N	\N	2013-05-18 07:36:09.101516	2013-05-18 07:36:09.106741	$2a$10$RsJQpeMeewHbnalTLyweB.0qVR5/6AGsWC1nFF6CPZuazikSpERH6	\N	\N	\N	1	2013-05-18 07:36:09.105933	2013-05-18 07:36:09.105933	127.0.0.1	127.0.0.1	google_oauth2	107442682209246592103	JP Bonner	\N	https://lh6.googleusercontent.com/-xYe8t_Wtdqc/AAAAAAAAAAI/AAAAAAAAAGw/ysnWFHqIh3E/photo.jpg	\N	\N	member
+57	efilm0@gmail.com	\N	https://plus.google.com/114947379369805272201	\N	\N	\N	2013-05-18 13:40:54.385101	2013-05-18 13:40:54.389235	$2a$10$RIXrMSOJMU6A4Oy/dTFaIOOUNjR65eYoHPOx6PBE5jOUPC6C4IVua	\N	\N	\N	1	2013-05-18 13:40:54.38879	2013-05-18 13:40:54.38879	127.0.0.1	127.0.0.1	google_oauth2	114947379369805272201	Eric Li	\N	https://lh5.googleusercontent.com/-5dCT8PDAbqc/AAAAAAAAAAI/AAAAAAAAJCI/jy9V7bbzQyU/photo.jpg	\N	\N	member
+58	kwongkkt@gmail.com	\N	\N	\N	\N	\N	2013-05-19 04:55:37.410586	2013-05-19 04:55:37.414936	$2a$10$yJVHRhWLZE/s8MtbUHn/9.y5K.EhidWpcXRX.T8nKMl7PIwRUYzNi	\N	\N	\N	1	2013-05-19 04:55:37.414323	2013-05-19 04:55:37.414323	127.0.0.1	127.0.0.1	\N	\N	\N	\N	\N	\N	\N	\N
+59	ally.ailizhou@gmail.com	\N	\N	allyailizhou	\N	\N	2013-05-19 04:58:03.723562	2013-05-19 04:58:03.726164	$2a$10$Nwm97jx7UBnHuxpQnKM24OZhepsLk4TiYrWlnejfo9EtEmy1ICiiO	\N	\N	\N	1	2013-05-19 04:58:03.725642	2013-05-19 04:58:03.725642	127.0.0.1	127.0.0.1	facebook	614839579	Ally Aili Zhou	\N	http://graph.facebook.com/614839579/picture?type=square	\N	\N	member
+60	joann.qwei@gmail.com	\N	\N	\N	\N	\N	2013-05-19 05:32:07.094648	2013-05-19 05:32:07.099045	$2a$10$BS7EAnzxL1fOhRPtoXZXoe6mEcSk4ThIcf9n87v3gHiiWUXH97k0m	\N	\N	\N	1	2013-05-19 05:32:07.098493	2013-05-19 05:32:07.098493	127.0.0.1	127.0.0.1	google_oauth2	108565815535882789270	qiao wei	\N	\N	\N	\N	member
+61	masaers@gmail.com	\N	https://plus.google.com/102449134250765735481	\N	\N	\N	2013-05-19 07:02:35.671648	2013-05-19 07:02:35.676777	$2a$10$Yy0hMFBjwOzYavDzVA1truR1e18u.HgTN6luOZJpMBpYBE6qbwTS6	\N	\N	\N	1	2013-05-19 07:02:35.676174	2013-05-19 07:02:35.676174	127.0.0.1	127.0.0.1	google_oauth2	102449134250765735481	Markus Saers	\N	https://lh3.googleusercontent.com/-vwo5ZYYJy54/AAAAAAAAAAI/AAAAAAAAA8o/1iYE1K1SLek/photo.jpg	\N	\N	member
+62	cress@duran.im	\N	\N	\N	\N	\N	2013-05-19 08:34:52.583379	2013-05-19 08:34:52.58906	$2a$10$Wpd7SnnM7IlCaCjMnA2k.OT7r.bqd6JN7GDBjBB75oxQVEF/0uJM.	\N	\N	\N	1	2013-05-19 08:34:52.588274	2013-05-19 08:34:52.588274	127.0.0.1	127.0.0.1	google_oauth2	111671386696373036935	杜然	\N	\N	\N	\N	member
+63	fdiezf@gmail.com	\N	https://plus.google.com/117377155423844964648	\N	\N	\N	2013-05-19 09:16:42.313441	2013-05-19 09:16:42.317809	$2a$10$qlgcBn6w3JHAe7M.MW8G6eO92omkEW4NwOGOcdLyfRaIoiE/rCSte	\N	\N	\N	1	2013-05-19 09:16:42.317212	2013-05-19 09:16:42.317212	127.0.0.1	127.0.0.1	google_oauth2	117377155423844964648	fernando diez	\N	https://lh6.googleusercontent.com/-hvuJH1n9x_I/AAAAAAAAAAI/AAAAAAAANpM/clNQ6AgCYEk/photo.jpg	\N	\N	member
+64	laihiu@nicesoda.com	\N	\N	laihiu	\N	\N	2013-05-19 13:20:10.812089	2013-05-19 13:20:10.816658	$2a$10$B6k35Hl7QEsAFmRkD4moreqTarPec2einhTXajd2SqOaOsmInE/wu	\N	\N	\N	1	2013-05-19 13:20:10.816057	2013-05-19 13:20:10.816057	127.0.0.1	127.0.0.1	facebook	335600012	Ryanne Lai	\N	http://graph.facebook.com/335600012/picture?type=square	\N	\N	member
+65	mnodurft@gmail.com	DearHunter	\N	\N	\N	\N	2013-05-19 14:35:58.687287	2013-05-19 14:35:58.691967	$2a$10$8xnN92pkkNmBFhP5jjDPv.8Rfw4r2Sn3Sqe3CW3slKcDVKGCEq6Pi	\N	\N	\N	1	2013-05-19 14:35:58.69147	2013-05-19 14:35:58.69147	127.0.0.1	127.0.0.1	github	3724067	Matt	\N	https://secure.gravatar.com/avatar/f196cc8296c3c3cb3a9242eed706feb6?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png	\N	\N	member
+66	pindar@netvigator.com	pindarwong	\N	\N	\N	HK	2013-05-19 15:11:24.721869	2013-05-19 15:11:55.700888	$2a$10$gowFf6X4jafnGjJJrZcqTur7z1nwg8/RkaUAbHvOYEjIv.v6EFuXC	\N	\N	\N	2	2013-05-19 15:11:55.700209	2013-05-19 15:11:24.726137	127.0.0.1	127.0.0.1	github	2792468	Pindar	\N	https://secure.gravatar.com/avatar/809bcf5c40cfb6e24a922c4725d0cdfa?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png	\N	\N	member
+67	lcy1811@hkusuc.hku.hk	\N	\N	vincentlcy	\N	\N	2013-05-19 15:44:51.966272	2013-05-19 15:44:51.970925	$2a$10$i8lB4rQ90p9mtR3ASedsZuJMYmg70rzkxzVFN4yQHllZWFYz3ODTy	\N	\N	\N	1	2013-05-19 15:44:51.970127	2013-05-19 15:44:51.970127	127.0.0.1	127.0.0.1	facebook	555498670	Lau Chun Yin Vincent	\N	http://graph.facebook.com/555498670/picture?type=square	\N	\N	member
+50	frankwong@connect.hku.hk	\N	\N	frankwongp	\N	\N	2013-05-17 15:01:57.095978	2013-05-19 16:13:42.799543	$2a$10$sirdgGLbD.Des8htPw7CHOr15zOEoT6qY0mxdDCemsHS2DIQr9j3u	\N	\N	\N	3	2013-05-19 16:13:42.798552	2013-05-19 14:54:27.699303	127.0.0.1	127.0.0.1	facebook	100000698758228	Frank Wong	\N	http://graph.facebook.com/100000698758228/picture?type=square	\N	\N	member
+68	kev@projectcolo.org.uk	kevcampb	\N	\N	\N	Edinburgh, UK	2013-05-20 01:33:53.346167	2013-05-20 01:33:53.349125	$2a$10$lL2fCWLGKdKT7riujXGn8OTe15NnABQLYlF40ALE1XNlRkCR5p4YC	\N	\N	\N	1	2013-05-20 01:33:53.348567	2013-05-20 01:33:53.348567	127.0.0.1	127.0.0.1	github	1244107	Kevin Campbell	\N	https://secure.gravatar.com/avatar/aea36feb3074c2463d8a3898e3730ffb?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png	\N	\N	member
+69	jackielo@yahoo.com	\N	\N	jackie.chikiu.lo	\N	\N	2013-05-20 05:47:02.499093	2013-05-20 05:47:02.503353	$2a$10$KolGfK0Kmengaey6ew7S/u9GTxYHXamctQSXA3GfcMdK2M8vh39O6	\N	\N	\N	1	2013-05-20 05:47:02.502562	2013-05-20 05:47:02.502562	143.89.152.47	143.89.152.47	facebook	627375988	Jackie Lo	\N	http://graph.facebook.com/627375988/picture?type=square	\N	\N	member
+70	emailelizabethchoi@gmail.com	\N	https://plus.google.com/112650148633514279403	\N	\N	\N	2013-05-20 22:28:00.978547	2013-05-20 22:28:00.984036	$2a$10$oR1Gcw/Cutr4GvfXbUKg7edypf3nsNSk3GUMUdeqnQF4dRfZLezy2	\N	\N	\N	1	2013-05-20 22:28:00.983389	2013-05-20 22:28:00.983389	127.0.0.1	127.0.0.1	google_oauth2	112650148633514279403	Elizabeth Choi	\N	\N	\N	\N	member
+71	awamebox@gmail.com	\N	\N	\N	\N	\N	2013-05-26 04:07:13.23722	2013-05-26 04:07:13.244771	$2a$10$lveHVriwVZdhQTdQVyJPl.tU4Mxcr6aAnz/bgGP0c/NI9rVxGIsUi	\N	\N	\N	1	2013-05-26 04:07:13.244169	2013-05-26 04:07:13.244169	127.0.0.1	127.0.0.1	\N	\N	\N	\N	\N	\N	\N	\N
+72	itsnotvalid@gmail.com	\N	\N	\N	\N	\N	2013-06-27 13:10:30.778926	2013-06-27 13:10:30.794083	$2a$10$U6mbBf3tYSzYJzDkYV3oB.f38TXvJG/Knif1a8E10tzEm8cdftE2e	\N	\N	\N	1	2013-06-27 13:10:30.793282	2013-06-27 13:10:30.793282	127.0.0.1	127.0.0.1	\N	\N	\N	\N	\N	\N	\N	\N
+73	396429476@qq.com	\N	\N	\N	\N	\N	2013-07-15 04:05:18.120836	2013-07-15 04:05:18.163031	$2a$10$Q8guO7TuI8o.HRGfZeQW0e1/Hmpu4LKR26WYdoiOHXIOFyZodBZTq	\N	\N	\N	1	2013-07-15 04:05:18.161743	2013-07-15 04:05:18.161743	127.0.0.1	127.0.0.1	\N	\N	\N	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: odhk
+--
+
+SELECT pg_catalog.setval('users_id_seq', 73, true);
+
+
+--
+-- Name: event_series_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY event_series
+    ADD CONSTRAINT event_series_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: locations_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY locations
+    ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: microbes_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY microbes
+    ADD CONSTRAINT microbes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY project_roles
+    ADD CONSTRAINT project_roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY resources
+    ADD CONSTRAINT resources_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: series_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY series
+    ADD CONSTRAINT series_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: odhk; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_events_on_location_id; Type: INDEX; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE INDEX index_events_on_location_id ON events USING btree (location_id);
+
+
+--
+-- Name: index_events_on_serie_id; Type: INDEX; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE INDEX index_events_on_serie_id ON events USING btree (serie_id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: odhk; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
