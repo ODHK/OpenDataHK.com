@@ -23,11 +23,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'font-awesome-sass'
 gem 'therubyracer', :platforms => :ruby
-gem 'less'
+# gem 'less'
 gem 'less-rails'
-gem 'less-rails-fontawesome'
-gem "twitter-bootstrap-rails"
+# gem 'less-rails-fontawesome'
+# gem "twitter-bootstrap-rails"
 gem 'inherited_resources'
 
 gem 'postmarkdown'

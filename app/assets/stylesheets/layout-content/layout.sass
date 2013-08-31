@@ -1,0 +1,52 @@
+@import "libs/variables"
+@import "libs/common-mixins.sass"
+
+.landing .banner-container 
+  @include background-cover
+  background-image: url('logo-trams.png')
+  height: 320px
+
+
+.landing .row > div 
+  h2 
+    color: white
+    margin-left: 16px
+    color: $grey233
+  
+  h3 
+    padding: 0 16px
+  
+
+
+.landing .row footer 
+  background-color: $grey33
+  background-image: none
+  box-shadow: none
+  p 
+    font-size: 24px
+    color: $link-colour
+    padding: 8px
+    line-height: 40px
+    text-align: center
+    &:after, &:before
+      content: ''
+    
+  
+
+
+.landing .blog section 
+  background-size: cover
+  position: relative
+  margin: 8px 0
+
+.landing .blog section div 
+  background-color: $background-filter
+  padding: 16px 0
+
+.landing .blog h2 
+  
+
+.landing .blog section img
+  top: 0
+  position: absolute
+  z-index: -1

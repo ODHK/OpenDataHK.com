@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+/*
+ *require angular-ui
+ */
+
+/* Your stylesheets goes here... */
+
+@import 'bootstrap'
+@import 'font-awesome'
+
+
+// Set the correct sprite paths
+
+$iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png", image)
+$iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png", image)
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+$fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2", font)
+$fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2", font)
+$fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2", font)
+$fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2", font)
+
+
+// Museo
+@font-face{ font-family: 'Museo Sans'; src: url('MuseoSans_500-webfont.eot'); src: url('MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'), url('MuseoSans_500-webfont.woff') format('woff'), url('MuseoSans_500-webfont.ttf') format('truetype'); }
+@font-face{ font-family: 'Museo Slab'; src: url('Museo_Slab_500_2-webfont.eot'); src: url('Museo_Slab_500_2-webfont?#iefix') format('embedded-opentype'), url('Museo_Slab_500_2-webfont.woff') format('woff'), url('Museo_Slab_500_2-webfont.ttf') format('truetype'); }
+
+
+// Variables.sass
+
+
+$black: rgb(0,0,0)
+$blacka: lighten($black, 30%)
+$grey33: rgb(33,33,33)
+$grey66: rgb(66,66,66)
+$grey99: rgb(99,99,99)
+$grey188: rgb(188,188,188) 
+$grey222: rgba(222,222,222,0.9) 
+$grey233: rgba(233,233,233,0.9) 
+$white: rgb(244,244,244) 
+$whitea: rgba(255,255,255,0.7) 
+$frame-colour: rgb(247, 244, 229) // Yellow
+$frame-colour: rgba(247, 248, 255, 0.15) // Light
+$link-colour: rgb(0,136,204) // Light Blue
+$button-colour: #4D926F // Green
+$button-hover-colour: #4D926F // Light Green
+$header-colour: rgb(233,81,81) // Red
+$off-white: rgba(246, 246, 234, 1) // Off White
+$background-filter: rgba(31, 4, 27, 0.7) // translucent dark blue
+// Subtle Patterns
+
+$groove: url('pattern/groovepaper.png') 
+$fabric: url('pattern/classy_fabric.png') 
+$cloth: url('pattern/cloth_alike.png') 
+$knitting: url('pattern/knitting250px.png') 
+$arches: url('pattern/arches.png') 
+$blizzard: url('pattern/blizzard.png') 
+$diamond: url('pattern/daimond_eyes.png') 
+$mesh: url('pattern/lghtmesh.png') 
+$paper: url('pattern/paper.jpg')
+
+//imports
+@import "libs/common-mixins.sass"
+
+html  
+  background: $header-colour
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  // background: url('background/3.jpg') no-repeat center center fixed; 
+
+body 
+  background-color: $header-colour
+  // background-color: transparent
+  font-family: 'Museo Sans', sans-serif
+  color: white
+  font-size: 16px
+  word-wrap: break-word
+
+h1, h2, h3 
+  color: $header-colour
+h4 
+  color: $link-colour
+h2 
+  font-size: 2em
+p 
+  font-size: 1.0em
+  line-height: 1.4em
+
+@import "layout-navigation/_style"
+
+@import "layout-content/layout"
