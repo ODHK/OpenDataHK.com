@@ -34,13 +34,15 @@ ODHK::Application.routes.draw do
 
   resources :projects
 
+  
   resources :project_roles
 
-  scope '/events' do
-    resources :series do
-      resources :events
-    end
-  end
+
+  resources :series
+
+
+  resources :events
+
 
   root :to => 'pages#index'
 
