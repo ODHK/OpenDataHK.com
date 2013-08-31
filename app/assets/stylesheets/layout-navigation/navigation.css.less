@@ -1,0 +1,41 @@
+@import "libs/variables.css.less";
+
+// Navigation
+
+.navbar-inner{
+  border-radius: 0;
+  background-color: @black; /* background color will be black for all browsers */
+  filter: none;
+  .nav-collapse, .container-fluid {
+    background-color: transparent;
+  }
+}
+
+.navbar .nav > li > a {
+  color: @link-colour;
+}
+
+img.logo {
+  margin: 0 auto;
+  max-width: 400px;
+  display: none;
+}
+
+
+.nav li.inactive,
+.navbar .nav > li > a.inactive {
+  color: rgba(100,100,100,0.4);
+  pointer-events: none;
+    cursor: default;
+}
+.nav li.inactive a{
+  background-color: #999;
+}
+
+
+.navbar .nav > li > a.external{
+  color: #EE3333;
+  &:hover{
+  // color: #FE4343;
+  }
+}
