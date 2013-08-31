@@ -11,14 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811190524) do
-
-  create_table "event_series", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130824125341) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -66,12 +59,12 @@ ActiveRecord::Schema.define(:version => 20130811190524) do
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.text     "cover"
+    t.text     "cover",       :limit => 255
     t.string   "url"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.string   "stage",       :default => "proposal"
-    t.string   "github_user", :default => "ODHK"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+    t.string   "stage",                      :default => "proposal"
+    t.string   "github_user",                :default => "ODHK"
     t.string   "github_repo"
   end
 
