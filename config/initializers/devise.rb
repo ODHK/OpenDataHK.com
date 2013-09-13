@@ -242,6 +242,8 @@ Devise.setup do |config|
   require "omniauth-google-oauth2"
   require "omniauth-github"
 
+  config.secret_key = 'fheuifhwihfeuief'
+  
   FB_APP_ID = ENV["ODHK_FACEBOOK_APP_ID"]
   FB_APP_SECRET = ENV["ODHK_FACEBOOK_APP_SECRET"]
 
