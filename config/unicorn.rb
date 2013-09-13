@@ -45,6 +45,13 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
   end
 
+  # if preload_app is true, then you may also want to check and
+  # restart any other shared sockets/descriptors such as Memcached,
+  # and Redis.  TokyoCabinet file handles are safe to reuse
+  # between any number of forked children (assuming your kernel
+  # correctly implements pread()/pwrite() system calls)
+end
+
 # Force the bundler gemfile environment variable to
 # reference the capistrano "current" symlink
 before_exec do |_|
