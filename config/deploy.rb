@@ -16,7 +16,7 @@ set :bundle_cmd, '/home/odhk/.rvm/gems/ruby-1.9.3-p448/bin/bundle'
 set :stages, ["staging","production"]
 set :default_stage, "production"
 set :deploy_to,       "/srv/www/OpenDataHK.com/"
-set :shared_path, 'shared'
+set :shared_path, '/srv/www/OpenDataHK.com/shared'
 set :application, "odhk"
 
 set :normalize_asset_timestamps, false
@@ -94,8 +94,8 @@ namespace :deploy do
       ln -s #{shared_path}/log #{latest_release}/log &&
       ln -s #{shared_path}/system #{latest_release}/public/system &&
       ln -s #{shared_path}/pids #{latest_release}/tmp/pids &&
-      ln -sf #{shared_path}/application.yml #{latest_release}/config/application.yml
-      ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
+      ln -sf #{shared_path}/config/application.yml #{latest_release}/config/application.yml &&
+      ln -sf #{shared_path}/config/database.yml #{latest_release}/config/database.yml
     CMD
 
     if fetch(:normalize_asset_timestamps, true)
@@ -107,7 +107,11 @@ namespace :deploy do
 
   desc "Zero-downtime restart of Unicorn"
   task :restart, :except => { :no_release => true } do
-    run "kill -s USR2 `cat /tmp/pids/unicorn.pid`"
+    if File.exist?('/srv/www/OpenDataHK/shared/pids/unicorn.pid')
+      run "kill -s USR2 `cat /srv/www/OpenDataHK/shared/pids/unicorn.pid`"
+    else
+      start
+    end
   end
 
   desc "Start unicorn"
@@ -117,8 +121,18 @@ namespace :deploy do
 
   desc "Stop unicorn"
   task :stop, :except => { :no_release => true } do
-    run "kill -s QUIT `cat /tmp/pids/unicorn.pid`"
+    run "kill -s QUIT `cat /srv/www/OpenDataHK/shared/pids/unicorn.pid`"
   end
+
+  desc "Make sure local git is in sync with remote."
+  task :check_revision, roles: :web do
+    unless `git rev-parse HEAD` == `git rev-parse origin/production`
+      puts "WARNING: HEAD is not the same as origin/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
+  end
+  before "deploy", "deploy:check_revision"
 
   namespace :rollback do
     desc "Moves the repo back to the previous version of HEAD"
@@ -138,49 +152,4 @@ namespace :deploy do
       rollback.cleanup
     end
   end
-
-  task :setup_config, roles: :app do
-    # sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/nginx.conf"
-    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    puts "Now edit the config files in #{shared_path}."
-  end
-  after "deploy:setup", "deploy:setup_config"
-
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
-
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/production`
-      puts "WARNING: HEAD is not the same as origin/master"
-      puts "Run `git push` to sync changes."
-      exit
-    end
-  end
-  before "deploy", "deploy:check_revision"
-
-end
-
-namespace :unicorn do
-
-  desc "Zero-downtime restart of Unicorn"
-  task :restart, :except => { :no_release => true } do
-    run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
-  end
-
-  desc "Start unicorn"
-  task :start, :except => { :no_release => true } do
-    run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D -E production"
-  end
-
-  desc "Stop unicorn"
-  task :stop, :except => { :no_release => true } do
-    run "kill -s QUIT `cat #{shared_path}/pids/unicorn.pid`"
-  end
-
 end
