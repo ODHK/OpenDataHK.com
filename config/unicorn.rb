@@ -4,8 +4,8 @@ worker_processes 4
 
 working_directory rails_root # available in 0.94.0+
 
-# listen 8080, :tcp_nopush => true
-listen "/srv/www/OpenDataHK.com/shared/sockets/unicorn.sock", :backlog => 64
+listen 8080, :tcp_nopush => true
+# listen "/srv/www/OpenDataHK.com/shared/sockets/unicorn.sock", :backlog => 64
 
 # Preload our app for more speed
 preload_app true
