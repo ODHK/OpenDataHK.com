@@ -1,0 +1,19 @@
+Navigating through ODHK LESS Directory
+====
+
+
+### Follows MVCSS
+[link http://mvcss.github.io/]
+
+Remember to use this template for new less files:
+
+<code>
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-navigation/header-footer.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+</code>
