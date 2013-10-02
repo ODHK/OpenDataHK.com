@@ -8,12 +8,12 @@ Navigating through ODHK LESS Directory
 Remember to use this template for new less files:
 
 <code>
-// *************************************
-//
-//  ODHK
-//  stylsheet/layout-navigation/header-footer.less
-//
-// *************************************
-
-@import "libs/variables.css.less";
+// *************************************  
+//  
+//  ODHK  
+//  stylsheet/layout-navigation/header-footer.less  
+//  
+// *************************************  
+  
+@import "libs/variables.css.less";  
 </code>
