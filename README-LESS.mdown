@@ -7,13 +7,13 @@ Navigating through ODHK LESS Directory
 
 Remember to use this template for new less files:
 
-<code>
-// *************************************  
+<code>// *************************************  
 //  
 //  ODHK  
-//  stylsheet/layout-navigation/header-footer.less  
+//  file-directory/filename.less
 //  
 // *************************************  
-  
-@import "libs/variables.css.less";  
-</code>
+<code>@import "libs/variables.css.less";</code>
+
+Also Remember to within bootstrap_and_overrides.css.less  
+<code>@import "file-directory/filename.less";  </code>  
