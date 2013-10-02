@@ -1,0 +1,68 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-navigation/header-footer.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+
+div[class*="span"] {
+	background-color: rgba(22, 22, 22, 0.7);
+	border-radius: 3px;
+	position: relative;
+	word-wrap: break-word;
+	margin-bottom: 2em;
+	& > header > h2 {
+		margin:0;
+		padding: 12px 0;
+		text-align: center;
+		font-family: 'Museo Slab', sans-serif;
+		font-weight: 300;
+	}
+	header, footer {
+		-webkit-box-shadow: rgb(255, 255, 255) 0px 0px 2px 2px inset;
+		background-image: @paper;
+		box-shadow: rgb(255, 255, 255) 0px 0px 2px 2px inset;
+		background-color: @grey222;
+		color: rgb(52, 49, 49);
+		font-size: 10px;
+		line-height: normal;
+	}
+	header{
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		border-bottom-color: rgb(232, 232, 232);
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		height: 5.6em;
+	}
+	section {
+		height: 100%;
+		h3, p {
+			padding: 0em 1.2em;
+		}
+		h3{
+			margin: 0;
+		}
+	}
+	footer {
+		background-color: rgba(0, 0, 0, 0);
+		border-top: solid 1px rgb(232, 232, 232);
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+		box-shadow: rgb(255, 255, 255) 0px 0px 2px 2px inset;
+		height: 6em;
+		width:inherit;
+		.label {
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+		#mce-EMAIL, #mc-embedded-subscribe {
+			margin-top: 14px;
+			margin-left: 14px;
+			margin-right: 14px;
+		}
+	}
+}

@@ -1,0 +1,74 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/posts-modules.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+// Modules
+
+#posts, #post{
+	.banner_container {
+		max-height: 420px;
+		overflow: hidden;
+		position: relative;
+
+		img {
+			width: 100%;
+			line-height: 48px;
+		}
+		h1, h2 {
+			position: absolute;
+			background: rgba(33,33,33,0.9);
+			padding: 8px 12px;
+		}
+		h1{
+			bottom: 20px;
+			left:80px;
+		}
+		h2 {
+			top: 20px;
+			right: 0;
+		}
+	}
+	.meta {
+		height: 48px;
+		background: rgba(33,33,33,0.9);
+		color: @white;
+		img {
+			padding: 8px;
+		}
+		time, span.date {
+			display: block;
+			float: right;
+			padding: 8px;
+			line-height: 32px;
+		}
+		time {
+			margin-right: 20px;
+		}
+	}
+	#summary {
+		box-sizing: border-box;
+		padding: 8px 12px;
+		// background-color: @off-white;
+		color: @white;
+		margin-bottom: 1em;
+		.more {
+			float:right;
+			margin: 6px 0;
+			margin-right: 14px;
+			a {
+				padding: 6px 12px;
+				background-color: @link-colour;
+				color: white;
+				&:hover {
+					background-color: lighten(@link-colour, 10%);
+					text-decoration: none;
+				}
+			}
+		}
+	}	
+}
