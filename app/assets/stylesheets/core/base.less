@@ -1,0 +1,41 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/core/base.css.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+html { 
+  // background: url('background/3.jpg') no-repeat center center fixed; 
+  background-color: @header-colour;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+	background-color: transparent;
+	font-family: 'Museo Sans', sans-serif;
+	color: @white;
+	font-size: 16px;
+	word-wrap: break-word;
+}
+
+h1, h2, h3 {
+	color: @header-colour;
+}
+h4 {
+	color: @link-colour;
+}
+h2 {
+	font-size: 2em;
+}
+
+p {
+	font-size: 1.0em;
+	line-height: 1.4em;
+}
+

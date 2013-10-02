@@ -1,0 +1,80 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/events-general.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+#posts, .about, .events {
+	background-color: @frame-colour;
+	border-radius: 6px;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	margin-bottom: 20px;
+	margin-top:60px;
+	padding: 15px;
+	header {
+		margin: 0 auto;
+		width: 100%;
+		height: 50px;
+	}
+	nav {
+		margin: 0 auto;
+		width: 940px;
+		li {
+			padding-left: 5px;
+		}
+		li a {
+			background-color: rgb(37,173,151);
+			color: #eeeeee;
+		}
+		li a:hover {
+			background-color: rgb(57,193,171);
+		}
+		.banner {
+			margin: 0 auto;
+			display: inline-block;
+			width: 36%;
+			margin-top: -50px;
+			margin-left: 36px;
+		}
+	}
+	ul {
+		margin-bottom: 22px;
+	}
+	li {
+		color: @grey33;
+		padding: 2px 0;
+	}
+	div.event-panel {
+		box-shadow: 0px 0px 6px rgba(222,222,222,0.8);
+		background: @blizzard;
+		background-color: @grey233;
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+		color: rgb(233, 233, 233);
+		display: block;
+		font-family: 'Museo Sans', sans-serif;
+		font-size: 18px;
+		font-weight: 200;
+		line-height: 30px;
+		margin-bottom: 30px;
+		padding: 60px;
+		table {
+			color: @grey66;
+			margin-left: 30px;
+			td:first-child {
+				font-weight: 700;
+				color: @link-colour;
+				padding-right: 20px;
+			}
+			td {
+			}
+		}
+
+	}
+}

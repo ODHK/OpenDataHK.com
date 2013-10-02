@@ -1,0 +1,113 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/events.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+#events{
+	.wide-container {
+		a.button {
+			margin-top: 20px;
+			margin-right: 20px;
+			position: relative;
+			background-color: @link-colour;
+			padding: 8px 16px;
+			z-index: 100;
+			float:right;
+			&:hover {
+				background-color: rgb(30, 158, 223);
+			}
+		}
+	}
+}
+.wide-container {
+		overflow: hidden;
+	 .image-container,
+	 .image-container {
+		background-color: transparent;
+		border:none;
+	}
+	> div > section {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		overflow: visible;
+	}
+	nav.action-buttons {
+		position: fixed;
+		width: 124px;
+		right: 0;
+		a {
+			width: 32px;
+			height: 40px;
+			line-height: 42px;
+			&.active {
+				background-color: rgb(58, 64, 209);
+			}
+		}
+	}
+	a.button {
+		margin-top: 20px;
+		margin-right: 20px;
+		background-color: @link-colour;
+		padding: 8px 16px;
+		z-index: 100;
+		&:hover {
+			background-color: rgb(30, 158, 223);
+		}
+	}
+	h1, h2,h3,p,a{
+		color: @white;
+	}
+	h1 {		
+	}
+	h2 {
+		font-size: 2em;
+	}
+	h3 {
+		font-size: 20px;
+	}
+	.label {
+		padding: 4px 8px;
+		font-size: 16px;
+		margin-bottom: 0;
+		margin-right: 6px;
+	}
+	footer .label {
+		padding-left:0;
+	}
+	ul {
+		margin-left:0;
+	}
+	li {
+		list-style: none;
+	}
+	footer {
+		border-radius: 6px;
+		background-image: @fabric;
+		padding: 12px;
+	}
+}
+
+div > div.info-panel {
+	background-color: transparent;
+	h4 {
+		margin-bottom: 4px;
+		margin-top:14px;
+	}
+	p, h3 {
+		color: @grey66;
+		margin-bottom: 4px;
+	}
+	.icon-arrow-down {
+		display: block;
+		color: black;
+		margin-left: 80px;
+	}
+}
+
+.dropdown-menu{
+	border-radius: 0;
+}

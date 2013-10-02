@@ -1,0 +1,89 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/crud.less
+//
+// *************************************
+
+@import "libs/mixins.less";
+@import "libs/variables.css.less";
+
+
+.crud{
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 12px 24px;
+	padding-left: 0;
+	ul.auth-list {
+		margin: 12px auto;
+		li {
+			width:33%;
+			list-style: none;
+			a.auth-facebook{
+				background-color: rgb(59,90,155);
+			}
+			a.auth-google{
+				background-color: rgb(202, 56, 56);
+			}
+			a.auth-github{
+				background-color: rgb(67,175,255);
+			}
+		}
+	}
+	h1,h2,h3,h4 {
+		color: @white;
+	}
+	h2 {
+		color:@white;
+	}
+	label {
+		font-size: 20px;
+	}
+	input, textarea {
+		font-size: 16px;
+		width: 100%;
+		margin: 0;
+		margin-bottom: 12px;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	.actions {
+		input {
+			.button;
+			width: auto;
+			height: 50px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+	}
+	#new_microbe{
+		#microbe_content {
+			width: 80%;
+			float: left;
+			height: 80px;
+		}
+		input[type="submit"]{
+			width: 20%;
+			float: right;
+			line-height: 0;
+			height: 80px;
+		}
+	}
+}
+
+.crud {
+	.panel{
+		width:300px;
+	}
+	.main-panel {
+		float: right;
+		max-width: 65%;
+	}
+	ul {
+		margin-left: 0;
+	}
+	li {
+		list-style: none;
+	}
+
+}

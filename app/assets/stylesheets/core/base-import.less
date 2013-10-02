@@ -1,0 +1,52 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/core/base-import.css.less
+//
+// *************************************
+
+// -- base-import
+
+@import "twitter/bootstrap/bootstrap";
+
+@import "twitter/bootstrap/reset.less";
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+@import "twitter/bootstrap/scaffolding.less";
+@import "twitter/bootstrap/grid.less";
+@import "twitter/bootstrap/layouts.less";
+@import "twitter/bootstrap/type.less";
+@import "twitter/bootstrap/forms.less";
+@import "twitter/bootstrap/wells.less";
+@import "twitter/bootstrap/component-animations.less";
+@import "twitter/bootstrap/buttons.less";
+@import "twitter/bootstrap/close.less";
+@import "twitter/bootstrap/navs.less";
+@import "twitter/bootstrap/navbar.less";
+@import "twitter/bootstrap/labels-badges.less";
+@import "twitter/bootstrap/hero-unit.less";
+@import "twitter/bootstrap/utilities.less";
+@import "twitter/bootstrap/responsive";
+// Font Awesome
+@import 'font-awesome/font-awesome';
+
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+
+
+// Museo
+@font-face{ font-family: 'Museo Sans'; src: url('MuseoSans_500-webfont.eot'); src: url('MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'), url('MuseoSans_500-webfont.woff') format('woff'), url('MuseoSans_500-webfont.ttf') format('truetype'); }
+@font-face{ font-family: 'Museo Slab'; src: url('Museo_Slab_500_2-webfont.eot'); src: url('Museo_Slab_500_2-webfont?#iefix') format('embedded-opentype'), url('Museo_Slab_500_2-webfont.woff') format('woff'), url('Museo_Slab_500_2-webfont.ttf') format('truetype'); }
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";

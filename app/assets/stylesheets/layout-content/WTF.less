@@ -1,0 +1,127 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/WTF.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+
+.about .call-to-action {
+	text-align: center;
+}
+
+.hero-unit {
+	background-image: @blizzard;
+	box-shadow: 0px 0px 6px rgba(222,222,222,0.8);
+	border-radius: 0px;
+	color: @grey66;
+	h3 {
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.call-to-action {
+		background-image: @fabric;
+		border-radius: 6px;
+		padding: 12px;
+		margin-bottom: 22px;
+		color: @grey233;
+		.make-list-container {
+			margin: 0 auto;
+			width: 320px;
+			overflow: hidden;
+			padding-top: 8px;
+			h4 {
+				font-size: 61px;
+				text-align: right;
+				margin-bottom: -79px;
+			}
+			ul {
+				float: right;
+				list-style: none;
+				margin-top: -30px;
+			}
+			li {
+				line-height: 31px;
+				font-size: 25px;
+				color: @grey233;
+				margin-top: 1px;
+			}
+			&:after {
+				clear:both;
+			}
+		}
+	}
+}
+
+
+.make-list{
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	color: @header-colour;
+	display: inline-block;
+}
+
+
+.event-panel {
+	border-radius: 6px;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	p, h3 {
+		color: @grey66;
+	}
+}
+.lead-text {
+	color: @header-colour;
+	font-size: 1.5em;
+}
+
+.container-fluid {
+	background-color: @frame-colour;
+}
+
+.panel {
+	width: 300px;
+	background-color: @link-colour;
+	background-color: rgb(71, 102, 117);
+	padding: 12px;
+	div.image-container img {
+		width:300px;
+	}
+	footer {
+		word-wrap: break-word;
+	}
+}
+
+.grid-sizer {
+	// width: 20%;
+}
+div.sponsor {
+	background-image: @fabric;
+	padding: 16px;
+	text-align: center;
+	margin-bottom: 0px;
+	h4 { 
+		color: @header-colour;
+		text-align: center;
+		margin-top: 0;
+	}
+	h5 {
+	}
+	p, a {
+		color: @white;
+		text-align: left;
+	}
+	i {
+		display: block;
+		font-size: 24px;
+		padding: 6px;
+	}
+	p {
+		font-size: 14px;
+		font-weight: normal;
+	}
+}

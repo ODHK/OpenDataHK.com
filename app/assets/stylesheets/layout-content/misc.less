@@ -1,0 +1,111 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/misc.less
+//
+// *************************************
+
+@import "libs/variables.css.less";
+
+div.image-container {
+    display: -webkit-flex;
+    display: flex;
+    max-height: 200px;
+    overflow: hidden;
+    margin-left: 0;
+    margin-bottom: 12px;
+    border-radius: 0;
+    border-top: 1px solid rgb(66,66,66);
+    border-bottom: 1px solid rgb(66,66,66);
+ 	img {
+ 		-webkit-align-self: center;
+    	align-self: center;
+    	width: 100%;
+	}
+}
+div.avatar-panel{
+	width: 136px;
+	height: 192px;
+	float: left;
+    margin-right: 6px;
+    margin-left: 6px;
+    margin-bottom: 12px;
+    border-radius: 0;
+    background-image: @fabric;
+    padding: 6px;
+	a {
+		color: white;
+		text-align: center;
+	}
+}
+div.avatar-wrapper {
+	height: 136px;
+	width: 136px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border: 1px solid rgb(33,33,33);
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+div.noun-container {
+	display: -webkit-flex !important;
+    display: flex;
+    max-height: 200px;
+    overflow: hidden;
+    margin-left: 0;
+    margin-bottom: 0;
+    padding: 10px 0;
+    border-radius: 0;
+    border-top: 1px solid rgb(66,66,66);
+    border-bottom: 1px solid rgb(66,66,66);
+	background-color: #eee;
+	
+	img {
+		background-color: #eee;
+		opacity: 0.75;
+		& path {
+			fill: blue;
+		}
+    	-webkit-align-self: center;
+    	align-self: center;
+    	max-width: 50%;
+    	height: 200px;
+    	margin: 0 auto;
+    	display: block;
+	}
+}
+
+div.col > section > h3 {
+	clear: both;
+	background-color: #ccc;
+	margin-bottom: 20px;
+	text-align: center;
+	line-height: 30px;
+	padding: 8px;
+	color: #ECECEC;
+}
+
+.hashtag {
+	vertical-align: middle;
+	line-height: 59px;
+	a, p {
+		margin-left: 0px;
+		background-color: @grey66;
+		color: @grey233;
+	}
+	p:hover{
+		margin-left: 0px;
+		background-color: @grey66;
+		color: @grey233;	
+	}
+	a:hover{
+		background-color: @grey233;
+		color: @grey66;
+		}
+	img {
+		height: 24px;
+	}
+}

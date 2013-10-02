@@ -1,0 +1,54 @@
+// *************************************
+//
+//  ODHK
+//  stylsheet/layout-content/microbe.less
+//
+// *************************************
+
+@import "libs/mixins.less";
+@import "libs/variables.css.less";
+
+.microbeWrapper{
+	background-image: @fabric;
+	border-radius: 6px;
+	color: @grey66;
+	color: @white;
+	margin-bottom: 12px;
+	// .clearfix; -- require clearfix 
+	div.avatar{
+		width:118px;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+		overflow: hidden;
+		float: left;
+	}
+	div.content{
+		width: auto;
+		float: none;
+		margin-left:120px;
+		margin-right:120px;
+		word-wrap:break;
+	}
+	&.no-project {
+		margin-right:0px;
+	}
+	div.project{
+		width:118px;
+		border-bottom-right-radius: 6px;
+		border-top-right-radius: 6px;
+		overflow: hidden;
+		float: right;
+	}
+	img {
+		width: 100%;
+	}
+	p {
+		// width: 70%;
+		// float: right;
+		text-align: left;
+		padding: 12px;
+	}
+	span {
+		float:right;
+	}
+}
