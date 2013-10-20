@@ -60,6 +60,9 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'rvm-capistrano'
 
+# Monitoring
+gem 'newrelic_rpm'
+
 # To use debugger
 # gem 'debugger'
 
